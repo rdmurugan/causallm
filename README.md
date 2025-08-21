@@ -26,7 +26,7 @@ pip install -e .
 or clone and install manually:
 
 ```bash
-git clone https://github.com/rdmurugan/causal-llm.git
+git clone https://github.com/rdmurugan/causallm.git
 cd causal-llm
 pip install -r requirements.txt
 ```
