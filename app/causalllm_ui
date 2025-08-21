@@ -1,0 +1,39 @@
+import streamlit as st
+from causalllm.counterfactual_engine import CounterfactualEngine
+from causalllm.do_operator import DoOperatorSimulator
+
+st.set_page_config(page_title="CausalLLM Playground", layout="centered")
+st.title("🧠 CausalLLM: Counterfactual & Do-Operator Simulator")
+
+with st.sidebar:
+    st.markdown("### Select Mode")
+    mode = st.radio("Choose simulation type:", ["Counterfactual", "Do-Operator"])
+
+if mode == "Counterfactual":
+    st.subheader("🌀 Simulate Counterfactual Scenario")
+
+    context = st.text_area("Context", "A patient has diabetes.")
+    factual = st.text_area("Factual Scenario", "The patient did not take medication regularly and developed complications.")
+    intervention = st.text_area("Intervention (What If)", "The patient followed the medication schedule strictly.")
+
+    if st.button("Run Simulation"):
+        engine = CounterfactualEngine()
+        result = engine.simulate_counterfactual(context, factual, intervention)
+        st.markdown("### 🧾 Counterfactual Output")
+        st.write(result)
+
+else:
+    st.subheader("🛠️ Apply Do(X=x) Intervention")
+
+    base_context = st.text_area("Base Context", "The UI was basic and conversion rate was low.")
+    intervention_input = st.text_input("Intervention Variables (e.g. UI=modern,Conversion=high)", "UI=modern")
+
+    if st.button("Generate Do-Operator Prompt"):
+        try:
+            interventions = dict(pair.strip().split("=") for pair in intervention_input.split(","))
+            do_sim = DoOperatorSimulator(base_context, variables={})
+            prompt = do_sim.generate_do_prompt(interventions)
+            st.markdown("### 🧾 Generated Prompt")
+            st.text(prompt)
+        except Exception as e:
+            st.error(f"Error: {str(e)}")
