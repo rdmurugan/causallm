@@ -29,6 +29,9 @@ jobs:
         pip install -r requirements.txt
         pip install pytest mypy
 
+    - name: Set PYTHONPATH
+      run: echo "PYTHONPATH=$(pwd)" >> $GITHUB_ENV
+
     - name: Run Type Checks with mypy
       run: |
         mypy causalllm/ --ignore-missing-imports
