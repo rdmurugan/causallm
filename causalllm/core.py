@@ -4,7 +4,7 @@ from causalllm.do_operator import DoOperatorSimulator
 from causalllm.prompt_templates import PromptTemplates
 from causalllm.counterfactual_engine import CounterfactualEngine
 from causalllm.scm_explainer import SCMExplainer
-from causalllm.llm_client import BaseLLMClient
+from causalllm.llm_client import BaseLLMClient, get_llm_client
 
 
 class CausalLLMCore:
@@ -18,7 +18,7 @@ class CausalLLMCore:
         context: str,
         variables: Dict[str, str],
         dag_edges: List[Tuple[str, str]],
-        llm_client: BaseLLMClient,
+        llm_client: Optional[BaseLLMClient] = None,
     ) -> None:
         """
         Initializes the core engine for causal LLM tasks.
@@ -27,15 +27,19 @@ class CausalLLMCore:
             context (str): The textual context of the data or system.
             variables (Dict[str, str]): Mapping of variable names to their descriptions.
             dag_edges (List[Tuple[str, str]]): Directed edges representing the DAG structure.
-            llm_client (BaseLLMClient): A language model client implementing the chat interface.
+            llm_client (Optional[BaseLLMClient]): A language model client implementing the chat interface.
+                                                 If not provided, it is inferred from environment.
         """
         self.context = context
         self.variables = variables
         self.dag = DAGParser(dag_edges)
         self.do_operator = DoOperatorSimulator(context, variables)
         self.templates = PromptTemplates()
-        self.counterfactual = CounterfactualEngine(llm_client)
-        self.scm = SCMExplainer(llm_client)
+        
+        # Default to configured LLM if none provided
+        self.llm_client = llm_client or get_llm_client()
+        self.counterfactual = CounterfactualEngine(self.llm_client)
+        self.scm = SCMExplainer(self.llm_client)
 
     def simulate_do(self, intervention: Dict[str, str], question: Optional[str] = None) -> str:
         """
