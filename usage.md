@@ -9,8 +9,8 @@ This guide shows how to use **CausalLLM** to build causal prompts, simulate coun
 Clone the repository and install dependencies:
 
 ```bash
-git clone https://github.com/yourusername/causal-llm.git
-cd causal-llm
+git clone https://github.com/rdmurugan/causalllm.git
+cd causalllm
 pip install -r requirements.txt
 ```
 
