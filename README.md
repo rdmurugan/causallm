@@ -27,7 +27,7 @@ or clone and install manually:
 
 ```bash
 git clone https://github.com/rdmurugan/causallm.git
-cd causal-llm
+cd causalllm
 pip install -r requirements.txt
 ```
 
