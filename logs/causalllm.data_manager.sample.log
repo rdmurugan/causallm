@@ -1,0 +1,4 @@
+2025-08-23 14:55:40,705 - causalllm.data_manager.sample - INFO - create_sample_causal_data:739 - Creating sample causal dataset
+2025-08-23 14:55:40,709 - causalllm.data_manager.sample - INFO - create_sample_causal_data:808 - Sample dataset created: 1000 rows, 8 columns
+2025-08-23 14:56:09,507 - causalllm.data_manager.sample - INFO - create_sample_causal_data:739 - Creating sample causal dataset
+2025-08-23 14:56:09,509 - causalllm.data_manager.sample - INFO - create_sample_causal_data:808 - Sample dataset created: 1000 rows, 8 columns

@@ -1,0 +1,16 @@
+2025-08-23 14:55:40,709 - causalllm.data_manager - INFO - __init__:40 - Initializing CausalDataManager
+2025-08-23 14:55:40,710 - causalllm.data_manager - INFO - __init__:57 - CausalDataManager initialized successfully
+2025-08-23 14:55:40,713 - causalllm.data_manager - INFO - normalize_variable_names:194 - Normalizing variable names using strategy: auto
+2025-08-23 14:55:40,715 - causalllm.data_manager - INFO - normalize_variable_names:241 - Variable normalization completed: 8 mappings created
+2025-08-23 14:56:09,509 - causalllm.data_manager - INFO - __init__:40 - Initializing CausalDataManager
+2025-08-23 14:56:09,509 - causalllm.data_manager - INFO - __init__:57 - CausalDataManager initialized successfully
+2025-08-23 14:56:09,511 - causalllm.data_manager - INFO - get_conditional_data:493 - Applying conditional filtering with 1 conditions
+2025-08-23 14:56:09,512 - causalllm.data_manager - INFO - get_conditional_data:555 - Conditional filtering complete: 1000 -> 377 rows
+2025-08-23 14:56:09,512 - causalllm.data_manager - INFO - get_conditional_data:493 - Applying conditional filtering with 1 conditions
+2025-08-23 14:56:09,512 - causalllm.data_manager - INFO - get_conditional_data:555 - Conditional filtering complete: 1000 -> 615 rows
+2025-08-23 14:56:09,512 - causalllm.data_manager - INFO - get_conditional_data:493 - Applying conditional filtering with 1 conditions
+2025-08-23 14:56:09,512 - causalllm.data_manager - INFO - get_conditional_data:555 - Conditional filtering complete: 1000 -> 288 rows
+2025-08-23 14:56:09,512 - causalllm.data_manager - INFO - get_conditional_data:493 - Applying conditional filtering with 2 conditions
+2025-08-23 14:56:09,513 - causalllm.data_manager - INFO - get_conditional_data:555 - Conditional filtering complete: 1000 -> 191 rows
+2025-08-23 14:56:09,513 - causalllm.data_manager - INFO - get_variable_distribution:583 - Analyzing distribution for 'Annual Income ($)' on 1000 rows
+2025-08-23 14:56:09,513 - causalllm.data_manager - INFO - get_variable_distribution:583 - Analyzing distribution for 'Education Level (Highest)' on 1000 rows

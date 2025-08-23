@@ -12,6 +12,7 @@
 * **Counterfactual Simulation Engine**: Model "what if" scenarios with text or tabular data
 * **Do-Operator API**: Specify interventions and simulate outcomes
 * **Causal Chain-of-Thought**: Structured reasoning templates for LLM-based answers
+* **Data Manager**: Load, clean, and validate datasets for causal analysis
 * **Plug-and-Play Agents**: LangChain and LlamaIndex integrations included
 * **SCM Extraction**: Generate structural causal models from natural language
 * **MCP Integration**: Model Context Protocol support for seamless tool integration
@@ -50,6 +51,9 @@ pip install -r requirements.txt
 
 * `examples/mcp_client_example.py`
   Connect to MCP servers for causal analysis via Model Context Protocol
+
+* `examples/data_manager_example.py`
+  Load, clean, and validate datasets for causal analysis workflows
 
 ---
 
