@@ -9,11 +9,12 @@
 ## 🚀 Features
 
 * **DAG-to-Prompt Converter**: Turn causal graphs into structured prompts for LLMs
-* **Counterfactual Simulation Engine**: Model “what if” scenarios with text or tabular data
+* **Counterfactual Simulation Engine**: Model "what if" scenarios with text or tabular data
 * **Do-Operator API**: Specify interventions and simulate outcomes
 * **Causal Chain-of-Thought**: Structured reasoning templates for LLM-based answers
 * **Plug-and-Play Agents**: LangChain and LlamaIndex integrations included
 * **SCM Extraction**: Generate structural causal models from natural language
+* **MCP Integration**: Model Context Protocol support for seamless tool integration
 
 ---
 
@@ -39,18 +40,25 @@ pip install -r requirements.txt
   Simulate causal treatment effects from tabular data using an LLM
 
 * `examples/counterfactual_storytelling.ipynb`
-  Generate plausible “what could have happened” narratives using GPT
+  Generate plausible "what could have happened" narratives using GPT
 
 * `examples/marketing_campaign_uplift.py`
   Estimate uplift from interventions in marketing scenarios
+
+* `examples/mcp_server_example.py`
+  Run CausalLLM as an MCP server exposing causal reasoning tools
+
+* `examples/mcp_client_example.py`
+  Connect to MCP servers for causal analysis via Model Context Protocol
 
 ---
 
 ## 📦 Integrations
 
 ✅ LangChain Agent
-✅ LlamaIndex Retriever
+✅ LlamaIndex Retriever  
 ✅ OpenAI, Anthropic, HuggingFace-compatible
+✅ Model Context Protocol (MCP) server & client
 
 ---
 
@@ -59,7 +67,9 @@ pip install -r requirements.txt
 ```
 causal-llm/
 ├── causalllm/               # Core modules
-├── integrations/            # LangChain, LlamaIndex, model APIs
+│   ├── mcp/                 # Model Context Protocol integration
+│   └── ...                  # Other core modules
+├── integrations/            # LangChain, LlamaIndex, model APIs  
 ├── examples/                # Use cases and notebooks
 ├── tests/                   # Unit and integration tests
 └── docs/                    # Technical documentation

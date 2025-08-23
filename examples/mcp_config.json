@@ -1,0 +1,35 @@
+{
+  "server": {
+    "name": "causalllm-server",
+    "version": "1.0.0",
+    "description": "CausalLLM MCP Server for causal reasoning and counterfactual analysis",
+    "transport": "stdio",
+    "host": "localhost",
+    "port": 8000,
+    "max_connections": 10,
+    "timeout": 30,
+    "log_level": "INFO"
+  },
+  "client": {
+    "server_name": "causalllm-server",
+    "transport": "stdio",
+    "host": "localhost",
+    "port": 8000,
+    "timeout": 30,
+    "retry_attempts": 3,
+    "retry_delay": 1.0
+  },
+  "tools": {
+    "enabled_tools": [
+      "simulate_counterfactual",
+      "generate_do_prompt",
+      "extract_causal_edges",
+      "generate_reasoning_prompt",
+      "analyze_treatment_effect",
+      "create_causal_core"
+    ],
+    "tool_timeout": 60,
+    "max_prompt_length": 10000,
+    "enable_streaming": false
+  }
+}

@@ -1,4 +1,4 @@
-from typing import Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 from causalllm.dag_parser import DAGParser
 from causalllm.do_operator import DoOperatorSimulator
 from causalllm.prompt_templates import PromptTemplates
@@ -46,6 +46,11 @@ class CausalLLMCore:
         # Default to configured LLM if none provided
         self.llm_client = llm_client or get_llm_client()
         self.logger.info(f"Using LLM client: {type(self.llm_client).__name__}")
+        
+        # Check if we're using MCP client for special handling
+        self.is_mcp_client = type(self.llm_client).__name__ == "MCPClient"
+        if self.is_mcp_client:
+            self.logger.info("MCP client detected - enabling MCP-specific features")
         
         self.counterfactual = CounterfactualEngine(self.llm_client)
         self.scm = SCMExplainer(self.llm_client)
@@ -173,3 +178,165 @@ class CausalLLMCore:
             self.logger.error(f"Error generating reasoning prompt: {e}")
             self.struct_logger.log_error(e, {"task": task})
             raise
+
+    def get_mcp_tools(self) -> List[str]:
+        """
+        Get list of available MCP tools if using MCP client.
+        
+        Returns:
+            List[str]: List of available MCP tool names.
+        """
+        if not self.is_mcp_client:
+            self.logger.warning("get_mcp_tools called on non-MCP client")
+            return []
+            
+        self.logger.info("Retrieving available MCP tools")
+        
+        try:
+            # Access the underlying MCP client
+            if hasattr(self.llm_client, 'mcp_client'):
+                import asyncio
+                tools = asyncio.run(self.llm_client.mcp_client.list_tools())
+                tool_names = [tool['name'] for tool in tools]
+                
+                self.logger.info(f"Found {len(tool_names)} MCP tools: {tool_names}")
+                return tool_names
+            else:
+                self.logger.warning("MCP client does not have expected mcp_client attribute")
+                return []
+                
+        except Exception as e:
+            self.logger.error(f"Error retrieving MCP tools: {e}")
+            self.struct_logger.log_error(e, {"operation": "get_mcp_tools"})
+            return []
+
+    def call_mcp_tool(self, tool_name: str, arguments: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Direct call to MCP tool if using MCP client.
+        
+        Args:
+            tool_name (str): Name of the MCP tool to call.
+            arguments (Dict[str, Any]): Arguments to pass to the tool.
+            
+        Returns:
+            Dict[str, Any]: Tool execution result.
+        """
+        if not self.is_mcp_client:
+            raise ValueError("call_mcp_tool can only be used with MCP client")
+            
+        self.logger.info(f"Calling MCP tool: {tool_name}")
+        self.logger.debug(f"Arguments: {arguments}")
+        
+        try:
+            # Access the underlying MCP client
+            if hasattr(self.llm_client, 'mcp_client'):
+                import asyncio
+                result = asyncio.run(self.llm_client.mcp_client.call_tool(tool_name, arguments))
+                
+                self.struct_logger.log_interaction(
+                    "mcp_tool_call",
+                    {
+                        "tool_name": tool_name,
+                        "arguments": arguments,
+                        "result_type": type(result).__name__
+                    }
+                )
+                
+                self.logger.info(f"MCP tool {tool_name} completed successfully")
+                return result
+            else:
+                raise RuntimeError("MCP client does not have expected mcp_client attribute")
+                
+        except Exception as e:
+            self.logger.error(f"Error calling MCP tool {tool_name}: {e}")
+            self.struct_logger.log_error(e, {
+                "tool_name": tool_name,
+                "arguments": arguments,
+                "operation": "call_mcp_tool"
+            })
+            raise
+
+    def create_causal_mcp_core(self) -> Dict[str, Any]:
+        """
+        Create a comprehensive causal core representation for MCP.
+        Useful for initializing MCP servers with this core's configuration.
+        
+        Returns:
+            Dict[str, Any]: Core configuration suitable for MCP tools.
+        """
+        self.logger.info("Creating causal MCP core representation")
+        
+        try:
+            config = {
+                "context": self.context,
+                "variables": self.variables,
+                "dag_edges": list(self.dag.graph.edges()),
+                "capabilities": {
+                    "simulate_do": True,
+                    "simulate_counterfactual": True,
+                    "generate_reasoning_prompt": True,
+                    "extract_causal_edges": True,
+                    "mcp_integration": self.is_mcp_client
+                }
+            }
+            
+            self.struct_logger.log_interaction(
+                "mcp_core_creation",
+                {
+                    "variables_count": len(self.variables),
+                    "dag_edges_count": self.dag.graph.number_of_edges(),
+                    "context_length": len(self.context),
+                    "is_mcp_client": self.is_mcp_client
+                }
+            )
+            
+            self.logger.info("Causal MCP core representation created")
+            return config
+            
+        except Exception as e:
+            self.logger.error(f"Error creating causal MCP core: {e}")
+            self.struct_logger.log_error(e, {"operation": "create_causal_mcp_core"})
+            raise
+
+    @classmethod
+    def from_mcp_config(cls, mcp_config: Dict[str, Any], llm_client: Optional[BaseLLMClient] = None) -> "CausalLLMCore":
+        """
+        Create CausalLLMCore instance from MCP configuration.
+        
+        Args:
+            mcp_config (Dict[str, Any]): MCP configuration dictionary.
+            llm_client (Optional[BaseLLMClient]): Optional LLM client to use.
+            
+        Returns:
+            CausalLLMCore: Initialized core instance.
+        """
+        logger = get_logger("causalllm.core.from_mcp")
+        logger.info("Creating CausalLLMCore from MCP configuration")
+        
+        try:
+            # Extract required fields from MCP config
+            context = mcp_config.get("context", "")
+            variables = mcp_config.get("variables", {})
+            dag_edges = [tuple(edge) for edge in mcp_config.get("dag_edges", [])]
+            
+            if not context:
+                raise ValueError("MCP configuration missing required 'context' field")
+            if not variables:
+                raise ValueError("MCP configuration missing required 'variables' field")
+            if not dag_edges:
+                raise ValueError("MCP configuration missing required 'dag_edges' field")
+            
+            # Create core instance
+            core = cls(
+                context=context,
+                variables=variables,
+                dag_edges=dag_edges,
+                llm_client=llm_client
+            )
+            
+            logger.info("CausalLLMCore created successfully from MCP configuration")
+            return core
+            
+        except Exception as e:
+            logger.error(f"Error creating CausalLLMCore from MCP config: {e}")
+            raise RuntimeError(f"Failed to create core from MCP config: {e}") from e

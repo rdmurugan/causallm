@@ -1,6 +1,7 @@
 from typing import Protocol, Any
 import os
 import time
+import asyncio
 from causalllm.logging import get_logger, get_structured_logger
 
 # Base interface for all LLM clients
@@ -308,6 +309,177 @@ class GrokClient:
         return result
 
 
+# MCP Client for causal reasoning via Model Context Protocol
+class MCPClient:
+    def __init__(self, model: str = "counterfactual", config_path: str = None) -> None:
+        self.logger = get_logger("causalllm.llm_client.mcp")
+        self.struct_logger = get_structured_logger("llm_client_mcp")
+        
+        self.logger.info("Initializing MCP client")
+        
+        try:
+            from causalllm.mcp.client import MCPLLMClient
+            from causalllm.mcp.config import load_mcp_config
+            self.mcp_module = True
+        except ImportError as e:
+            self.logger.error("MCP module not available")
+            raise ImportError("MCP module is required but not available. Check MCP implementation.") from e
+        
+        # Load MCP configuration
+        try:
+            self.config = load_mcp_config(config_path)
+            self.default_model = model
+            self.mcp_client = MCPLLMClient(self.config)
+            self._connected = False
+            
+            self.logger.info(f"MCP client initialized with model: {model}")
+            self.struct_logger.log_interaction(
+                "client_initialization",
+                {
+                    "model": model,
+                    "config_path": config_path or "default",
+                    "transport": self.config.client.transport,
+                    "server": self.config.client.server_name
+                }
+            )
+        except Exception as e:
+            self.logger.error(f"Failed to initialize MCP client: {e}")
+            self.struct_logger.log_error(e, {"model": model, "config_path": config_path})
+            raise
+
+    def _ensure_connected(self) -> None:
+        """Ensure MCP connection is established."""
+        if not self._connected:
+            self.logger.info("Establishing MCP connection")
+            try:
+                # Run async connection in sync context
+                loop = asyncio.get_event_loop()
+                if loop.is_running():
+                    # If we're already in an async context, we need a different approach
+                    import concurrent.futures
+                    with concurrent.futures.ThreadPoolExecutor() as executor:
+                        future = executor.submit(asyncio.run, self.mcp_client.connect())
+                        future.result(timeout=30)
+                else:
+                    asyncio.run(self.mcp_client.connect())
+                self._connected = True
+                self.logger.info("MCP connection established")
+            except Exception as e:
+                self.logger.error(f"Failed to connect to MCP server: {e}")
+                raise RuntimeError(f"MCP connection failed: {e}") from e
+
+    def chat(self, prompt: str, model: str = "", temperature: float = 0.7) -> str:
+        use_model = model or self.default_model
+        
+        # Input validation
+        if not prompt or not prompt.strip():
+            self.logger.error("Empty prompt provided")
+            raise ValueError("Prompt cannot be empty")
+        
+        if not (0.0 <= temperature <= 2.0):
+            self.logger.error(f"Invalid temperature: {temperature}")
+            raise ValueError("Temperature must be between 0.0 and 2.0")
+        
+        self._ensure_connected()
+        
+        self.logger.info(f"Making MCP tool call for model: {use_model}")
+        self.logger.debug(f"Prompt length: {len(prompt)}, Temperature: {temperature}")
+        
+        start_time = time.time()
+        try:
+            # Map model names to MCP tools
+            if use_model in ("counterfactual", "simulate_counterfactual"):
+                # For counterfactual simulation, we need context, factual, and intervention
+                # Try to parse the prompt or use it as context
+                result = asyncio.run(self.mcp_client.simulate_counterfactual(
+                    context=prompt,
+                    factual="[Provided scenario]",
+                    intervention="[Requested analysis]",
+                    temperature=temperature
+                ))
+            elif use_model in ("do_prompt", "generate_do_prompt"):
+                # For do-calculus, treat prompt as context with generic variables
+                result = asyncio.run(self.mcp_client.generate_do_prompt(
+                    context=prompt,
+                    variables={"X": "treatment variable", "Y": "outcome variable"},
+                    intervention={"X": "1"}
+                ))
+            elif use_model in ("causal_edges", "extract_causal_edges"):
+                # For causal edge extraction
+                edges = asyncio.run(self.mcp_client.extract_causal_edges(
+                    scenario_description=prompt,
+                    temperature=temperature
+                ))
+                # Convert edges list to readable format
+                if edges:
+                    result = f"Extracted causal edges: {edges}"
+                else:
+                    result = "No clear causal relationships found."
+            else:
+                # Default to counterfactual simulation
+                self.logger.warning(f"Unknown model '{use_model}', defaulting to counterfactual simulation")
+                result = asyncio.run(self.mcp_client.simulate_counterfactual(
+                    context=prompt,
+                    factual="[Provided scenario]", 
+                    intervention="[Requested analysis]",
+                    temperature=temperature
+                ))
+            
+            duration = time.time() - start_time
+            
+            if not result or not result.strip():
+                self.logger.warning("Empty response from MCP")
+                result = "[Empty response from MCP server]"
+            
+            self.logger.info(f"MCP tool call completed in {duration:.2f}s")
+            
+            self.struct_logger.log_interaction(
+                "chat_completion",
+                {
+                    "model": use_model,
+                    "temperature": temperature,
+                    "prompt_length": len(prompt),
+                    "response_length": len(result),
+                    "duration_seconds": duration,
+                    "mcp_tool": True,
+                    "server": self.config.client.server_name
+                }
+            )
+            
+            return result.strip()
+            
+        except Exception as e:
+            duration = time.time() - start_time
+            error_type = type(e).__name__
+            
+            self.logger.error(f"MCP tool call failed after {duration:.2f}s: {error_type}: {e}")
+            
+            self.struct_logger.log_error(e, {
+                "model": use_model,
+                "temperature": temperature,
+                "prompt_length": len(prompt),
+                "duration_seconds": duration,
+                "error_type": error_type,
+                "server": self.config.client.server_name
+            })
+            
+            # Re-raise with more context
+            if "not connected" in str(e).lower():
+                raise RuntimeError(f"MCP server not connected: {e}") from e
+            elif "timeout" in str(e).lower():
+                raise RuntimeError(f"MCP tool call timed out: {e}") from e
+            else:
+                raise RuntimeError(f"MCP tool call failed: {e}") from e
+
+    def __del__(self):
+        """Cleanup MCP connection on client deletion."""
+        if hasattr(self, '_connected') and self._connected:
+            try:
+                asyncio.run(self.mcp_client.disconnect())
+            except:
+                pass  # Best effort cleanup
+
+
 # Factory function
 def get_llm_client(provider: str = "openai", model: str = "") -> BaseLLMClient:
     logger = get_logger("causalllm.llm_client.factory")
@@ -331,8 +503,10 @@ def get_llm_client(provider: str = "openai", model: str = "") -> BaseLLMClient:
             client = LLaMAClient(model=model)
         elif provider == "grok":
             client = GrokClient(model=model)
+        elif provider == "mcp":
+            client = MCPClient(model=model)
         else:
-            valid_providers = ["openai", "llama", "grok"]
+            valid_providers = ["openai", "llama", "grok", "mcp"]
             logger.error(f"Unsupported provider: {provider}. Valid options: {valid_providers}")
             raise ValueError(f"Unsupported provider: '{provider}'. Valid options: {valid_providers}")
         

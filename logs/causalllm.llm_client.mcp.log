@@ -1,0 +1,4 @@
+2025-08-23 14:24:36,355 - causalllm.llm_client.mcp - INFO - __init__:318 - Initializing MCP client
+2025-08-23 14:24:36,357 - causalllm.llm_client.mcp - INFO - __init__:335 - MCP client initialized with model: counterfactual
+2025-08-23 14:25:07,508 - causalllm.llm_client.mcp - INFO - __init__:318 - Initializing MCP client
+2025-08-23 14:25:07,511 - causalllm.llm_client.mcp - INFO - __init__:335 - MCP client initialized with model: counterfactual

@@ -1,0 +1,12 @@
+2025-08-23 14:24:36,358 - causalllm.core - INFO - __init__:37 - Initializing CausalLLMCore
+2025-08-23 14:24:36,358 - causalllm.core - INFO - __init__:48 - Using LLM client: MCPClient
+2025-08-23 14:24:36,358 - causalllm.core - INFO - __init__:53 - MCP client detected - enabling MCP-specific features
+2025-08-23 14:24:36,359 - causalllm.core - INFO - __init__:68 - CausalLLMCore initialization completed
+2025-08-23 14:24:36,359 - causalllm.core - INFO - create_causal_mcp_core:267 - Creating causal MCP core representation
+2025-08-23 14:24:36,359 - causalllm.core - ERROR - create_causal_mcp_core:297 - Error creating causal MCP core: 'DAGParser' object has no attribute 'edges'
+2025-08-23 14:25:07,512 - causalllm.core - INFO - __init__:37 - Initializing CausalLLMCore
+2025-08-23 14:25:07,514 - causalllm.core - INFO - __init__:48 - Using LLM client: MCPClient
+2025-08-23 14:25:07,514 - causalllm.core - INFO - __init__:53 - MCP client detected - enabling MCP-specific features
+2025-08-23 14:25:07,518 - causalllm.core - INFO - __init__:68 - CausalLLMCore initialization completed
+2025-08-23 14:25:07,518 - causalllm.core - INFO - create_causal_mcp_core:267 - Creating causal MCP core representation
+2025-08-23 14:25:07,518 - causalllm.core - INFO - create_causal_mcp_core:293 - Causal MCP core representation created

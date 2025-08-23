@@ -1,0 +1,34 @@
+{
+  "server": {
+    "name": "causalllm-websocket-server",
+    "version": "1.0.0",
+    "description": "CausalLLM MCP Server with WebSocket transport",
+    "transport": "websocket",
+    "host": "localhost",
+    "port": 8080,
+    "max_connections": 50,
+    "timeout": 60,
+    "log_level": "INFO"
+  },
+  "client": {
+    "server_name": "causalllm-websocket-server",
+    "transport": "websocket",
+    "host": "localhost",
+    "port": 8080,
+    "timeout": 60,
+    "retry_attempts": 5,
+    "retry_delay": 2.0
+  },
+  "tools": {
+    "enabled_tools": [
+      "simulate_counterfactual",
+      "generate_do_prompt",
+      "extract_causal_edges",
+      "generate_reasoning_prompt",
+      "analyze_treatment_effect"
+    ],
+    "tool_timeout": 120,
+    "max_prompt_length": 20000,
+    "enable_streaming": true
+  }
+}

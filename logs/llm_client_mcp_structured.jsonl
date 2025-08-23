@@ -1,0 +1,2 @@
+{"timestamp": "2025-08-23T18:24:36.357365", "component": "llm_client_mcp", "interaction_type": "client_initialization", "data": {"model": "counterfactual", "config_path": "default", "transport": "stdio", "server": "causalllm-server"}}
+{"timestamp": "2025-08-23T18:25:07.511631", "component": "llm_client_mcp", "interaction_type": "client_initialization", "data": {"model": "counterfactual", "config_path": "default", "transport": "stdio", "server": "causalllm-server"}}

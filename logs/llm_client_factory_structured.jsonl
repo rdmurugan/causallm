@@ -2,3 +2,5 @@
 {"timestamp": "2025-08-23T18:10:29.760462", "component": "llm_client_factory", "interaction_type": "error", "data": {"error_type": "ValueError", "error_message": "Unsupported provider: 'invalid_provider'. Valid options: ['openai', 'llama', 'grok']", "context": {"provider": "invalid_provider", "model": ""}}}
 {"timestamp": "2025-08-23T18:10:29.761968", "component": "llm_client_factory", "interaction_type": "client_creation", "data": {"provider": "grok", "model": "", "client_type": "GrokClient", "success": true}}
 {"timestamp": "2025-08-23T18:10:29.764340", "component": "llm_client_factory", "interaction_type": "client_creation", "data": {"provider": "grok", "model": "", "client_type": "GrokClient", "success": true}}
+{"timestamp": "2025-08-23T18:24:36.357815", "component": "llm_client_factory", "interaction_type": "client_creation", "data": {"provider": "mcp", "model": "counterfactual", "client_type": "MCPClient", "success": true}}
+{"timestamp": "2025-08-23T18:25:07.512109", "component": "llm_client_factory", "interaction_type": "client_creation", "data": {"provider": "mcp", "model": "counterfactual", "client_type": "MCPClient", "success": true}}

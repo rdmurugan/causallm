@@ -8,3 +8,5 @@
 {"timestamp": "2025-08-23T18:10:29.762528", "component": "dag_parser", "interaction_type": "dag_initialization", "data": {"edges_count": 1, "nodes_count": 2, "edges": [["A", "B"]], "is_valid_dag": true}}
 {"timestamp": "2025-08-23T18:10:29.762722", "component": "dag_parser", "interaction_type": "error", "data": {"error_type": "NetworkXError", "error_message": "The node NonexistentNode is not in the digraph.", "context": {"node": "NonexistentNode"}}}
 {"timestamp": "2025-08-23T18:10:29.764433", "component": "dag_parser", "interaction_type": "error", "data": {"error_type": "ValueError", "error_message": "Graph contains cycles - not a valid DAG", "context": {"edges": [["A", "B"], ["B", "A"]]}}}
+{"timestamp": "2025-08-23T18:24:36.358601", "component": "dag_parser", "interaction_type": "dag_initialization", "data": {"edges_count": 1, "nodes_count": 2, "edges": [["treatment", "outcome"]], "is_valid_dag": true}}
+{"timestamp": "2025-08-23T18:25:07.513115", "component": "dag_parser", "interaction_type": "dag_initialization", "data": {"edges_count": 1, "nodes_count": 2, "edges": [["treatment", "outcome"]], "is_valid_dag": true}}

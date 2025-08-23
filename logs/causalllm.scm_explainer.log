@@ -1,0 +1,4 @@
+2025-08-23 14:24:36,359 - causalllm.scm_explainer - INFO - __init__:12 - Initializing SCMExplainer
+2025-08-23 14:24:36,359 - causalllm.scm_explainer - INFO - __init__:25 - SCMExplainer initialized with model: gpt-4
+2025-08-23 14:25:07,518 - causalllm.scm_explainer - INFO - __init__:12 - Initializing SCMExplainer
+2025-08-23 14:25:07,518 - causalllm.scm_explainer - INFO - __init__:25 - SCMExplainer initialized with model: gpt-4

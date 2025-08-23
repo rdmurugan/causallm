@@ -1,0 +1,4 @@
+2025-08-23 14:24:36,359 - causalllm.counterfactual_engine - INFO - __init__:17 - Initializing CounterfactualEngine
+2025-08-23 14:24:36,359 - causalllm.counterfactual_engine - INFO - __init__:23 - CounterfactualEngine initialized with model: gpt-4
+2025-08-23 14:25:07,514 - causalllm.counterfactual_engine - INFO - __init__:17 - Initializing CounterfactualEngine
+2025-08-23 14:25:07,518 - causalllm.counterfactual_engine - INFO - __init__:23 - CounterfactualEngine initialized with model: gpt-4
