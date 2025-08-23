@@ -6,6 +6,9 @@ from causalllm.counterfactual_engine import CounterfactualEngine
 from causalllm.scm_explainer import SCMExplainer
 from causalllm.llm_client import BaseLLMClient, get_llm_client
 from causalllm.logging import get_logger, get_structured_logger
+from causalllm.llm_prompting import IntelligentCausalPrompting
+from causalllm.llm_agents import MultiAgentCausalAnalyzer
+from causalllm.causal_rag import DynamicCausalRAG, create_rag_system
 
 
 class CausalLLMCore:
@@ -54,6 +57,13 @@ class CausalLLMCore:
         
         self.counterfactual = CounterfactualEngine(self.llm_client)
         self.scm = SCMExplainer(self.llm_client)
+        
+        # Initialize Tier 1 LLM enhancements
+        self.intelligent_prompting = IntelligentCausalPrompting(self.llm_client)
+        self.multi_agent_analyzer = MultiAgentCausalAnalyzer(self.llm_client)
+        self.rag_system = create_rag_system(llm_client=self.llm_client)
+        
+        self.logger.info("Tier 1 LLM enhancements initialized: intelligent prompting, multi-agent analysis, RAG system")
         
         self.struct_logger.log_interaction(
             "initialization",
@@ -296,6 +306,162 @@ class CausalLLMCore:
         except Exception as e:
             self.logger.error(f"Error creating causal MCP core: {e}")
             self.struct_logger.log_error(e, {"operation": "create_causal_mcp_core"})
+            raise
+
+    async def enhanced_counterfactual_analysis(self, factual: str, intervention: str, 
+                                             domain: Optional[str] = None) -> Dict[str, Any]:
+        """
+        Perform enhanced counterfactual analysis using Tier 1 capabilities.
+        Combines RAG-enhanced context, intelligent prompting, and multi-agent analysis.
+        
+        Args:
+            factual (str): The factual scenario.
+            intervention (str): The counterfactual intervention.
+            domain (Optional[str]): Domain for specialized knowledge retrieval.
+            
+        Returns:
+            Dict[str, Any]: Comprehensive analysis results.
+        """
+        self.logger.info("Starting enhanced counterfactual analysis")
+        
+        try:
+            # Step 1: RAG-enhanced query processing
+            query = f"Counterfactual analysis: If {factual}, what would happen with {intervention}?"
+            rag_response = await self.rag_system.enhance_query(
+                query=query,
+                context=self.context,
+                domain=domain,
+                causal_concepts=["counterfactuals", "treatment_effects", "confounding"]
+            )
+            
+            # Step 2: Intelligent prompt generation with RAG context
+            enhanced_prompt = await self.intelligent_prompting.generate_enhanced_counterfactual_prompt(
+                context=rag_response.enhanced_context,
+                factual=factual,
+                intervention=intervention,
+                domain=domain
+            )
+            
+            # Step 3: Multi-agent collaborative analysis
+            collaborative_result = await self.multi_agent_analyzer.analyze_counterfactual(
+                context=rag_response.enhanced_context,
+                factual=factual,
+                intervention=intervention
+            )
+            
+            # Step 4: Synthesize comprehensive result
+            result = {
+                "query": query,
+                "factual_scenario": factual,
+                "intervention": intervention,
+                "domain": domain,
+                "rag_analysis": {
+                    "enhanced_context": rag_response.enhanced_context,
+                    "retrieved_documents": len(rag_response.retrieved_documents),
+                    "confidence_score": rag_response.confidence_score,
+                    "knowledge_gaps": rag_response.knowledge_gaps,
+                    "recommendations": rag_response.recommendations
+                },
+                "intelligent_prompting": {
+                    "enhanced_prompt": enhanced_prompt.enhanced_prompt,
+                    "reasoning_strategy": enhanced_prompt.reasoning_strategy,
+                    "examples_used": len(enhanced_prompt.examples_used),
+                    "quality_score": enhanced_prompt.quality_score
+                },
+                "multi_agent_analysis": {
+                    "domain_expert_analysis": collaborative_result.domain_expert_analysis,
+                    "statistical_analysis": collaborative_result.statistical_analysis,
+                    "skeptic_analysis": collaborative_result.skeptic_analysis,
+                    "synthesized_conclusion": collaborative_result.synthesized_conclusion,
+                    "confidence_score": collaborative_result.confidence_score,
+                    "key_assumptions": collaborative_result.key_assumptions,
+                    "recommendations": collaborative_result.recommendations
+                },
+                "overall_confidence": (
+                    rag_response.confidence_score * 0.3 +
+                    enhanced_prompt.quality_score * 0.3 +
+                    collaborative_result.confidence_score * 0.4
+                )
+            }
+            
+            self.struct_logger.log_interaction(
+                "enhanced_counterfactual_analysis",
+                {
+                    "factual_length": len(factual),
+                    "intervention_length": len(intervention),
+                    "domain": domain,
+                    "documents_retrieved": len(rag_response.retrieved_documents),
+                    "agents_involved": len(collaborative_result.domain_expert_analysis),
+                    "overall_confidence": result["overall_confidence"]
+                }
+            )
+            
+            self.logger.info("Enhanced counterfactual analysis completed successfully")
+            return result
+            
+        except Exception as e:
+            self.logger.error(f"Error in enhanced counterfactual analysis: {e}")
+            self.struct_logger.log_error(e, {
+                "factual": factual[:100],
+                "intervention": intervention[:100],
+                "domain": domain
+            })
+            raise
+
+    async def enhanced_treatment_effect_analysis(self, treatment: str, outcome: str,
+                                               domain: Optional[str] = None) -> Dict[str, Any]:
+        """
+        Perform enhanced treatment effect analysis using Tier 1 capabilities.
+        
+        Args:
+            treatment (str): Treatment variable description.
+            outcome (str): Outcome variable description.
+            domain (Optional[str]): Domain for specialized analysis.
+            
+        Returns:
+            Dict[str, Any]: Comprehensive treatment effect analysis.
+        """
+        self.logger.info("Starting enhanced treatment effect analysis")
+        
+        try:
+            # RAG-enhanced query for treatment effect analysis
+            query = f"Treatment effect analysis: Impact of {treatment} on {outcome}"
+            rag_response = await self.rag_system.enhance_query(
+                query=query,
+                context=self.context,
+                domain=domain,
+                causal_concepts=["treatment_effects", "confounding", "randomized_trials"]
+            )
+            
+            # Multi-agent analysis for treatment effects
+            collaborative_result = await self.multi_agent_analyzer.analyze_treatment_effect(
+                context=rag_response.enhanced_context,
+                treatment=treatment,
+                outcome=outcome
+            )
+            
+            result = {
+                "treatment": treatment,
+                "outcome": outcome,
+                "domain": domain,
+                "rag_enhancement": {
+                    "confidence_score": rag_response.confidence_score,
+                    "knowledge_gaps": rag_response.knowledge_gaps,
+                    "recommendations": rag_response.recommendations
+                },
+                "collaborative_analysis": collaborative_result,
+                "overall_assessment": {
+                    "confidence": collaborative_result.confidence_score,
+                    "key_findings": collaborative_result.synthesized_conclusion,
+                    "methodological_recommendations": collaborative_result.recommendations
+                }
+            }
+            
+            self.logger.info("Enhanced treatment effect analysis completed")
+            return result
+            
+        except Exception as e:
+            self.logger.error(f"Error in enhanced treatment effect analysis: {e}")
             raise
 
     @classmethod
