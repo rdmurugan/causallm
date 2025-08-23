@@ -1,0 +1,2 @@
+2025-08-23 13:53:52,545 - causalllm.llm_client.factory - INFO - get_llm_client:212 - Creating LLM client for provider: grok, model: grok-1
+2025-08-23 13:53:52,546 - causalllm.llm_client.factory - INFO - get_llm_client:234 - Successfully created GrokClient

@@ -1,0 +1,6 @@
+{"timestamp": "2025-08-23T17:53:52.544661", "component": "dag_parser", "interaction_type": "dag_initialization", "data": {"edges_count": 3, "nodes_count": 3, "edges": [["A", "B"], ["B", "C"], ["A", "C"]], "is_valid_dag": true}}
+{"timestamp": "2025-08-23T17:53:52.544986", "component": "dag_parser", "interaction_type": "get_ancestors", "data": {"node": "C", "ancestors": ["B", "A"], "ancestors_count": 2}}
+{"timestamp": "2025-08-23T17:53:52.545057", "component": "dag_parser", "interaction_type": "get_descendants", "data": {"node": "A", "descendants": ["B", "C"], "descendants_count": 2}}
+{"timestamp": "2025-08-23T17:53:52.545107", "component": "dag_parser", "interaction_type": "to_prompt", "data": {"task": "test task", "edges_count": 3, "prompt_length": 69, "graph_edges": [["A", "B"], ["A", "C"], ["B", "C"]]}}
+{"timestamp": "2025-08-23T17:53:52.546762", "component": "dag_parser", "interaction_type": "dag_initialization", "data": {"edges_count": 1, "nodes_count": 2, "edges": [["X", "Y"]], "is_valid_dag": true}}
+{"timestamp": "2025-08-23T17:53:52.547024", "component": "dag_parser", "interaction_type": "to_prompt", "data": {"task": "test reasoning", "edges_count": 1, "prompt_length": 50, "graph_edges": [["X", "Y"]]}}

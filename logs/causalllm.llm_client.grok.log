@@ -1,0 +1,9 @@
+2025-08-23 13:53:52,546 - causalllm.llm_client.grok - INFO - __init__:159 - Initializing Grok client with model: grok-1
+2025-08-23 13:53:52,546 - causalllm.llm_client.grok - INFO - chat:168 - Making Grok chat request with model: grok-1
+2025-08-23 13:53:52,546 - causalllm.llm_client.grok - WARNING - chat:177 - Using simulated Grok response
+2025-08-23 13:53:52,546 - causalllm.llm_client.grok - INFO - chat:168 - Making Grok chat request with model: gpt-4
+2025-08-23 13:53:52,546 - causalllm.llm_client.grok - WARNING - chat:177 - Using simulated Grok response
+2025-08-23 13:53:52,546 - causalllm.llm_client.grok - INFO - chat:168 - Making Grok chat request with model: gpt-4
+2025-08-23 13:53:52,546 - causalllm.llm_client.grok - WARNING - chat:177 - Using simulated Grok response
+2025-08-23 13:53:52,547 - causalllm.llm_client.grok - INFO - chat:168 - Making Grok chat request with model: gpt-4
+2025-08-23 13:53:52,547 - causalllm.llm_client.grok - WARNING - chat:177 - Using simulated Grok response

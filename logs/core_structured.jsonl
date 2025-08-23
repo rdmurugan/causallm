@@ -1,0 +1,4 @@
+{"timestamp": "2025-08-23T17:53:52.546945", "component": "core", "interaction_type": "initialization", "data": {"variables_count": 2, "dag_edges_count": 1, "context_length": 12, "llm_client_type": "GrokClient"}}
+{"timestamp": "2025-08-23T17:53:52.547048", "component": "core", "interaction_type": "reasoning_prompt_generation", "data": {"task": "test reasoning", "result_length": 50}}
+{"timestamp": "2025-08-23T17:53:52.547164", "component": "core", "interaction_type": "do_simulation", "data": {"intervention": {"X": "new value"}, "question": "What happens?", "result_length": 153}}
+{"timestamp": "2025-08-23T17:53:52.547301", "component": "core", "interaction_type": "counterfactual_simulation", "data": {"factual_length": 7, "intervention_length": 12, "instruction": null, "result_length": 234}}

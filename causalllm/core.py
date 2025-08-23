@@ -5,6 +5,7 @@ from causalllm.prompt_templates import PromptTemplates
 from causalllm.counterfactual_engine import CounterfactualEngine
 from causalllm.scm_explainer import SCMExplainer
 from causalllm.llm_client import BaseLLMClient, get_llm_client
+from causalllm.logging import get_logger, get_structured_logger
 
 
 class CausalLLMCore:
@@ -30,6 +31,12 @@ class CausalLLMCore:
             llm_client (Optional[BaseLLMClient]): A language model client implementing the chat interface.
                                                  If not provided, it is inferred from environment.
         """
+        self.logger = get_logger("causalllm.core")
+        self.struct_logger = get_structured_logger("core")
+        
+        self.logger.info("Initializing CausalLLMCore")
+        self.logger.debug(f"Context length: {len(context)}, Variables: {list(variables.keys())}, DAG edges: {len(dag_edges)}")
+        
         self.context = context
         self.variables = variables
         self.dag = DAGParser(dag_edges)
@@ -38,8 +45,22 @@ class CausalLLMCore:
         
         # Default to configured LLM if none provided
         self.llm_client = llm_client or get_llm_client()
+        self.logger.info(f"Using LLM client: {type(self.llm_client).__name__}")
+        
         self.counterfactual = CounterfactualEngine(self.llm_client)
         self.scm = SCMExplainer(self.llm_client)
+        
+        self.struct_logger.log_interaction(
+            "initialization",
+            {
+                "variables_count": len(variables),
+                "dag_edges_count": len(dag_edges),
+                "context_length": len(context),
+                "llm_client_type": type(self.llm_client).__name__
+            }
+        )
+        
+        self.logger.info("CausalLLMCore initialization completed")
 
     def simulate_do(self, intervention: Dict[str, str], question: Optional[str] = None) -> str:
         """
@@ -52,7 +73,28 @@ class CausalLLMCore:
         Returns:
             str: Generated prompt simulating the do-intervention.
         """
-        return self.do_operator.generate_do_prompt(intervention, question)
+        self.logger.info(f"Simulating do-operation with intervention: {intervention}")
+        self.logger.debug(f"Question: {question}")
+        
+        try:
+            result = self.do_operator.generate_do_prompt(intervention, question)
+            
+            self.struct_logger.log_interaction(
+                "do_simulation",
+                {
+                    "intervention": intervention,
+                    "question": question,
+                    "result_length": len(result)
+                }
+            )
+            
+            self.logger.info("Do-operation simulation completed successfully")
+            return result
+            
+        except Exception as e:
+            self.logger.error(f"Error in do-operation simulation: {e}")
+            self.struct_logger.log_error(e, {"intervention": intervention, "question": question})
+            raise
 
     def simulate_counterfactual(
         self, 
@@ -71,9 +113,35 @@ class CausalLLMCore:
         Returns:
             str: Counterfactual explanation or reasoning prompt.
         """
-        return self.counterfactual.simulate_counterfactual(
-            self.context, factual, intervention, instruction
-        )
+        self.logger.info("Starting counterfactual simulation")
+        self.logger.debug(f"Factual: {factual[:100]}..., Intervention: {intervention[:100]}...")
+        
+        try:
+            result = self.counterfactual.simulate_counterfactual(
+                self.context, factual, intervention, instruction
+            )
+            
+            self.struct_logger.log_interaction(
+                "counterfactual_simulation",
+                {
+                    "factual_length": len(factual),
+                    "intervention_length": len(intervention),
+                    "instruction": instruction,
+                    "result_length": len(result)
+                }
+            )
+            
+            self.logger.info("Counterfactual simulation completed successfully")
+            return result
+            
+        except Exception as e:
+            self.logger.error(f"Error in counterfactual simulation: {e}")
+            self.struct_logger.log_error(e, {
+                "factual_length": len(factual),
+                "intervention_length": len(intervention),
+                "instruction": instruction
+            })
+            raise
 
     def generate_reasoning_prompt(self, task: str = "") -> str:
         """
@@ -85,4 +153,23 @@ class CausalLLMCore:
         Returns:
             str: Prompt derived from the DAG.
         """
-        return self.dag.to_prompt(task)
+        self.logger.info(f"Generating reasoning prompt for task: {task}")
+        
+        try:
+            result = self.dag.to_prompt(task)
+            
+            self.struct_logger.log_interaction(
+                "reasoning_prompt_generation",
+                {
+                    "task": task,
+                    "result_length": len(result)
+                }
+            )
+            
+            self.logger.info("Reasoning prompt generated successfully")
+            return result
+            
+        except Exception as e:
+            self.logger.error(f"Error generating reasoning prompt: {e}")
+            self.struct_logger.log_error(e, {"task": task})
+            raise

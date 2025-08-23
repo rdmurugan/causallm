@@ -7,6 +7,7 @@ from langchain.agents.agent_types import AgentType
 from causalllm.counterfactual_engine import CounterfactualEngine
 from causalllm.do_operator import DoOperatorSimulator
 from causalllm.prompt_templates import PromptTemplates
+from causalllm.logging import get_logger, setup_package_logging
 
 
 class CausalAgent:
@@ -15,9 +16,17 @@ class CausalAgent:
     """
 
     def __init__(self, llm=None, temperature=0.7):
+        # Initialize logging
+        setup_package_logging()
+        self.logger = get_logger("causalllm.integrations.langchain")
+        
+        self.logger.info("Initializing CausalAgent for LangChain integration")
+        
         self.llm = llm or ChatOpenAI(temperature=temperature, model="gpt-4")
         self.counterfactual_engine = CounterfactualEngine(llm_client=self.llm)
         self.agent = self._build_agent()
+        
+        self.logger.info("CausalAgent initialized successfully")
 
     def _build_agent(self):
         tools = [

@@ -2,6 +2,11 @@
 
 from causalllm.core import CausalLLMCore
 from causalllm.llm_client import get_llm_client
+from causalllm.logging import setup_package_logging, get_logger
+
+# Setup logging
+setup_package_logging()
+logger = get_logger("causalllm.demo")
 
 # === CONFIGURE ===
 context = """
@@ -20,11 +25,16 @@ dag_edges = [
     ("Placebo", "Recovery")
 ]
 
+logger.info("Starting CausalLLM demo")
+
 llm_provider = "openai"  # Options: "openai", "llama", "groq"
 llm_model = "gpt-4"      # Or other model like "llama2", "mistral" depending on provider
+
+logger.info(f"Configuring LLM client: {llm_provider} - {llm_model}")
 llm_client = get_llm_client(provider=llm_provider, model=llm_model)
 
 # === INITIALIZE CAUSAL ENGINE ===
+logger.info("Initializing CausalLLMCore engine")
 causal_engine = CausalLLMCore(
     context=context,
     variables=variables,

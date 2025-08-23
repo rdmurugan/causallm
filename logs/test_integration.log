@@ -1,0 +1,2 @@
+2025-08-23 13:53:52,544 - test_integration - INFO - test_logging_integration:30 - === Starting integrated logging test ===
+2025-08-23 13:53:52,547 - test_integration - INFO - test_logging_integration:132 - === Integrated logging test completed ===

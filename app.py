@@ -1,8 +1,14 @@
 import streamlit as st
 from causalllm.core import CausalLLMCore
 from causalllm.llm_client import OpenAIClient
+from causalllm.logging import setup_package_logging, get_logger
+
+# Setup logging
+setup_package_logging()
+logger = get_logger("causalllm.app")
 
 # Initialize LLM client
+logger.info("Starting CausalLLM Streamlit app")
 llm_client = OpenAIClient()
 
 # Streamlit UI
@@ -10,6 +16,7 @@ st.title("CausalLLM Demo")
 task = st.text_input("Enter a causal reasoning task (e.g., 'Explain why variable X affects Y'):") 
 
 if task:
+    logger.info(f"Processing user task: {task}")
     # Minimal example with empty context and dummy variables/edges
     engine = CausalLLMCore(context="", variables={}, dag_edges=[], llm_client=llm_client)
     
