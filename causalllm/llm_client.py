@@ -1,5 +1,5 @@
 from typing import Protocol
-import os
+import os, requests
 
 # Base interface for all LLM clients
 class BaseLLMClient(Protocol):
