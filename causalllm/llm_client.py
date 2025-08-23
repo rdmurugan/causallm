@@ -1,5 +1,5 @@
 from typing import Protocol
-import os, requests
+import os, types-requests
 
 # Base interface for all LLM clients
 class BaseLLMClient(Protocol):
@@ -28,7 +28,7 @@ class OpenAIClient:
             messages=[{"role": "user", "content": prompt}],
             temperature=temperature,
         )
-        return response.choices[0].message.content.strip()
+        return (response.choices[0].message.content or "").strip()
 
 # Local LLaMA (example: running Ollama or similar)
 class LLaMAClient:
@@ -45,8 +45,8 @@ class LLaMAClient:
             json={"model": use_model, "prompt": prompt, "temperature": temperature},
             timeout=60
         )
-        return response.json().get("response", "").strip()
-
+        return (response.choices[0].message.content or "").strip()
+    
 # Grok Client (Mock/Example)
 class GrokClient:
     def __init__(self, model: str = "grok-1") -> None:

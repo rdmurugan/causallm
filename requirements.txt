@@ -3,5 +3,5 @@ openai
 PyYAML
 networkx
 matplotlib
-type-requests
+types-requests
 requests
