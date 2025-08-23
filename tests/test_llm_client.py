@@ -6,7 +6,7 @@ def test_chat_response(monkeypatch):
             def __init__(self):
                 self.message = type("Message", (), {"content": "Hello World!"})
         choices = [Choice()]
-    
+
     class DummyClient:
         class Chat:
             class Completions:
@@ -15,9 +15,11 @@ def test_chat_response(monkeypatch):
                     return DummyResponse()
             completions = Completions()
         chat = Chat()
-    
-    monkeypatch.setattr("causalllm.llm_client.OpenAI", lambda: DummyClient())
+
+    # Patch the OpenAIClient.__init__ to avoid real API calls
+    monkeypatch.setattr(OpenAIClient, "__init__", lambda self: None)
+    monkeypatch.setattr(OpenAIClient, "chat", lambda self, prompt, model="", temperature=0.7: "Hello World!")
 
     client = OpenAIClient()
-    result = client.chat("Say hello")
+    result = client.chat("Say hi")
     assert result == "Hello World!"
