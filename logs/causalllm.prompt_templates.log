@@ -1,0 +1,3 @@
+2025-08-23 14:10:29,763 - causalllm.prompt_templates - ERROR - treatment_effect_estimation:13 - Empty context provided for treatment effect estimation
+2025-08-23 14:10:29,763 - causalllm.prompt_templates - ERROR - treatment_effect_estimation:17 - Empty treatment variable provided
+2025-08-23 14:10:29,763 - causalllm.prompt_templates - ERROR - from_template_file:83 - Template file not found: /nonexistent/file.txt

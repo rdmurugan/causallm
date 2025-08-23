@@ -1,2 +1,11 @@
 2025-08-23 13:53:52,545 - causalllm.llm_client.factory - INFO - get_llm_client:212 - Creating LLM client for provider: grok, model: grok-1
 2025-08-23 13:53:52,546 - causalllm.llm_client.factory - INFO - get_llm_client:234 - Successfully created GrokClient
+2025-08-23 14:10:29,760 - causalllm.llm_client.factory - INFO - get_llm_client:318 - Creating LLM client for provider: invalid_provider, model: 
+2025-08-23 14:10:29,760 - causalllm.llm_client.factory - ERROR - get_llm_client:336 - Unsupported provider: invalid_provider. Valid options: ['openai', 'llama', 'grok']
+2025-08-23 14:10:29,760 - causalllm.llm_client.factory - ERROR - get_llm_client:353 - Failed to create LLM client: Unsupported provider: 'invalid_provider'. Valid options: ['openai', 'llama', 'grok']
+2025-08-23 14:10:29,761 - causalllm.llm_client.factory - INFO - get_llm_client:318 - Creating LLM client for provider: , model: 
+2025-08-23 14:10:29,761 - causalllm.llm_client.factory - ERROR - get_llm_client:322 - Empty provider specified
+2025-08-23 14:10:29,761 - causalllm.llm_client.factory - INFO - get_llm_client:318 - Creating LLM client for provider: grok, model: 
+2025-08-23 14:10:29,762 - causalllm.llm_client.factory - INFO - get_llm_client:349 - Successfully created GrokClient
+2025-08-23 14:10:29,764 - causalllm.llm_client.factory - INFO - get_llm_client:318 - Creating LLM client for provider: grok, model: 
+2025-08-23 14:10:29,764 - causalllm.llm_client.factory - INFO - get_llm_client:349 - Successfully created GrokClient
