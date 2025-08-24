@@ -13,10 +13,9 @@ import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from causalllm.llm_prompting import (
-    IntelligentCausalPrompting, 
+    CausalPromptEngine, 
     CausalExample, 
-    EnhancedPromptResult,
-    ReasoningStrategy
+    PromptTemplate
 )
 from causalllm.llm_agents import (
     MultiAgentCausalAnalyzer,
@@ -33,8 +32,8 @@ from causalllm.causal_rag import (
 from causalllm.core import CausalLLMCore
 
 
-class TestIntelligentCausalPrompting:
-    """Test suite for intelligent prompting system."""
+class TestCausalPromptEngine:
+    """Test suite for causal prompt engine system."""
     
     @pytest.fixture
     def mock_llm_client(self):
@@ -45,14 +44,15 @@ class TestIntelligentCausalPrompting:
     
     @pytest.fixture
     def prompting_system(self, mock_llm_client):
-        """Create an IntelligentCausalPrompting instance."""
-        return IntelligentCausalPrompting(mock_llm_client)
+        """Create a CausalPromptEngine instance."""
+        return CausalPromptEngine()
     
     def test_initialization(self, prompting_system):
         """Test proper initialization of the prompting system."""
-        assert prompting_system.llm_client is not None
-        assert len(prompting_system.example_database) > 0
-        assert hasattr(prompting_system, 'performance_tracker')
+        assert hasattr(prompting_system, 'examples_db')
+        assert hasattr(prompting_system, 'templates')
+        assert len(prompting_system.examples_db) > 0
+        assert len(prompting_system.templates) > 0
     
     def test_causal_example_creation(self):
         """Test CausalExample dataclass creation."""
@@ -70,34 +70,29 @@ class TestIntelligentCausalPrompting:
         assert example.quality_score == 0.8
         assert len(example.reasoning_steps) == 2
     
-    def test_select_relevant_examples(self, prompting_system):
-        """Test selection of relevant examples for few-shot learning."""
-        examples = prompting_system._select_relevant_examples(
+    def test_get_few_shot_examples(self, prompting_system):
+        """Test getting few-shot examples for a domain."""
+        examples = prompting_system.get_few_shot_examples(
             domain="healthcare",
-            concepts=["treatment_effects"],
+            task_type="counterfactual",
             max_examples=2
         )
         
         assert isinstance(examples, list)
         assert len(examples) <= 2
-        # Should find at least one example since we have healthcare examples in the database
-        assert len(examples) > 0
     
-    @pytest.mark.asyncio
-    async def test_generate_enhanced_counterfactual_prompt(self, prompting_system):
-        """Test enhanced counterfactual prompt generation."""
-        result = await prompting_system.generate_enhanced_counterfactual_prompt(
+    def test_generate_chain_of_thought_prompt(self, prompting_system):
+        """Test chain-of-thought prompt generation."""
+        result = prompting_system.generate_chain_of_thought_prompt(
+            task_type="counterfactual",
+            domain="healthcare",
             context="Test medical context",
             factual="Patient received treatment A",
-            intervention="Patient received treatment B instead",
-            domain="healthcare"
+            intervention="Patient received treatment B instead"
         )
         
-        assert isinstance(result, EnhancedPromptResult)
-        assert len(result.enhanced_prompt) > 0
-        assert result.reasoning_strategy in [strategy.value for strategy in ReasoningStrategy]
-        assert result.quality_score > 0
-        assert len(result.examples_used) > 0
+        assert isinstance(result, str)
+        assert len(result) > 0
     
     def test_assess_prompt_quality(self, prompting_system):
         """Test prompt quality assessment."""

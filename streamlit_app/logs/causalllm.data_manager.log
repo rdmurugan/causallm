@@ -1,0 +1,6 @@
+2025-08-24 08:47:15,130 - causalllm.data_manager - INFO - __init__:40 - Initializing CausalDataManager
+2025-08-24 08:47:15,131 - causalllm.data_manager - INFO - __init__:57 - CausalDataManager initialized successfully
+2025-08-24 08:50:10,333 - causalllm.data_manager - INFO - __init__:40 - Initializing CausalDataManager
+2025-08-24 08:50:10,334 - causalllm.data_manager - INFO - __init__:57 - CausalDataManager initialized successfully
+2025-08-24 08:52:24,046 - causalllm.data_manager - INFO - __init__:40 - Initializing CausalDataManager
+2025-08-24 08:52:24,047 - causalllm.data_manager - INFO - __init__:57 - CausalDataManager initialized successfully

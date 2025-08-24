@@ -1,0 +1,16 @@
+2025-08-24 08:47:41,225 - causalllm.llm_client.factory - INFO - get_llm_client:490 - Creating LLM client for provider: openai, model: 
+2025-08-24 08:47:41,493 - causalllm.llm_client.factory - ERROR - get_llm_client:527 - Failed to create LLM client: OPENAI_API_KEY and OPENAI_PROJECT_ID must be set to valid values, not placeholders.
+2025-08-24 08:53:09,462 - causalllm.llm_client.factory - INFO - get_llm_client:490 - Creating LLM client for provider: openai, model: 
+2025-08-24 08:53:09,726 - causalllm.llm_client.factory - ERROR - get_llm_client:527 - Failed to create LLM client: OPENAI_API_KEY and OPENAI_PROJECT_ID must be set to valid values, not placeholders.
+2025-08-24 08:53:29,709 - causalllm.llm_client.factory - INFO - get_llm_client:490 - Creating LLM client for provider: openai, model: 
+2025-08-24 08:53:29,709 - causalllm.llm_client.factory - ERROR - get_llm_client:527 - Failed to create LLM client: OPENAI_API_KEY and OPENAI_PROJECT_ID must be set to valid values, not placeholders.
+2025-08-24 08:53:35,748 - causalllm.llm_client.factory - INFO - get_llm_client:490 - Creating LLM client for provider: openai, model: 
+2025-08-24 08:53:35,748 - causalllm.llm_client.factory - ERROR - get_llm_client:527 - Failed to create LLM client: OPENAI_API_KEY and OPENAI_PROJECT_ID must be set to valid values, not placeholders.
+2025-08-24 10:23:21,460 - causalllm.llm_client.factory - INFO - get_llm_client:490 - Creating LLM client for provider: openai, model: 
+2025-08-24 10:23:21,461 - causalllm.llm_client.factory - ERROR - get_llm_client:527 - Failed to create LLM client: OPENAI_API_KEY and OPENAI_PROJECT_ID must be set to valid values, not placeholders.
+2025-08-24 10:24:07,958 - causalllm.llm_client.factory - INFO - get_llm_client:490 - Creating LLM client for provider: openai, model: 
+2025-08-24 10:24:07,958 - causalllm.llm_client.factory - ERROR - get_llm_client:527 - Failed to create LLM client: OPENAI_API_KEY and OPENAI_PROJECT_ID must be set to valid values, not placeholders.
+2025-08-24 10:24:14,036 - causalllm.llm_client.factory - INFO - get_llm_client:490 - Creating LLM client for provider: openai, model: 
+2025-08-24 10:24:14,038 - causalllm.llm_client.factory - ERROR - get_llm_client:527 - Failed to create LLM client: OPENAI_API_KEY and OPENAI_PROJECT_ID must be set to valid values, not placeholders.
+2025-08-24 10:24:23,252 - causalllm.llm_client.factory - INFO - get_llm_client:490 - Creating LLM client for provider: openai, model: 
+2025-08-24 10:24:23,252 - causalllm.llm_client.factory - ERROR - get_llm_client:527 - Failed to create LLM client: OPENAI_API_KEY and OPENAI_PROJECT_ID must be set to valid values, not placeholders.

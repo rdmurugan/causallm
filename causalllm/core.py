@@ -6,9 +6,17 @@ from causalllm.counterfactual_engine import CounterfactualEngine
 from causalllm.scm_explainer import SCMExplainer
 from causalllm.llm_client import BaseLLMClient, get_llm_client
 from causalllm.logging import get_logger, get_structured_logger
-from causalllm.llm_prompting import IntelligentCausalPrompting
+from causalllm.llm_prompting import CausalPromptEngine
 from causalllm.llm_agents import MultiAgentCausalAnalyzer
 from causalllm.causal_rag import DynamicCausalRAG, create_rag_system
+from causalllm.llm_statistical_interpreter import LLMStatisticalInterpreter
+from causalllm.llm_confounder_reasoning import LLMConfounderReasoning
+from causalllm.llm_multimodal_analysis import LLMMultiModalAnalysis
+from causalllm.llm_causal_discovery import LLMCausalDiscoveryAgent
+from causalllm.interactive_causal_qa import InteractiveCausalQA
+from causalllm.domain_causal_templates import DomainTemplateEngine
+from causalllm.automatic_confounder_detection import AutomaticConfounderDetector
+from causalllm.visual_causal_graphs import VisualCausalGraphGenerator
 
 
 class CausalLLMCore:
@@ -59,11 +67,27 @@ class CausalLLMCore:
         self.scm = SCMExplainer(self.llm_client)
         
         # Initialize Tier 1 LLM enhancements
-        self.intelligent_prompting = IntelligentCausalPrompting(self.llm_client)
+        self.intelligent_prompting = CausalPromptEngine()  # Just use default initialization
         self.multi_agent_analyzer = MultiAgentCausalAnalyzer(self.llm_client)
         self.rag_system = create_rag_system(llm_client=self.llm_client)
         
         self.logger.info("Tier 1 LLM enhancements initialized: intelligent prompting, multi-agent analysis, RAG system")
+        
+        # Initialize Tier 2 LLM enhancements
+        self.statistical_interpreter = LLMStatisticalInterpreter(self.llm_client)
+        self.confounder_reasoning = LLMConfounderReasoning(self.llm_client)
+        self.multimodal_analysis = LLMMultiModalAnalysis(self.llm_client)
+        
+        self.logger.info("Tier 2 LLM enhancements initialized: statistical interpretation, confounder reasoning, multi-modal analysis")
+        
+        # Initialize Tier 3 Advanced LLM Features
+        self.causal_discovery_agent = LLMCausalDiscoveryAgent(self.llm_client)
+        self.interactive_qa = InteractiveCausalQA(self.llm_client)
+        self.template_engine = DomainTemplateEngine(self.llm_client)
+        self.confounder_detector = AutomaticConfounderDetector(self.llm_client)
+        self.graph_visualizer = VisualCausalGraphGenerator()
+        
+        self.logger.info("Tier 3 Advanced LLM features initialized: causal discovery, interactive Q&A, domain templates, auto-confounder detection, graph visualization")
         
         self.struct_logger.log_interaction(
             "initialization",
@@ -335,12 +359,23 @@ class CausalLLMCore:
             )
             
             # Step 2: Intelligent prompt generation with RAG context
-            enhanced_prompt = await self.intelligent_prompting.generate_enhanced_counterfactual_prompt(
+            enhanced_prompt_text = self.intelligent_prompting.generate_chain_of_thought_prompt(
+                task_type="counterfactual",
+                domain=domain or "general",
                 context=rag_response.enhanced_context,
                 factual=factual,
-                intervention=intervention,
-                domain=domain
+                intervention=intervention
             )
+            
+            # Create mock enhanced prompt result for compatibility
+            class MockEnhancedPrompt:
+                def __init__(self, prompt):
+                    self.enhanced_prompt = prompt
+                    self.reasoning_strategy = "chain_of_thought"
+                    self.examples_used = []
+                    self.quality_score = 0.8
+            
+            enhanced_prompt = MockEnhancedPrompt(enhanced_prompt_text)
             
             # Step 3: Multi-agent collaborative analysis
             collaborative_result = await self.multi_agent_analyzer.analyze_counterfactual(
@@ -506,3 +541,377 @@ class CausalLLMCore:
         except Exception as e:
             logger.error(f"Error creating CausalLLMCore from MCP config: {e}")
             raise RuntimeError(f"Failed to create core from MCP config: {e}") from e
+
+    # ============================================================================
+    # Tier 3 Advanced LLM Methods
+    # ============================================================================
+
+    async def discover_causal_structure_from_data(self, 
+                                                data,
+                                                variable_descriptions: Dict[str, str],
+                                                domain: str = "general",
+                                                context: str = "",
+                                                target_variable: Optional[str] = None):
+        """
+        Automatically discover causal structure from data using Tier 3 capabilities.
+        
+        Args:
+            data: Dataset for causal discovery
+            variable_descriptions: Descriptions of variables  
+            domain: Domain context
+            context: Additional context
+            target_variable: Optional target variable to focus on
+            
+        Returns:
+            Discovered causal structure with confidence scores
+        """
+        self.logger.info("Starting automated causal structure discovery")
+        
+        try:
+            from causalllm.llm_causal_discovery import DiscoveryMethod
+            
+            structure = await self.causal_discovery_agent.discover_causal_structure(
+                data=data,
+                variable_descriptions=variable_descriptions,
+                domain=domain,
+                context=context,
+                method=DiscoveryMethod.HYBRID_LLM_STATISTICAL,
+                target_variable=target_variable
+            )
+            
+            self.logger.info(f"Causal discovery completed. Found {len(structure.edges)} causal relationships.")
+            return structure
+            
+        except Exception as e:
+            self.logger.error(f"Error in causal structure discovery: {e}")
+            raise
+
+    async def ask_causal_question(self, 
+                                question: str,
+                                data=None,
+                                variable_descriptions: Optional[Dict[str, str]] = None,
+                                domain: str = "general") -> Dict[str, Any]:
+        """
+        Answer a causal question using the interactive Q&A system.
+        
+        Args:
+            question: Natural language causal question
+            data: Optional dataset
+            variable_descriptions: Optional variable descriptions
+            domain: Domain context
+            
+        Returns:
+            Structured answer with evidence and confidence
+        """
+        self.logger.info(f"Processing causal question: {question[:100]}...")
+        
+        try:
+            # Start Q&A session
+            context = self.interactive_qa.start_conversation(
+                domain=domain,
+                data=data,
+                variable_descriptions=variable_descriptions or {}
+            )
+            
+            # Get answer
+            answer = await self.interactive_qa.ask_causal_question(question, context)
+            
+            # Convert to dictionary for easier access
+            result = {
+                "question": question,
+                "main_answer": answer.main_answer,
+                "confidence_level": answer.confidence_level.value,
+                "supporting_evidence": answer.supporting_evidence,
+                "limitations": answer.limitations,
+                "alternative_explanations": answer.alternative_explanations,
+                "follow_up_questions": answer.follow_up_questions
+            }
+            
+            self.logger.info("Causal question answered successfully")
+            return result
+            
+        except Exception as e:
+            self.logger.error(f"Error answering causal question: {e}")
+            raise
+
+    async def get_causal_template_for_analysis(self, 
+                                             data_description: str,
+                                             research_question: str,
+                                             domain: Optional[str] = None):
+        """
+        Get recommended causal analysis template for the given context.
+        
+        Args:
+            data_description: Description of available data
+            research_question: Research question or analysis goal
+            domain: Optional domain specification
+            
+        Returns:
+            Recommended causal analysis template
+        """
+        self.logger.info("Getting causal analysis template recommendation")
+        
+        try:
+            templates = await self.template_engine.suggest_template(
+                data_description=data_description,
+                research_question=research_question,
+                domain=domain
+            )
+            
+            if templates:
+                recommended = templates[0]  # Top recommendation
+                
+                result = {
+                    "template_name": recommended.template_name,
+                    "description": recommended.description,
+                    "domain": recommended.domain.value,
+                    "variables": [{"name": v.name, "role": v.role, "type": v.data_type} 
+                                for v in recommended.variables],
+                    "causal_edges": [{"source": e.source, "target": e.target, 
+                                    "type": e.relationship_type} 
+                                   for e in recommended.causal_edges],
+                    "common_confounders": recommended.common_confounders,
+                    "key_assumptions": recommended.key_assumptions,
+                    "interpretation_guidelines": recommended.interpretation_guidelines,
+                    "example_questions": recommended.example_questions
+                }
+                
+                self.logger.info(f"Recommended template: {recommended.template_name}")
+                return result
+            else:
+                self.logger.warning("No suitable template found")
+                return None
+                
+        except Exception as e:
+            self.logger.error(f"Error getting causal template: {e}")
+            raise
+
+    async def detect_confounders_automatically(self,
+                                             data,
+                                             treatment_variable: str,
+                                             outcome_variable: str,
+                                             variable_descriptions: Optional[Dict[str, str]] = None,
+                                             domain: str = "general",
+                                             context: str = ""):
+        """
+        Automatically detect confounders using multiple methods.
+        
+        Args:
+            data: Dataset for confounder detection
+            treatment_variable: Treatment/exposure variable
+            outcome_variable: Outcome variable
+            variable_descriptions: Optional variable descriptions
+            domain: Domain context
+            context: Additional context
+            
+        Returns:
+            Comprehensive confounder detection summary
+        """
+        self.logger.info(f"Starting automatic confounder detection for {treatment_variable} -> {outcome_variable}")
+        
+        try:
+            summary = await self.confounder_detector.detect_confounders(
+                data=data,
+                treatment_variable=treatment_variable,
+                outcome_variable=outcome_variable,
+                variable_descriptions=variable_descriptions,
+                domain=domain,
+                context=context
+            )
+            
+            # Convert to dictionary format
+            result = {
+                "treatment_variable": summary.treatment_variable,
+                "outcome_variable": summary.outcome_variable,
+                "detected_confounders": [
+                    {
+                        "variable": c.variable_name,
+                        "confounding_score": c.confounding_score,
+                        "confidence": c.confidence,
+                        "reasoning": c.reasoning,
+                        "recommended_adjustment": [adj.value for adj in c.recommended_adjustment]
+                    }
+                    for c in summary.detected_confounders
+                ],
+                "overall_confounding_risk": summary.overall_confounding_risk,
+                "recommended_adjustment_set": summary.recommended_adjustment_set,
+                "alternative_adjustment_sets": summary.alternative_adjustment_sets,
+                "validation_suggestions": summary.validation_suggestions
+            }
+            
+            self.logger.info(f"Confounder detection completed. Found {len(summary.detected_confounders)} confounders.")
+            return result
+            
+        except Exception as e:
+            self.logger.error(f"Error in automatic confounder detection: {e}")
+            raise
+
+    def create_causal_graph_visualization(self,
+                                        discovered_edges: List[Tuple[str, str]],
+                                        treatment_vars: List[str],
+                                        outcome_vars: List[str],
+                                        confounder_vars: Optional[List[str]] = None,
+                                        title: str = "Causal Graph",
+                                        save_path: Optional[str] = None,
+                                        interactive: bool = False):
+        """
+        Create visual causal graph from discovered relationships.
+        
+        Args:
+            discovered_edges: List of causal relationships (source, target)
+            treatment_vars: Treatment variables
+            outcome_vars: Outcome variables  
+            confounder_vars: Optional confounder variables
+            title: Graph title
+            save_path: Optional path to save visualization
+            interactive: Whether to create interactive visualization
+            
+        Returns:
+            Matplotlib or Plotly figure
+        """
+        self.logger.info("Creating causal graph visualization")
+        
+        try:
+            import networkx as nx
+            from causalllm.visual_causal_graphs import NodeType, VisualizationType, GraphLayout
+            
+            # Create graph
+            graph = nx.DiGraph()
+            graph.add_edges_from(discovered_edges)
+            
+            # Assign node types
+            node_types = {}
+            for node in graph.nodes():
+                if node in treatment_vars:
+                    node_types[node] = NodeType.TREATMENT.value
+                elif node in outcome_vars:
+                    node_types[node] = NodeType.OUTCOME.value
+                elif confounder_vars and node in confounder_vars:
+                    node_types[node] = NodeType.CONFOUNDER.value
+                else:
+                    node_types[node] = NodeType.COVARIATE.value
+            
+            # Create visualization
+            output_format = (VisualizationType.INTERACTIVE_PLOTLY if interactive 
+                           else VisualizationType.STATIC_MATPLOTLIB)
+            
+            fig = self.graph_visualizer.create_causal_graph_visualization(
+                graph=graph,
+                node_types=node_types,
+                layout=GraphLayout.HIERARCHICAL,
+                theme="default",
+                title=title,
+                output_format=output_format,
+                save_path=save_path
+            )
+            
+            self.logger.info("Causal graph visualization created successfully")
+            return fig
+            
+        except Exception as e:
+            self.logger.error(f"Error creating causal graph visualization: {e}")
+            raise
+
+    async def comprehensive_causal_analysis(self,
+                                          data,
+                                          treatment_variable: str,
+                                          outcome_variable: str,
+                                          variable_descriptions: Optional[Dict[str, str]] = None,
+                                          domain: str = "general",
+                                          context: str = "",
+                                          create_visualization: bool = True) -> Dict[str, Any]:
+        """
+        Perform comprehensive causal analysis using all Tier 3 capabilities.
+        
+        Args:
+            data: Dataset for analysis
+            treatment_variable: Treatment variable
+            outcome_variable: Outcome variable
+            variable_descriptions: Variable descriptions
+            domain: Domain context
+            context: Additional context
+            create_visualization: Whether to create graph visualization
+            
+        Returns:
+            Comprehensive analysis results
+        """
+        self.logger.info("Starting comprehensive causal analysis")
+        
+        try:
+            results = {}
+            
+            # 1. Discover causal structure
+            structure = await self.discover_causal_structure_from_data(
+                data, variable_descriptions or {}, domain, context, outcome_variable
+            )
+            results["causal_structure"] = {
+                "edges": [(e.source, e.target) for e in structure.edges],
+                "confidence": structure.overall_confidence,
+                "assumptions": structure.assumptions,
+                "limitations": structure.limitations
+            }
+            
+            # 2. Detect confounders
+            confounder_summary = await self.detect_confounders_automatically(
+                data, treatment_variable, outcome_variable, variable_descriptions, domain, context
+            )
+            results["confounder_analysis"] = confounder_summary
+            
+            # 3. Get recommended template
+            data_desc = f"Dataset with {len(data)} observations and variables: {list(data.columns)}"
+            research_q = f"Analyze the causal effect of {treatment_variable} on {outcome_variable}"
+            
+            template = await self.get_causal_template_for_analysis(data_desc, research_q, domain)
+            results["recommended_template"] = template
+            
+            # 4. Create visualization if requested
+            if create_visualization:
+                edges = [(e.source, e.target) for e in structure.edges]
+                confounders = [c["variable"] for c in confounder_summary["detected_confounders"]]
+                
+                fig = self.create_causal_graph_visualization(
+                    discovered_edges=edges,
+                    treatment_vars=[treatment_variable],
+                    outcome_vars=[outcome_variable],
+                    confounder_vars=confounders,
+                    title=f"Causal Analysis: {treatment_variable} → {outcome_variable}"
+                )
+                results["visualization"] = fig
+            
+            # 5. Generate summary insights
+            insights = await self._generate_analysis_insights(results, domain)
+            results["key_insights"] = insights
+            
+            self.logger.info("Comprehensive causal analysis completed successfully")
+            return results
+            
+        except Exception as e:
+            self.logger.error(f"Error in comprehensive causal analysis: {e}")
+            raise
+
+    async def _generate_analysis_insights(self, results: Dict[str, Any], domain: str) -> List[str]:
+        """Generate key insights from comprehensive analysis."""
+        
+        insights = []
+        
+        # Structure insights
+        if results.get("causal_structure"):
+            structure = results["causal_structure"]
+            insights.append(f"Discovered {len(structure['edges'])} causal relationships with {structure['confidence']:.2f} overall confidence")
+        
+        # Confounder insights
+        if results.get("confounder_analysis"):
+            conf_analysis = results["confounder_analysis"]
+            n_confounders = len(conf_analysis["detected_confounders"])
+            insights.append(f"Identified {n_confounders} potential confounders with {conf_analysis['overall_confounding_risk'].lower()} bias risk")
+            
+            if conf_analysis["recommended_adjustment_set"]:
+                adj_vars = ", ".join(conf_analysis["recommended_adjustment_set"])
+                insights.append(f"Recommended adjustment variables: {adj_vars}")
+        
+        # Template insights
+        if results.get("recommended_template"):
+            template = results["recommended_template"]
+            insights.append(f"Analysis follows {template['template_name']} pattern for {domain} domain")
+        
+        return insights

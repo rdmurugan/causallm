@@ -6,3 +6,17 @@
 {"timestamp": "2025-08-23T18:24:36.359644", "component": "core", "interaction_type": "error", "data": {"error_type": "AttributeError", "error_message": "'DAGParser' object has no attribute 'edges'", "context": {"operation": "create_causal_mcp_core"}}}
 {"timestamp": "2025-08-23T18:25:07.518798", "component": "core", "interaction_type": "initialization", "data": {"variables_count": 2, "dag_edges_count": 1, "context_length": 22, "llm_client_type": "MCPClient"}}
 {"timestamp": "2025-08-23T18:25:07.518936", "component": "core", "interaction_type": "mcp_core_creation", "data": {"variables_count": 2, "dag_edges_count": 1, "context_length": 22, "is_mcp_client": true}}
+{"timestamp": "2025-08-24T05:22:05.297588", "component": "core", "interaction_type": "initialization", "data": {"variables_count": 3, "dag_edges_count": 2, "context_length": 35, "llm_client_type": "MockLLMClient"}}
+{"timestamp": "2025-08-24T05:22:05.298134", "component": "core", "interaction_type": "do_simulation", "data": {"intervention": {"A": "True"}, "question": null, "result_length": 230}}
+{"timestamp": "2025-08-24T05:22:16.450906", "component": "core", "interaction_type": "initialization", "data": {"variables_count": 3, "dag_edges_count": 2, "context_length": 35, "llm_client_type": "MockLLMClient"}}
+{"timestamp": "2025-08-24T05:22:16.451356", "component": "core", "interaction_type": "do_simulation", "data": {"intervention": {"A": "True"}, "question": null, "result_length": 230}}
+{"timestamp": "2025-08-24T05:22:16.452658", "component": "core", "interaction_type": "initialization", "data": {"variables_count": 3, "dag_edges_count": 2, "context_length": 35, "llm_client_type": "MockLLMClient"}}
+{"timestamp": "2025-08-24T05:22:16.452869", "component": "core", "interaction_type": "counterfactual_simulation", "data": {"factual_length": 11, "intervention_length": 9, "instruction": null, "result_length": 260}}
+{"timestamp": "2025-08-24T05:22:16.453994", "component": "core", "interaction_type": "initialization", "data": {"variables_count": 3, "dag_edges_count": 2, "context_length": 35, "llm_client_type": "MockLLMClient"}}
+{"timestamp": "2025-08-24T05:22:16.454178", "component": "core", "interaction_type": "reasoning_prompt_generation", "data": {"task": "causal reasoning", "result_length": 64}}
+{"timestamp": "2025-08-24T05:24:03.988245", "component": "core", "interaction_type": "initialization", "data": {"variables_count": 3, "dag_edges_count": 2, "context_length": 35, "llm_client_type": "MockLLMClient"}}
+{"timestamp": "2025-08-24T05:24:03.988760", "component": "core", "interaction_type": "do_simulation", "data": {"intervention": {"A": "True"}, "question": null, "result_length": 230}}
+{"timestamp": "2025-08-24T05:24:03.990111", "component": "core", "interaction_type": "initialization", "data": {"variables_count": 3, "dag_edges_count": 2, "context_length": 35, "llm_client_type": "MockLLMClient"}}
+{"timestamp": "2025-08-24T05:24:03.990325", "component": "core", "interaction_type": "counterfactual_simulation", "data": {"factual_length": 11, "intervention_length": 9, "instruction": null, "result_length": 260}}
+{"timestamp": "2025-08-24T05:24:03.991534", "component": "core", "interaction_type": "initialization", "data": {"variables_count": 3, "dag_edges_count": 2, "context_length": 35, "llm_client_type": "MockLLMClient"}}
+{"timestamp": "2025-08-24T05:24:03.991723", "component": "core", "interaction_type": "reasoning_prompt_generation", "data": {"task": "causal reasoning", "result_length": 64}}
