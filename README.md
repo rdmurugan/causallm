@@ -3,7 +3,7 @@
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![PyPI version](https://badge.fury.io/py/causallm.svg)](https://badge.fury.io/py/causallm)
-[![GitHub stars](https://img.shields.io/github/stars/causallm/causallm.svg)](https://github.com/causallm/causallm/stargazers)
+[![GitHub stars](https://img.shields.io/github/stars/rdmurugan/causallm.svg)](https://github.com/rdmurugan/causallm/stargazers)
 
 > **Discover cause-and-effect relationships in your data using Large Language Models and rigorous statistical methods.**
 
@@ -139,7 +139,7 @@ pip install causallm[full]
 
 ### Development
 ```bash
-git clone https://github.com/causallm/causallm.git
+git clone https://github.com/rdmurugan/causallm.git
 cd causallm
 pip install -e ".[dev]"
 ```
@@ -242,7 +242,7 @@ We welcome contributions from the community!
 
 ### Development Setup
 ```bash
-git clone https://github.com/causallm/causallm.git
+git clone https://github.com/rdmurugan/causallm.git
 cd causallm
 pip install -e ".[dev]"
 pytest tests/
@@ -272,7 +272,7 @@ If you use CausalLLM in your research, please cite:
   title={CausalLLM: Open Source Causal Inference with Large Language Models},
   author={CausalLLM Team},
   year={2024},
-  url={https://github.com/causallm/causallm}
+  url={https://github.com/rdmurugan/causallm}
 }
 ```
 

@@ -14,9 +14,9 @@ setup(
     description="Open source causal inference powered by LLMs",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/causallm/causallm",
+    url="https://github.com/rdmurugan/causallm",
     project_urls={
-        "Bug Tracker": "https://github.com/causallm/causallm/issues",
+        "Bug Tracker": "https://github.com/rdmurugan/causallm/issues",
         "Documentation": "https://docs.causallm.com",
         "Enterprise": "https://causallm.com/enterprise",
     },
