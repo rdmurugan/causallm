@@ -257,8 +257,7 @@ Free for commercial and academic use.
 
 - **GitHub Discussions**: Ask questions, share examples
 - **Issues**: Report bugs, request features  
-- **Discord**: Join our community (coming soon)
-- **Twitter**: [@CausalLLM](https://twitter.com/causallm) (coming soon)
+- **Discord**: [Join our community](https://discord.gg/d4zD76hb)
 
 ## 📚 Citation
 
@@ -282,7 +281,7 @@ If you use CausalLLM in your research, please cite:
 **Need enterprise features?** reach out to durai@infinidatum.net
 
 
-About Author: 
+About the Author: 
 
 Durai Rajamanickam is a visionary AI executive with 20+ years of leadership in data science, causal inference, and machine learning across healthcare, financial services, legal tech, and high-growth startups. He has architected enterprise AI strategies and advised Fortune 100 firms through roles at various consulting organizations.
 
