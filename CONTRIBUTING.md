@@ -44,17 +44,20 @@ We welcome contributions across a range of needs. Choose what excites you the mo
 ## 📌 Getting Started
 
 1. **Fork** the repository and clone it locally.
-2. Install dependencies:
+git clone https://github.com/rdmurugan/causallm.git
+cd causallm
+
+3. Install dependencies:
 
    ```bash
    pip install -e .[dev]
    ```
-3. Run tests to confirm your setup:
+4. Run tests to confirm your setup:
 
    ```bash
    pytest tests/
    ```
-4. Make your changes in a new branch:
+5. Make your changes in a new branch:
 
    ```bash
    git checkout -b my-feature-branch
