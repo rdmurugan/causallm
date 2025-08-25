@@ -76,7 +76,7 @@ class CausalTools:
                         "chain_of_thought": {
                             "type": "boolean",
                             "description": "Whether to use chain-of-thought reasoning",
-                            "default": false
+                            "default": False
                         }
                     },
                     "required": ["context", "factual", "intervention"]

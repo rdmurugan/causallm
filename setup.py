@@ -19,6 +19,7 @@ setup(
         "jinja2",
         "streamlit",
         "requests",
+        "websockets",
     ],
     extras_require={
         "dev": [
