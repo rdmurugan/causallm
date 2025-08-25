@@ -10,3 +10,82 @@
 2025-08-23 14:25:07,518 - causalllm.core - INFO - __init__:68 - CausalLLMCore initialization completed
 2025-08-23 14:25:07,518 - causalllm.core - INFO - create_causal_mcp_core:267 - Creating causal MCP core representation
 2025-08-23 14:25:07,518 - causalllm.core - INFO - create_causal_mcp_core:293 - Causal MCP core representation created
+2025-08-25 01:51:29,347 - causalllm.core - INFO - __init__:48 - Initializing CausalLLMCore
+2025-08-25 01:51:29,348 - causalllm.core - INFO - __init__:59 - Using LLM client: MockLLMClient
+2025-08-25 01:51:29,352 - causalllm.core - INFO - __init__:74 - Tier 1 LLM enhancements initialized: intelligent prompting, multi-agent analysis, RAG system
+2025-08-25 01:51:29,352 - causalllm.core - INFO - __init__:81 - Tier 2 LLM enhancements initialized: statistical interpretation, confounder reasoning, multi-modal analysis
+2025-08-25 01:51:29,353 - causalllm.core - INFO - __init__:90 - Tier 3 Advanced LLM features initialized: causal discovery, interactive Q&A, domain templates, auto-confounder detection, graph visualization
+2025-08-25 01:51:29,353 - causalllm.core - INFO - __init__:102 - CausalLLMCore initialization completed
+2025-08-25 01:51:29,353 - causalllm.core - INFO - simulate_do:115 - Simulating do-operation with intervention: {'A': 'True'}
+2025-08-25 01:51:29,354 - causalllm.core - INFO - simulate_do:130 - Do-operation simulation completed successfully
+2025-08-25 01:51:29,354 - causalllm.core - INFO - __init__:48 - Initializing CausalLLMCore
+2025-08-25 01:51:29,355 - causalllm.core - INFO - __init__:59 - Using LLM client: MockLLMClient
+2025-08-25 01:51:29,357 - causalllm.core - INFO - __init__:74 - Tier 1 LLM enhancements initialized: intelligent prompting, multi-agent analysis, RAG system
+2025-08-25 01:51:29,357 - causalllm.core - INFO - __init__:81 - Tier 2 LLM enhancements initialized: statistical interpretation, confounder reasoning, multi-modal analysis
+2025-08-25 01:51:29,357 - causalllm.core - INFO - __init__:90 - Tier 3 Advanced LLM features initialized: causal discovery, interactive Q&A, domain templates, auto-confounder detection, graph visualization
+2025-08-25 01:51:29,358 - causalllm.core - INFO - __init__:102 - CausalLLMCore initialization completed
+2025-08-25 01:51:29,358 - causalllm.core - INFO - simulate_counterfactual:155 - Starting counterfactual simulation
+2025-08-25 01:51:29,358 - causalllm.core - INFO - simulate_counterfactual:173 - Counterfactual simulation completed successfully
+2025-08-25 01:51:29,359 - causalllm.core - INFO - __init__:48 - Initializing CausalLLMCore
+2025-08-25 01:51:29,359 - causalllm.core - INFO - __init__:59 - Using LLM client: MockLLMClient
+2025-08-25 01:51:29,361 - causalllm.core - INFO - __init__:74 - Tier 1 LLM enhancements initialized: intelligent prompting, multi-agent analysis, RAG system
+2025-08-25 01:51:29,361 - causalllm.core - INFO - __init__:81 - Tier 2 LLM enhancements initialized: statistical interpretation, confounder reasoning, multi-modal analysis
+2025-08-25 01:51:29,362 - causalllm.core - INFO - __init__:90 - Tier 3 Advanced LLM features initialized: causal discovery, interactive Q&A, domain templates, auto-confounder detection, graph visualization
+2025-08-25 01:51:29,362 - causalllm.core - INFO - __init__:102 - CausalLLMCore initialization completed
+2025-08-25 01:51:29,362 - causalllm.core - INFO - generate_reasoning_prompt:195 - Generating reasoning prompt for task: causal reasoning
+2025-08-25 01:51:29,362 - causalllm.core - INFO - generate_reasoning_prompt:208 - Reasoning prompt generated successfully
+2025-08-25 01:51:29,816 - causalllm.core.from_mcp - INFO - from_mcp_config:515 - Creating CausalLLMCore from MCP configuration
+2025-08-25 01:51:29,817 - causalllm.core - INFO - __init__:48 - Initializing CausalLLMCore
+2025-08-25 01:51:30,409 - causalllm.core.from_mcp - ERROR - from_mcp_config:542 - Error creating CausalLLMCore from MCP config: OPENAI_API_KEY and OPENAI_PROJECT_ID must be set to valid values, not placeholders.
+2025-08-25 01:51:30,440 - causalllm.core - INFO - __init__:48 - Initializing CausalLLMCore
+2025-08-25 01:51:30,441 - causalllm.core - INFO - __init__:59 - Using LLM client: GrokClient
+2025-08-25 01:51:30,443 - causalllm.core - INFO - __init__:74 - Tier 1 LLM enhancements initialized: intelligent prompting, multi-agent analysis, RAG system
+2025-08-25 01:51:30,443 - causalllm.core - INFO - __init__:81 - Tier 2 LLM enhancements initialized: statistical interpretation, confounder reasoning, multi-modal analysis
+2025-08-25 01:51:30,443 - causalllm.core - INFO - __init__:90 - Tier 3 Advanced LLM features initialized: causal discovery, interactive Q&A, domain templates, auto-confounder detection, graph visualization
+2025-08-25 01:51:30,443 - causalllm.core - INFO - __init__:102 - CausalLLMCore initialization completed
+2025-08-25 01:51:30,444 - causalllm.core - INFO - __init__:48 - Initializing CausalLLMCore
+2025-08-25 01:51:30,445 - causalllm.core - INFO - __init__:59 - Using LLM client: MCPClient
+2025-08-25 01:51:30,445 - causalllm.core - INFO - __init__:64 - MCP client detected - enabling MCP-specific features
+2025-08-25 01:51:30,447 - causalllm.core - INFO - __init__:74 - Tier 1 LLM enhancements initialized: intelligent prompting, multi-agent analysis, RAG system
+2025-08-25 01:51:30,447 - causalllm.core - INFO - __init__:81 - Tier 2 LLM enhancements initialized: statistical interpretation, confounder reasoning, multi-modal analysis
+2025-08-25 01:51:30,447 - causalllm.core - INFO - __init__:90 - Tier 3 Advanced LLM features initialized: causal discovery, interactive Q&A, domain templates, auto-confounder detection, graph visualization
+2025-08-25 01:51:30,447 - causalllm.core - INFO - __init__:102 - CausalLLMCore initialization completed
+2025-08-25 01:51:30,449 - causalllm.core - INFO - __init__:48 - Initializing CausalLLMCore
+2025-08-25 01:51:30,450 - causalllm.core - INFO - __init__:59 - Using LLM client: MCPClient
+2025-08-25 01:51:30,450 - causalllm.core - INFO - __init__:64 - MCP client detected - enabling MCP-specific features
+2025-08-25 01:51:30,452 - causalllm.core - INFO - __init__:74 - Tier 1 LLM enhancements initialized: intelligent prompting, multi-agent analysis, RAG system
+2025-08-25 01:51:30,452 - causalllm.core - INFO - __init__:81 - Tier 2 LLM enhancements initialized: statistical interpretation, confounder reasoning, multi-modal analysis
+2025-08-25 01:51:30,452 - causalllm.core - INFO - __init__:90 - Tier 3 Advanced LLM features initialized: causal discovery, interactive Q&A, domain templates, auto-confounder detection, graph visualization
+2025-08-25 01:51:30,452 - causalllm.core - INFO - __init__:102 - CausalLLMCore initialization completed
+2025-08-25 01:51:30,453 - causalllm.core - INFO - create_causal_mcp_core:301 - Creating causal MCP core representation
+2025-08-25 01:51:30,453 - causalllm.core - INFO - create_causal_mcp_core:327 - Causal MCP core representation created
+2025-08-25 01:51:30,511 - causalllm.core - INFO - __init__:48 - Initializing CausalLLMCore
+2025-08-25 01:51:30,512 - causalllm.core - INFO - __init__:59 - Using LLM client: Mock
+2025-08-25 01:51:30,514 - causalllm.core - INFO - __init__:74 - Tier 1 LLM enhancements initialized: intelligent prompting, multi-agent analysis, RAG system
+2025-08-25 01:51:30,514 - causalllm.core - INFO - __init__:81 - Tier 2 LLM enhancements initialized: statistical interpretation, confounder reasoning, multi-modal analysis
+2025-08-25 01:51:30,514 - causalllm.core - INFO - __init__:90 - Tier 3 Advanced LLM features initialized: causal discovery, interactive Q&A, domain templates, auto-confounder detection, graph visualization
+2025-08-25 01:51:30,514 - causalllm.core - INFO - __init__:102 - CausalLLMCore initialization completed
+2025-08-25 01:51:30,521 - causalllm.core - INFO - __init__:48 - Initializing CausalLLMCore
+2025-08-25 01:51:30,521 - causalllm.core - INFO - __init__:59 - Using LLM client: Mock
+2025-08-25 01:51:30,523 - causalllm.core - INFO - __init__:74 - Tier 1 LLM enhancements initialized: intelligent prompting, multi-agent analysis, RAG system
+2025-08-25 01:51:30,523 - causalllm.core - INFO - __init__:81 - Tier 2 LLM enhancements initialized: statistical interpretation, confounder reasoning, multi-modal analysis
+2025-08-25 01:51:30,523 - causalllm.core - INFO - __init__:90 - Tier 3 Advanced LLM features initialized: causal discovery, interactive Q&A, domain templates, auto-confounder detection, graph visualization
+2025-08-25 01:51:30,524 - causalllm.core - INFO - __init__:102 - CausalLLMCore initialization completed
+2025-08-25 01:51:30,526 - causalllm.core - INFO - __init__:48 - Initializing CausalLLMCore
+2025-08-25 01:51:30,527 - causalllm.core - INFO - __init__:59 - Using LLM client: Mock
+2025-08-25 01:51:30,529 - causalllm.core - INFO - __init__:74 - Tier 1 LLM enhancements initialized: intelligent prompting, multi-agent analysis, RAG system
+2025-08-25 01:51:30,529 - causalllm.core - INFO - __init__:81 - Tier 2 LLM enhancements initialized: statistical interpretation, confounder reasoning, multi-modal analysis
+2025-08-25 01:51:30,529 - causalllm.core - INFO - __init__:90 - Tier 3 Advanced LLM features initialized: causal discovery, interactive Q&A, domain templates, auto-confounder detection, graph visualization
+2025-08-25 01:51:30,529 - causalllm.core - INFO - __init__:102 - CausalLLMCore initialization completed
+2025-08-25 01:51:30,605 - causalllm.core - INFO - __init__:48 - Initializing CausalLLMCore
+2025-08-25 01:51:30,606 - causalllm.core - INFO - __init__:59 - Using LLM client: MockLLMClient
+2025-08-25 01:51:30,608 - causalllm.core - INFO - __init__:74 - Tier 1 LLM enhancements initialized: intelligent prompting, multi-agent analysis, RAG system
+2025-08-25 01:51:30,608 - causalllm.core - INFO - __init__:81 - Tier 2 LLM enhancements initialized: statistical interpretation, confounder reasoning, multi-modal analysis
+2025-08-25 01:51:30,608 - causalllm.core - INFO - __init__:90 - Tier 3 Advanced LLM features initialized: causal discovery, interactive Q&A, domain templates, auto-confounder detection, graph visualization
+2025-08-25 01:51:30,608 - causalllm.core - INFO - __init__:102 - CausalLLMCore initialization completed
+2025-08-25 01:51:30,608 - causalllm.core - INFO - simulate_do:115 - Simulating do-operation with intervention: {'A': 'yes'}
+2025-08-25 01:51:30,609 - causalllm.core - INFO - simulate_do:130 - Do-operation simulation completed successfully
+2025-08-25 01:51:30,609 - causalllm.core - INFO - simulate_counterfactual:155 - Starting counterfactual simulation
+2025-08-25 01:51:30,609 - causalllm.core - INFO - simulate_counterfactual:173 - Counterfactual simulation completed successfully
+2025-08-25 01:51:30,609 - causalllm.core - INFO - generate_reasoning_prompt:195 - Generating reasoning prompt for task: Explain the impact of sleep on productivity.
+2025-08-25 01:51:30,609 - causalllm.core - INFO - generate_reasoning_prompt:208 - Reasoning prompt generated successfully

@@ -14,3 +14,135 @@
 2025-08-23 14:56:09,513 - causalllm.data_manager - INFO - get_conditional_data:555 - Conditional filtering complete: 1000 -> 191 rows
 2025-08-23 14:56:09,513 - causalllm.data_manager - INFO - get_variable_distribution:583 - Analyzing distribution for 'Annual Income ($)' on 1000 rows
 2025-08-23 14:56:09,513 - causalllm.data_manager - INFO - get_variable_distribution:583 - Analyzing distribution for 'Education Level (Highest)' on 1000 rows
+2025-08-25 01:51:29,369 - causalllm.data_manager - INFO - __init__:40 - Initializing CausalDataManager
+2025-08-25 01:51:29,369 - causalllm.data_manager - INFO - __init__:57 - CausalDataManager initialized successfully
+2025-08-25 01:51:29,369 - causalllm.data_manager - INFO - load_data:81 - Loading data from: /tmp/tmptywycc39.csv
+2025-08-25 01:51:29,370 - causalllm.data_manager - INFO - load_data:97 - CSV file loaded successfully
+2025-08-25 01:51:29,373 - causalllm.data_manager - INFO - load_data:138 - Data loaded: 5 rows, 5 columns
+2025-08-25 01:51:29,375 - causalllm.data_manager - INFO - __init__:40 - Initializing CausalDataManager
+2025-08-25 01:51:29,375 - causalllm.data_manager - INFO - __init__:57 - CausalDataManager initialized successfully
+2025-08-25 01:51:29,375 - causalllm.data_manager - INFO - load_data:81 - Loading data from: non_existent_file.csv
+2025-08-25 01:51:29,375 - causalllm.data_manager - ERROR - load_data:84 - File not found: non_existent_file.csv
+2025-08-25 01:51:29,377 - causalllm.data_manager - INFO - __init__:40 - Initializing CausalDataManager
+2025-08-25 01:51:29,377 - causalllm.data_manager - INFO - __init__:57 - CausalDataManager initialized successfully
+2025-08-25 01:51:29,377 - causalllm.data_manager - INFO - load_data:81 - Loading data from: /tmp/tmpy8nnb2ti.json
+2025-08-25 01:51:29,380 - causalllm.data_manager - INFO - load_data:113 - JSON file loaded successfully
+2025-08-25 01:51:29,382 - causalllm.data_manager - INFO - load_data:138 - Data loaded: 5 rows, 5 columns
+2025-08-25 01:51:29,383 - causalllm.data_manager - INFO - __init__:40 - Initializing CausalDataManager
+2025-08-25 01:51:29,384 - causalllm.data_manager - INFO - __init__:57 - CausalDataManager initialized successfully
+2025-08-25 01:51:29,384 - causalllm.data_manager - INFO - load_data:81 - Loading data from: /tmp/tmp1swjhbd2.xyz
+2025-08-25 01:51:29,384 - causalllm.data_manager - ERROR - load_data:117 - Unsupported file format: xyz
+2025-08-25 01:51:29,384 - causalllm.data_manager - ERROR - load_data:142 - Failed to load data from /tmp/tmp1swjhbd2.xyz: Unsupported file format 'xyz'. Supported: ['csv', 'parquet', 'pq', 'xlsx', 'xls', 'json']
+2025-08-25 01:51:29,492 - causalllm.data_manager - INFO - __init__:40 - Initializing CausalDataManager
+2025-08-25 01:51:29,493 - causalllm.data_manager - INFO - __init__:57 - CausalDataManager initialized successfully
+2025-08-25 01:51:29,493 - causalllm.data_manager - INFO - __init__:40 - Initializing CausalDataManager
+2025-08-25 01:51:29,493 - causalllm.data_manager - INFO - __init__:57 - CausalDataManager initialized successfully
+2025-08-25 01:51:29,494 - causalllm.data_manager - INFO - __init__:40 - Initializing CausalDataManager
+2025-08-25 01:51:29,494 - causalllm.data_manager - INFO - __init__:57 - CausalDataManager initialized successfully
+2025-08-25 01:51:29,496 - causalllm.data_manager - INFO - normalize_variable_names:194 - Normalizing variable names using strategy: clean
+2025-08-25 01:51:29,497 - causalllm.data_manager - INFO - normalize_variable_names:241 - Variable normalization completed: 5 mappings created
+2025-08-25 01:51:29,497 - causalllm.data_manager - INFO - apply_variable_mapping:457 - Applying variable mapping to DataFrame
+2025-08-25 01:51:29,497 - causalllm.data_manager - INFO - apply_variable_mapping:468 - Applied variable mapping: 5 columns renamed
+2025-08-25 01:51:29,498 - causalllm.data_manager - INFO - __init__:40 - Initializing CausalDataManager
+2025-08-25 01:51:29,498 - causalllm.data_manager - INFO - __init__:57 - CausalDataManager initialized successfully
+2025-08-25 01:51:29,500 - causalllm.data_manager - INFO - normalize_variable_names:194 - Normalizing variable names using strategy: auto
+2025-08-25 01:51:29,501 - causalllm.data_manager - INFO - normalize_variable_names:241 - Variable normalization completed: 5 mappings created
+2025-08-25 01:51:29,502 - causalllm.data_manager - INFO - __init__:40 - Initializing CausalDataManager
+2025-08-25 01:51:29,502 - causalllm.data_manager - INFO - __init__:57 - CausalDataManager initialized successfully
+2025-08-25 01:51:29,504 - causalllm.data_manager - INFO - normalize_variable_names:194 - Normalizing variable names using strategy: clean
+2025-08-25 01:51:29,504 - causalllm.data_manager - INFO - normalize_variable_names:241 - Variable normalization completed: 5 mappings created
+2025-08-25 01:51:29,506 - causalllm.data_manager - INFO - __init__:40 - Initializing CausalDataManager
+2025-08-25 01:51:29,506 - causalllm.data_manager - INFO - __init__:57 - CausalDataManager initialized successfully
+2025-08-25 01:51:29,507 - causalllm.data_manager - INFO - normalize_variable_names:194 - Normalizing variable names using strategy: custom
+2025-08-25 01:51:29,507 - causalllm.data_manager - INFO - normalize_variable_names:241 - Variable normalization completed: 5 mappings created
+2025-08-25 01:51:29,509 - causalllm.data_manager - INFO - __init__:40 - Initializing CausalDataManager
+2025-08-25 01:51:29,509 - causalllm.data_manager - INFO - __init__:57 - CausalDataManager initialized successfully
+2025-08-25 01:51:29,510 - causalllm.data_manager - INFO - validate_causal_variables:357 - Validating 3 causal variables
+2025-08-25 01:51:29,510 - causalllm.data_manager - INFO - validate_causal_variables:398 - ✅ All required causal variables are present
+2025-08-25 01:51:29,512 - causalllm.data_manager - INFO - __init__:40 - Initializing CausalDataManager
+2025-08-25 01:51:29,512 - causalllm.data_manager - INFO - __init__:57 - CausalDataManager initialized successfully
+2025-08-25 01:51:29,513 - causalllm.data_manager - INFO - validate_causal_variables:357 - Validating 5 causal variables
+2025-08-25 01:51:29,513 - causalllm.data_manager - WARNING - validate_causal_variables:400 - ❌ Missing 1 required variables: ['education']
+2025-08-25 01:51:29,513 - causalllm.data_manager - INFO - validate_causal_variables:403 - 💡 Suggested mappings for missing variables:
+2025-08-25 01:51:29,513 - causalllm.data_manager - INFO - validate_causal_variables:405 -   education -> ['treatment']
+2025-08-25 01:51:29,515 - causalllm.data_manager - INFO - __init__:40 - Initializing CausalDataManager
+2025-08-25 01:51:29,515 - causalllm.data_manager - INFO - __init__:57 - CausalDataManager initialized successfully
+2025-08-25 01:51:29,516 - causalllm.data_manager - INFO - validate_causal_variables:357 - Validating 5 causal variables
+2025-08-25 01:51:29,516 - causalllm.data_manager - WARNING - validate_causal_variables:400 - ❌ Missing 1 required variables: ['education']
+2025-08-25 01:51:29,516 - causalllm.data_manager - INFO - validate_causal_variables:403 - 💡 Suggested mappings for missing variables:
+2025-08-25 01:51:29,517 - causalllm.data_manager - INFO - validate_causal_variables:405 -   education -> ['treatment']
+2025-08-25 01:51:29,518 - causalllm.data_manager - INFO - __init__:40 - Initializing CausalDataManager
+2025-08-25 01:51:29,518 - causalllm.data_manager - INFO - __init__:57 - CausalDataManager initialized successfully
+2025-08-25 01:51:29,520 - causalllm.data_manager - INFO - validate_causal_variables:357 - Validating 5 causal variables
+2025-08-25 01:51:29,520 - causalllm.data_manager - WARNING - validate_causal_variables:400 - ❌ Missing 1 required variables: ['education']
+2025-08-25 01:51:29,520 - causalllm.data_manager - INFO - validate_causal_variables:403 - 💡 Suggested mappings for missing variables:
+2025-08-25 01:51:29,520 - causalllm.data_manager - INFO - validate_causal_variables:405 -   education -> ['treatment']
+2025-08-25 01:51:29,529 - causalllm.data_manager - INFO - __init__:40 - Initializing CausalDataManager
+2025-08-25 01:51:29,529 - causalllm.data_manager - INFO - __init__:57 - CausalDataManager initialized successfully
+2025-08-25 01:51:29,529 - causalllm.data_manager - INFO - get_conditional_data:493 - Applying conditional filtering with 1 conditions
+2025-08-25 01:51:29,529 - causalllm.data_manager - ERROR - get_conditional_data:508 - Column 'invalid_column' not found. Available: ['age', 'treatment', 'income', 'education', 'region']
+2025-08-25 01:51:29,531 - causalllm.data_manager - INFO - __init__:40 - Initializing CausalDataManager
+2025-08-25 01:51:29,531 - causalllm.data_manager - INFO - __init__:57 - CausalDataManager initialized successfully
+2025-08-25 01:51:29,531 - causalllm.data_manager - INFO - get_conditional_data:493 - Applying conditional filtering with 1 conditions
+2025-08-25 01:51:29,532 - causalllm.data_manager - INFO - __init__:40 - Initializing CausalDataManager
+2025-08-25 01:51:29,532 - causalllm.data_manager - INFO - __init__:57 - CausalDataManager initialized successfully
+2025-08-25 01:51:29,532 - causalllm.data_manager - INFO - get_conditional_data:493 - Applying conditional filtering with 1 conditions
+2025-08-25 01:51:29,533 - causalllm.data_manager - INFO - get_conditional_data:555 - Conditional filtering complete: 6 -> 3 rows
+2025-08-25 01:51:29,534 - causalllm.data_manager - INFO - __init__:40 - Initializing CausalDataManager
+2025-08-25 01:51:29,534 - causalllm.data_manager - INFO - __init__:57 - CausalDataManager initialized successfully
+2025-08-25 01:51:29,534 - causalllm.data_manager - INFO - get_conditional_data:493 - Applying conditional filtering with 2 conditions
+2025-08-25 01:51:29,535 - causalllm.data_manager - INFO - get_conditional_data:555 - Conditional filtering complete: 6 -> 2 rows
+2025-08-25 01:51:29,536 - causalllm.data_manager - INFO - __init__:40 - Initializing CausalDataManager
+2025-08-25 01:51:29,536 - causalllm.data_manager - INFO - __init__:57 - CausalDataManager initialized successfully
+2025-08-25 01:51:29,536 - causalllm.data_manager - INFO - get_conditional_data:493 - Applying conditional filtering with 2 conditions
+2025-08-25 01:51:29,537 - causalllm.data_manager - INFO - get_conditional_data:555 - Conditional filtering complete: 6 -> 3 rows
+2025-08-25 01:51:29,538 - causalllm.data_manager - INFO - __init__:40 - Initializing CausalDataManager
+2025-08-25 01:51:29,538 - causalllm.data_manager - INFO - __init__:57 - CausalDataManager initialized successfully
+2025-08-25 01:51:29,538 - causalllm.data_manager - INFO - get_conditional_data:493 - Applying conditional filtering with 1 conditions
+2025-08-25 01:51:29,539 - causalllm.data_manager - INFO - get_conditional_data:555 - Conditional filtering complete: 6 -> 4 rows
+2025-08-25 01:51:29,540 - causalllm.data_manager - INFO - __init__:40 - Initializing CausalDataManager
+2025-08-25 01:51:29,540 - causalllm.data_manager - INFO - __init__:57 - CausalDataManager initialized successfully
+2025-08-25 01:51:29,540 - causalllm.data_manager - INFO - get_conditional_data:493 - Applying conditional filtering with 1 conditions
+2025-08-25 01:51:29,540 - causalllm.data_manager - INFO - get_conditional_data:555 - Conditional filtering complete: 6 -> 3 rows
+2025-08-25 01:51:29,542 - causalllm.data_manager - INFO - __init__:40 - Initializing CausalDataManager
+2025-08-25 01:51:29,542 - causalllm.data_manager - INFO - __init__:57 - CausalDataManager initialized successfully
+2025-08-25 01:51:29,542 - causalllm.data_manager - INFO - get_variable_distribution:583 - Analyzing distribution for 'categorical_var' on 100 rows
+2025-08-25 01:51:29,544 - causalllm.data_manager - INFO - __init__:40 - Initializing CausalDataManager
+2025-08-25 01:51:29,544 - causalllm.data_manager - INFO - __init__:57 - CausalDataManager initialized successfully
+2025-08-25 01:51:29,544 - causalllm.data_manager - INFO - get_conditional_data:493 - Applying conditional filtering with 1 conditions
+2025-08-25 01:51:29,545 - causalllm.data_manager - INFO - get_conditional_data:555 - Conditional filtering complete: 100 -> 48 rows
+2025-08-25 01:51:29,545 - causalllm.data_manager - INFO - get_variable_distribution:583 - Analyzing distribution for 'numeric_var' on 48 rows
+2025-08-25 01:51:29,548 - causalllm.data_manager - INFO - __init__:40 - Initializing CausalDataManager
+2025-08-25 01:51:29,548 - causalllm.data_manager - INFO - __init__:57 - CausalDataManager initialized successfully
+2025-08-25 01:51:29,549 - causalllm.data_manager - INFO - __init__:40 - Initializing CausalDataManager
+2025-08-25 01:51:29,549 - causalllm.data_manager - INFO - __init__:57 - CausalDataManager initialized successfully
+2025-08-25 01:51:29,549 - causalllm.data_manager - INFO - get_variable_distribution:583 - Analyzing distribution for 'missing_var' on 100 rows
+2025-08-25 01:51:29,552 - causalllm.data_manager - INFO - __init__:40 - Initializing CausalDataManager
+2025-08-25 01:51:29,552 - causalllm.data_manager - INFO - __init__:57 - CausalDataManager initialized successfully
+2025-08-25 01:51:29,552 - causalllm.data_manager - INFO - get_variable_distribution:583 - Analyzing distribution for 'numeric_var' on 100 rows
+2025-08-25 01:51:29,554 - causalllm.data_manager - INFO - __init__:40 - Initializing CausalDataManager
+2025-08-25 01:51:29,554 - causalllm.data_manager - INFO - __init__:57 - CausalDataManager initialized successfully
+2025-08-25 01:51:29,555 - causalllm.data_manager - INFO - export_processed_data:707 - Exporting processed data to: /tmp/tmpl_96bwb9.csv (format: csv)
+2025-08-25 01:51:29,555 - causalllm.data_manager - INFO - export_processed_data:721 - Data exported successfully to /tmp/tmpl_96bwb9.csv
+2025-08-25 01:51:29,558 - causalllm.data_manager - INFO - __init__:40 - Initializing CausalDataManager
+2025-08-25 01:51:29,558 - causalllm.data_manager - INFO - __init__:57 - CausalDataManager initialized successfully
+2025-08-25 01:51:29,559 - causalllm.data_manager - INFO - __init__:40 - Initializing CausalDataManager
+2025-08-25 01:51:29,559 - causalllm.data_manager - INFO - __init__:57 - CausalDataManager initialized successfully
+2025-08-25 01:51:29,559 - causalllm.data_manager - INFO - export_processed_data:707 - Exporting processed data to: /tmp/tmpcp4qh56m.json (format: json)
+2025-08-25 01:51:29,559 - causalllm.data_manager - INFO - export_processed_data:721 - Data exported successfully to /tmp/tmpcp4qh56m.json
+2025-08-25 01:51:29,560 - causalllm.data_manager.sample - INFO - create_sample_causal_data:739 - Creating sample causal dataset
+2025-08-25 01:51:29,563 - causalllm.data_manager.sample - INFO - create_sample_causal_data:808 - Sample dataset created: 1000 rows, 8 columns
+2025-08-25 01:51:29,565 - causalllm.data_manager.sample - INFO - create_sample_causal_data:739 - Creating sample causal dataset
+2025-08-25 01:51:29,567 - causalllm.data_manager.sample - INFO - create_sample_causal_data:808 - Sample dataset created: 1000 rows, 8 columns
+2025-08-25 01:51:29,573 - causalllm.data_manager.sample - INFO - create_sample_causal_data:813 - Sample data saved to: /tmp/tmp0nln5slr.csv
+2025-08-25 01:51:29,589 - causalllm.data_manager.sample - INFO - create_sample_causal_data:739 - Creating sample causal dataset
+2025-08-25 01:51:29,591 - causalllm.data_manager.sample - INFO - create_sample_causal_data:808 - Sample dataset created: 1000 rows, 8 columns
+2025-08-25 01:51:29,597 - causalllm.data_manager - INFO - __init__:40 - Initializing CausalDataManager
+2025-08-25 01:51:29,597 - causalllm.data_manager - INFO - __init__:57 - CausalDataManager initialized successfully
+2025-08-25 01:51:29,597 - causalllm.data_manager - INFO - load_data:81 - Loading data from: /tmp/tmpwzgqvyu5.csv
+2025-08-25 01:51:29,599 - causalllm.data_manager - INFO - load_data:97 - CSV file loaded successfully
+2025-08-25 01:51:29,603 - causalllm.data_manager - INFO - load_data:138 - Data loaded: 1000 rows, 8 columns
+2025-08-25 01:51:29,603 - causalllm.data_manager - INFO - normalize_variable_names:194 - Normalizing variable names using strategy: auto
+2025-08-25 01:51:29,604 - causalllm.data_manager - INFO - normalize_variable_names:241 - Variable normalization completed: 8 mappings created
+2025-08-25 01:51:29,604 - causalllm.data_manager - INFO - apply_variable_mapping:457 - Applying variable mapping to DataFrame
+2025-08-25 01:51:29,604 - causalllm.data_manager - INFO - apply_variable_mapping:468 - Applied variable mapping: 8 columns renamed

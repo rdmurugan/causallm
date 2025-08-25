@@ -1,0 +1,57 @@
+2025-08-25 01:51:29,349 - causalllm.llm_prompting - INFO - __init__:73 - Initializing CausalPromptEngine
+2025-08-25 01:51:29,349 - causalllm.llm_prompting - INFO - _initialize_builtin_examples:173 - Loaded 6 built-in examples
+2025-08-25 01:51:29,349 - causalllm.llm_prompting - INFO - _initialize_builtin_templates:355 - Loaded 3 built-in prompt templates
+2025-08-25 01:51:29,349 - causalllm.llm_prompting - INFO - __init__:89 - CausalPromptEngine initialized with 4 example sets and 3 templates
+2025-08-25 01:51:29,355 - causalllm.llm_prompting - INFO - __init__:73 - Initializing CausalPromptEngine
+2025-08-25 01:51:29,356 - causalllm.llm_prompting - INFO - _initialize_builtin_examples:173 - Loaded 6 built-in examples
+2025-08-25 01:51:29,356 - causalllm.llm_prompting - INFO - _initialize_builtin_templates:355 - Loaded 3 built-in prompt templates
+2025-08-25 01:51:29,356 - causalllm.llm_prompting - INFO - __init__:89 - CausalPromptEngine initialized with 4 example sets and 3 templates
+2025-08-25 01:51:29,360 - causalllm.llm_prompting - INFO - __init__:73 - Initializing CausalPromptEngine
+2025-08-25 01:51:29,360 - causalllm.llm_prompting - INFO - _initialize_builtin_examples:173 - Loaded 6 built-in examples
+2025-08-25 01:51:29,360 - causalllm.llm_prompting - INFO - _initialize_builtin_templates:355 - Loaded 3 built-in prompt templates
+2025-08-25 01:51:29,360 - causalllm.llm_prompting - INFO - __init__:89 - CausalPromptEngine initialized with 4 example sets and 3 templates
+2025-08-25 01:51:30,441 - causalllm.llm_prompting - INFO - __init__:73 - Initializing CausalPromptEngine
+2025-08-25 01:51:30,441 - causalllm.llm_prompting - INFO - _initialize_builtin_examples:173 - Loaded 6 built-in examples
+2025-08-25 01:51:30,441 - causalllm.llm_prompting - INFO - _initialize_builtin_templates:355 - Loaded 3 built-in prompt templates
+2025-08-25 01:51:30,441 - causalllm.llm_prompting - INFO - __init__:89 - CausalPromptEngine initialized with 4 example sets and 3 templates
+2025-08-25 01:51:30,445 - causalllm.llm_prompting - INFO - __init__:73 - Initializing CausalPromptEngine
+2025-08-25 01:51:30,445 - causalllm.llm_prompting - INFO - _initialize_builtin_examples:173 - Loaded 6 built-in examples
+2025-08-25 01:51:30,445 - causalllm.llm_prompting - INFO - _initialize_builtin_templates:355 - Loaded 3 built-in prompt templates
+2025-08-25 01:51:30,445 - causalllm.llm_prompting - INFO - __init__:89 - CausalPromptEngine initialized with 4 example sets and 3 templates
+2025-08-25 01:51:30,450 - causalllm.llm_prompting - INFO - __init__:73 - Initializing CausalPromptEngine
+2025-08-25 01:51:30,450 - causalllm.llm_prompting - INFO - _initialize_builtin_examples:173 - Loaded 6 built-in examples
+2025-08-25 01:51:30,450 - causalllm.llm_prompting - INFO - _initialize_builtin_templates:355 - Loaded 3 built-in prompt templates
+2025-08-25 01:51:30,450 - causalllm.llm_prompting - INFO - __init__:89 - CausalPromptEngine initialized with 4 example sets and 3 templates
+2025-08-25 01:51:30,463 - causalllm.llm_prompting - INFO - __init__:73 - Initializing CausalPromptEngine
+2025-08-25 01:51:30,463 - causalllm.llm_prompting - INFO - _initialize_builtin_examples:173 - Loaded 6 built-in examples
+2025-08-25 01:51:30,463 - causalllm.llm_prompting - INFO - _initialize_builtin_templates:355 - Loaded 3 built-in prompt templates
+2025-08-25 01:51:30,463 - causalllm.llm_prompting - INFO - __init__:89 - CausalPromptEngine initialized with 4 example sets and 3 templates
+2025-08-25 01:51:30,465 - causalllm.llm_prompting - INFO - __init__:73 - Initializing CausalPromptEngine
+2025-08-25 01:51:30,465 - causalllm.llm_prompting - INFO - _initialize_builtin_examples:173 - Loaded 6 built-in examples
+2025-08-25 01:51:30,465 - causalllm.llm_prompting - INFO - _initialize_builtin_templates:355 - Loaded 3 built-in prompt templates
+2025-08-25 01:51:30,465 - causalllm.llm_prompting - INFO - __init__:89 - CausalPromptEngine initialized with 4 example sets and 3 templates
+2025-08-25 01:51:30,471 - causalllm.llm_prompting - INFO - __init__:73 - Initializing CausalPromptEngine
+2025-08-25 01:51:30,471 - causalllm.llm_prompting - INFO - _initialize_builtin_examples:173 - Loaded 6 built-in examples
+2025-08-25 01:51:30,471 - causalllm.llm_prompting - INFO - _initialize_builtin_templates:355 - Loaded 3 built-in prompt templates
+2025-08-25 01:51:30,471 - causalllm.llm_prompting - INFO - __init__:89 - CausalPromptEngine initialized with 4 example sets and 3 templates
+2025-08-25 01:51:30,471 - causalllm.llm_prompting - INFO - generate_chain_of_thought_prompt:445 - Generating chain-of-thought prompt for counterfactual in healthcare domain
+2025-08-25 01:51:30,472 - causalllm.llm_prompting - INFO - __init__:73 - Initializing CausalPromptEngine
+2025-08-25 01:51:30,473 - causalllm.llm_prompting - INFO - _initialize_builtin_examples:173 - Loaded 6 built-in examples
+2025-08-25 01:51:30,473 - causalllm.llm_prompting - INFO - _initialize_builtin_templates:355 - Loaded 3 built-in prompt templates
+2025-08-25 01:51:30,473 - causalllm.llm_prompting - INFO - __init__:89 - CausalPromptEngine initialized with 4 example sets and 3 templates
+2025-08-25 01:51:30,512 - causalllm.llm_prompting - INFO - __init__:73 - Initializing CausalPromptEngine
+2025-08-25 01:51:30,512 - causalllm.llm_prompting - INFO - _initialize_builtin_examples:173 - Loaded 6 built-in examples
+2025-08-25 01:51:30,513 - causalllm.llm_prompting - INFO - _initialize_builtin_templates:355 - Loaded 3 built-in prompt templates
+2025-08-25 01:51:30,513 - causalllm.llm_prompting - INFO - __init__:89 - CausalPromptEngine initialized with 4 example sets and 3 templates
+2025-08-25 01:51:30,522 - causalllm.llm_prompting - INFO - __init__:73 - Initializing CausalPromptEngine
+2025-08-25 01:51:30,522 - causalllm.llm_prompting - INFO - _initialize_builtin_examples:173 - Loaded 6 built-in examples
+2025-08-25 01:51:30,522 - causalllm.llm_prompting - INFO - _initialize_builtin_templates:355 - Loaded 3 built-in prompt templates
+2025-08-25 01:51:30,522 - causalllm.llm_prompting - INFO - __init__:89 - CausalPromptEngine initialized with 4 example sets and 3 templates
+2025-08-25 01:51:30,527 - causalllm.llm_prompting - INFO - __init__:73 - Initializing CausalPromptEngine
+2025-08-25 01:51:30,527 - causalllm.llm_prompting - INFO - _initialize_builtin_examples:173 - Loaded 6 built-in examples
+2025-08-25 01:51:30,527 - causalllm.llm_prompting - INFO - _initialize_builtin_templates:355 - Loaded 3 built-in prompt templates
+2025-08-25 01:51:30,527 - causalllm.llm_prompting - INFO - __init__:89 - CausalPromptEngine initialized with 4 example sets and 3 templates
+2025-08-25 01:51:30,606 - causalllm.llm_prompting - INFO - __init__:73 - Initializing CausalPromptEngine
+2025-08-25 01:51:30,606 - causalllm.llm_prompting - INFO - _initialize_builtin_examples:173 - Loaded 6 built-in examples
+2025-08-25 01:51:30,606 - causalllm.llm_prompting - INFO - _initialize_builtin_templates:355 - Loaded 3 built-in prompt templates
+2025-08-25 01:51:30,606 - causalllm.llm_prompting - INFO - __init__:89 - CausalPromptEngine initialized with 4 example sets and 3 templates

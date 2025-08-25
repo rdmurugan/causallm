@@ -2,3 +2,5 @@
 2025-08-23 14:10:30,056 - causalllm.llm_client.openai - ERROR - __init__:30 - Invalid OpenAI credentials - using default placeholders
 2025-08-23 14:10:30,056 - causalllm.llm_client.openai - INFO - __init__:17 - Initializing OpenAI client
 2025-08-23 14:10:30,056 - causalllm.llm_client.openai - ERROR - __init__:30 - Invalid OpenAI credentials - using default placeholders
+2025-08-25 01:51:29,817 - causalllm.llm_client.openai - INFO - __init__:18 - Initializing OpenAI client
+2025-08-25 01:51:30,409 - causalllm.llm_client.openai - ERROR - __init__:31 - Invalid OpenAI credentials - using default placeholders

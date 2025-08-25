@@ -1,0 +1,2 @@
+2025-08-25 01:51:29,816 - causalllm.core.from_mcp - INFO - from_mcp_config:515 - Creating CausalLLMCore from MCP configuration
+2025-08-25 01:51:30,409 - causalllm.core.from_mcp - ERROR - from_mcp_config:542 - Error creating CausalLLMCore from MCP config: OPENAI_API_KEY and OPENAI_PROJECT_ID must be set to valid values, not placeholders.

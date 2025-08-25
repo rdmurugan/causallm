@@ -1,0 +1,12 @@
+2025-08-25 01:51:29,611 - causalllm.mcp.tools - INFO - __init__:30 - Initializing CausalLLM MCP tools
+2025-08-25 01:51:29,611 - causalllm.mcp.tools - ERROR - __init__:43 - Failed to initialize causal tools: name 'false' is not defined
+2025-08-25 01:51:29,626 - causalllm.mcp.tools - INFO - __init__:30 - Initializing CausalLLM MCP tools
+2025-08-25 01:51:29,627 - causalllm.mcp.tools - ERROR - __init__:43 - Failed to initialize causal tools: name 'false' is not defined
+2025-08-25 01:51:29,642 - causalllm.mcp.tools - INFO - __init__:30 - Initializing CausalLLM MCP tools
+2025-08-25 01:51:29,642 - causalllm.mcp.tools - ERROR - __init__:43 - Failed to initialize causal tools: name 'false' is not defined
+2025-08-25 01:51:29,746 - causalllm.mcp.tools - INFO - __init__:30 - Initializing CausalLLM MCP tools
+2025-08-25 01:51:29,747 - causalllm.mcp.tools - ERROR - __init__:43 - Failed to initialize causal tools: name 'false' is not defined
+2025-08-25 01:51:29,775 - causalllm.mcp.tools - INFO - __init__:30 - Initializing CausalLLM MCP tools
+2025-08-25 01:51:29,775 - causalllm.mcp.tools - ERROR - __init__:43 - Failed to initialize causal tools: name 'false' is not defined
+2025-08-25 01:51:29,795 - causalllm.mcp.tools - INFO - __init__:30 - Initializing CausalLLM MCP tools
+2025-08-25 01:51:29,796 - causalllm.mcp.tools - ERROR - __init__:43 - Failed to initialize causal tools: name 'false' is not defined
