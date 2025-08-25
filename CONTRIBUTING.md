@@ -89,9 +89,7 @@ mypy causalllm/
 ## 💬 Join the Community
 
 * 📣 [GitHub Discussions](https://github.com/rdmurugan/causalllm/discussions)
-* 💬 Discord server (coming soon!)
-* 📬 Newsletter: Subscribe on [causalllm.dev](https://causalllm.dev)
-* 🐦 Twitter: [@causalllm](https://twitter.com/causalllm)
+* 💬 Discord server - [Join our community](https://discord.gg/d4zD76hb)
 
 ---
 
