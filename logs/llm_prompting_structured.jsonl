@@ -1,2 +1,0 @@
-{"timestamp": "2025-08-25T01:51:30.471860", "component": "llm_prompting", "interaction_type": "few_shot_examples_generated", "data": {"task_type": "counterfactual", "domain": "healthcare", "n_requested": 2, "n_returned": 2, "avg_quality": 0.935}}
-{"timestamp": "2025-08-25T01:51:30.471981", "component": "llm_prompting", "interaction_type": "cot_prompt_generated", "data": {"task_type": "counterfactual", "domain": "healthcare", "template_name": "counterfactual_cot", "prompt_length": 3922, "n_examples": 2}}

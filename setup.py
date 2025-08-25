@@ -10,8 +10,23 @@ setup(
         "networkx",
         "matplotlib",
         "openai",
-        "langchain",
         "pyyaml",
+        "scipy",
+        "scikit-learn",
+        "pandas",
+        "seaborn",
+        "plotly",
+        "jinja2",
+        "streamlit",
+        "requests",
     ],
+    extras_require={
+        "dev": [
+            "pytest",
+            "pytest-asyncio",
+            "mypy",
+            "types-requests",
+        ]
+    },
     python_requires=">=3.7",
 )

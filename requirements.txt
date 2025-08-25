@@ -5,3 +5,12 @@ networkx
 matplotlib
 types-requests
 requests
+scipy
+scikit-learn
+pandas
+seaborn
+plotly
+jinja2
+pytest
+pytest-asyncio
+mypy

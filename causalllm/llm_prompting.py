@@ -12,7 +12,7 @@ This module provides intelligent prompt engineering capabilities including:
 import json
 import random
 from typing import Dict, List, Any, Optional, Tuple, Union
-from dataclasses import dataclass, asdict
+from dataclasses import dataclass, asdict, field
 from pathlib import Path
 from difflib import SequenceMatcher
 import hashlib
@@ -29,11 +29,10 @@ class CausalExample:
     reasoning_steps: List[str]
     domain: str
     quality_score: float = 1.0
-    metadata: Dict[str, Any] = None
+    metadata: Dict[str, Any] = field(default_factory=dict)
     
-    def __post_init__(self):
-        if self.metadata is None:
-            self.metadata = {}
+    def __post_init__(self) -> None:
+        pass  # metadata now initialized by default_factory
 
 
 @dataclass
@@ -45,11 +44,10 @@ class PromptTemplate:
     reasoning_steps: List[str]
     domain: str = "general"
     task_type: str = "counterfactual"
-    variables: List[str] = None
+    variables: List[str] = field(default_factory=list)
     
-    def __post_init__(self):
-        if self.variables is None:
-            self.variables = []
+    def __post_init__(self) -> None:
+        pass  # variables now initialized by default_factory
 
 
 class CausalPromptEngine:
@@ -88,7 +86,7 @@ class CausalPromptEngine:
         
         self.logger.info(f"CausalPromptEngine initialized with {len(self.examples_db)} example sets and {len(self.templates)} templates")
     
-    def _initialize_builtin_examples(self):
+    def _initialize_builtin_examples(self) -> None:
         """Initialize built-in high-quality examples for few-shot learning."""
         
         # Healthcare examples
@@ -172,7 +170,7 @@ class CausalPromptEngine:
         
         self.logger.info(f"Loaded {sum(len(examples) for examples in self.examples_db.values())} built-in examples")
     
-    def _initialize_builtin_templates(self):
+    def _initialize_builtin_templates(self) -> None:
         """Initialize built-in prompt templates with chain-of-thought reasoning."""
         
         counterfactual_template = PromptTemplate(
