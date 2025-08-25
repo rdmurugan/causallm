@@ -17,8 +17,8 @@ setup(
     url="https://github.com/rdmurugan/causallm",
     project_urls={
         "Bug Tracker": "https://github.com/rdmurugan/causallm/issues",
-        "Documentation": "https://docs.causallm.com",
-        "Enterprise": "https://causallm.com/enterprise",
+        "Documentation": reach out to "durai@infinidatum.net"
+        "Enterprise": reach out to "durai@infinidatum.net"
     },
     packages=find_packages(),
     classifiers=[
