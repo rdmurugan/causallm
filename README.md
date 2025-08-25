@@ -182,7 +182,7 @@ policy_effect = await causallm.analyze_intervention(
 ## 🎯 Why CausalLLM?
 
 ### **Research-Backed**
-Built on 50+ years of causal inference research (Pearl, Rubin, etc.) with modern AI enhancements.
+Built based on decades of causal inference research (Pearl, Rubin, etc.) with modern AI enhancements.
 
 ### **Hybrid Approach** 
 Combines rigorous statistical methods with LLM contextual understanding.
@@ -191,11 +191,10 @@ Combines rigorous statistical methods with LLM contextual understanding.
 - Handles datasets up to 1M+ rows
 - Async processing for scalability  
 - Comprehensive error handling and validation
-- Extensive testing and documentation
 
 ### **Open Source**
 - MIT licensed - use anywhere
-- Active community development
+- Working to involve the community (help spread the word and be an active member to contribute)
 - Transparent algorithms and methods
 - No vendor lock-in
 
@@ -270,7 +269,7 @@ If you use CausalLLM in your research, please cite:
 ```bibtex
 @software{causallm2024,
   title={CausalLLM: Open Source Causal Inference with Large Language Models},
-  author={CausalLLM Team},
+  author={Durai Rajamanickam},
   year={2024},
   url={https://github.com/rdmurugan/causallm}
 }
