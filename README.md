@@ -279,6 +279,17 @@ If you use CausalLLM in your research, please cite:
 
 ⭐ **Star the repo** if CausalLLM helps your research or business!
 
-**Questions?** Open an issue or start a discussion.
+**Questions?** Open an issue or start a discussion. Or reach out to durai@infinidatum.net
 
-**Need enterprise features?** Visit [causallm.com/enterprise](https://causallm.com/enterprise)
+**Need enterprise features?** reach out to durai@infinidatum.net
+
+
+About Author: 
+
+Durai Rajamanickam is a visionary AI executive with 20+ years of leadership in data science, causal inference, and machine learning across healthcare, financial services, legal tech, and high-growth startups. He has architected enterprise AI strategies and advised Fortune 100 firms through roles at various consulting organizations.
+
+Durai specializes in building scalable, ethical AI systems by blending GenAI, causal ML, and hybrid NLP architectures. He is the creator of CausalLLM, an open-core framework that brings counterfactual reasoning, do-calculus, and DAG-driven insights to modern LLMs.
+
+As the author of the upcoming book "Causal Inference for Machine Learning Engineers", Durai combines academic rigor with hands-on expertise in AI-first architecture, intelligent automation, and responsible AI governance.
+
+LinkedIn: www.linkedin.com/in/durai-rajamanickam
