@@ -4,9 +4,9 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "causallm"
-version = "3.0.0"
+version = "3.0.1"
 authors = [
-    {name = "CausalLLM Team", email = "opensource@causallm.com"},
+    {name = "CausalLLM Team", email = "durai@infinidatum.net"},
 ]
 description = "Open source causal inference powered by LLMs"
 readme = "README.md"
