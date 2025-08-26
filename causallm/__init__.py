@@ -46,18 +46,10 @@ class CausalLLM:
     
     def _create_discovery_engine(self):
         """Create discovery engine."""
-        class MockDiscoveryEngine:
-            def __init__(self, method):
-                self.method = method
-            
-            async def discover_relationships(self, data, variables, **kwargs):
-                class MockResult:
-                    def __init__(self):
-                        self.discovered_edges = []
-                        self.confidence_summary = {}
-                return MockResult()
+        from .core.causal_discovery import PCAlgorithmEngine
         
-        return MockDiscoveryEngine(self.method)
+        # Create PC Algorithm engine as default
+        return PCAlgorithmEngine(significance_level=0.05)
     
     def _create_do_operator(self):
         """Create do-operator."""
@@ -72,9 +64,15 @@ class CausalLLM:
         
         return MockDoOperator()
     
-    async def discover_causal_relationships(self, data, variables, **kwargs):
+    async def discover_causal_relationships(self, data, variables, domain_context="", **kwargs):
         """Discover causal relationships."""
-        return await self.discovery_engine.discover_relationships(data, variables, **kwargs)
+        # Convert variables list to dict format expected by discovery engine
+        if isinstance(variables, list):
+            variables_dict = {var: "continuous" for var in variables}
+        else:
+            variables_dict = variables
+            
+        return await self.discovery_engine.discover_structure(data, variables_dict, domain_context, **kwargs)
     
     async def estimate_causal_effect(self, data, treatment, outcome, **kwargs):
         """Estimate causal effect."""
