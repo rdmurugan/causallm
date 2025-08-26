@@ -2,7 +2,6 @@
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
-[![PyPI version](https://badge.fury.io/py/causallm.svg)](https://badge.fury.io/py/causallm)
 [![GitHub stars](https://img.shields.io/github/stars/rdmurugan/causallm.svg)](https://github.com/rdmurugan/causallm/stargazers)
 
 CausalLLM is a library that combines traditional causal inference with modern AI to help you understand **what actually causes what** in your data.
@@ -10,7 +9,10 @@ CausalLLM is a library that combines traditional causal inference with modern AI
 ## 🚀 Quick Start
 
 ```bash
-pip install causallm
+# Clone the repository
+git clone https://github.com/rdmurugan/causallm.git
+cd causallm
+pip install -e .
 ```
 
 ```python
@@ -142,13 +144,16 @@ result = asyncio.run(analyze_with_slm())
 
 ### Basic Installation
 ```bash
-pip install causallm
+git clone https://github.com/rdmurugan/causallm.git
+cd causallm
+pip install -e .
 ```
 
-### With Plugins
+### With All Dependencies
 ```bash
-# Additional plugins and dependencies
-pip install causallm[full]
+git clone https://github.com/rdmurugan/causallm.git
+cd causallm
+pip install -e ".[full]"
 ```
 
 ### Development
