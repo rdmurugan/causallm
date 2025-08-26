@@ -5,7 +5,7 @@ import json
 from typing import Dict, Any, Optional, List
 from dataclasses import dataclass, asdict
 from pathlib import Path
-from causalllm.logging import get_logger
+from ..utils.logging import get_logger
 
 logger = get_logger("causalllm.mcp.config")
 

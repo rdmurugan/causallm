@@ -3,7 +3,7 @@ import json
 import yaml
 import os
 from typing import Any
-from causalllm.logging import get_logger, get_structured_logger
+from ...utils.logging import get_logger, get_structured_logger
 
 def load_json(file_path: str) -> Any:
     logger = get_logger("causalllm.utils")

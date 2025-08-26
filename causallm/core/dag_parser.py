@@ -1,7 +1,7 @@
 from typing import Dict, List, Optional
 import networkx as nx
 import matplotlib.pyplot as plt
-from causalllm.logging import get_logger, get_structured_logger
+from ..utils.logging import get_logger, get_structured_logger
 
 class DAGParser:
     def __init__(self, edges: List[tuple]) -> None:

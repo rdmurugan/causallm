@@ -2,7 +2,7 @@ from typing import Protocol, Any
 import os
 import time
 import asyncio
-from causalllm.logging import get_logger, get_structured_logger
+from ..utils.logging import get_logger, get_structured_logger
 
 # Base interface for all LLM clients
 class BaseLLMClient(Protocol):
@@ -318,8 +318,8 @@ class MCPClient:
         self.logger.info("Initializing MCP client")
         
         try:
-            from causalllm.mcp.client import MCPLLMClient
-            from causalllm.mcp.config import load_mcp_config
+            from ..mcp.client import MCPLLMClient
+            from ..mcp.config import load_mcp_config
             self.mcp_module = True
         except ImportError as e:
             self.logger.error("MCP module not available")

@@ -1,5 +1,5 @@
 from typing import Dict, Optional
-from causalllm.logging import get_logger, get_structured_logger
+from ..utils.logging import get_logger, get_structured_logger
 
 class DoOperatorSimulator:
     def __init__(self, base_context: str, variables: Dict[str, str]):

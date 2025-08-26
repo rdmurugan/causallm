@@ -17,7 +17,7 @@ import itertools
 import json
 from pathlib import Path
 
-from causalllm.logging import get_logger
+from ..utils.logging import get_logger
 
 
 class DiscoveryMethod(Enum):

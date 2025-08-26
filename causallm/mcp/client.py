@@ -3,7 +3,7 @@
 import asyncio
 import uuid
 from typing import Dict, Any, Optional, List
-from causalllm.logging import get_logger
+from ..utils.logging import get_logger
 from .transport import MCPTransport, create_transport
 from .config import MCPConfig, load_mcp_config
 
@@ -342,7 +342,7 @@ async def main():
     import sys
     
     # Set up logging
-    from causalllm.logging import setup_package_logging
+    from ..utils.logging import setup_package_logging
     setup_package_logging(level="INFO", log_to_file=False)
     
     try:

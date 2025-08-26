@@ -10,7 +10,7 @@ from itertools import combinations
 from scipy.stats import chi2_contingency, pearsonr
 from sklearn.feature_selection import mutual_info_regression
 import networkx as nx
-from .utils.logging import get_logger
+from ..utils.logging import get_logger
 
 logger = get_logger(__name__)
 
