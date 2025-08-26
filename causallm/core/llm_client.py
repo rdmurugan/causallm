@@ -2,7 +2,7 @@ from typing import Protocol, Any
 import os
 import time
 import asyncio
-from ..utils.logging import get_logger, get_structured_logger
+from .utils.logging import get_logger, get_structured_logger
 
 # Base interface for all LLM clients
 class BaseLLMClient(Protocol):

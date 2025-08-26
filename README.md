@@ -263,7 +263,7 @@ For detailed documentation, API references, and guides, please contact durai@inf
 
 ## 🌟 Enterprise Features
 
-Need advanced capabilities for production use? Check out [**CausalLLM Enterprise**](https://causallm.com/enterprise):
+Need advanced capabilities for production use? reach out to durai@infinidatum.net
 
 - 🔒 **Advanced Security**: RBAC, audit logging, compliance
 - ⚡ **Auto-Scaling**: Kubernetes-native, handles TB+ datasets  

@@ -47,7 +47,6 @@ setup(
         "matplotlib>=3.3.0",
         "plotly>=5.0.0",
         "openai>=1.0.0",
-        "asyncio-compat>=0.1.0",
     ],
     extras_require={
         "dev": [

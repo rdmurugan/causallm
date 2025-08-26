@@ -15,13 +15,18 @@ from .core.counterfactual_engine import CounterfactualEngine
 from .core.statistical_methods import PCAlgorithm, ConditionalIndependenceTest
 from .core.causal_discovery import DiscoveryMethod
 from .core.llm_client import get_llm_client
+from .core.utils.logging import setup_package_logging
 
 # Create main CausalLLM class
 class CausalLLM:
     """Main CausalLLM interface for causal inference."""
     
-    def __init__(self, llm_client=None, method="hybrid"):
+    def __init__(self, llm_client=None, method="hybrid", enable_logging=True, log_level="INFO"):
         """Initialize CausalLLM."""
+        # Set up logging if enabled
+        if enable_logging:
+            setup_package_logging(level=log_level, log_to_file=True, json_format=False)
+        
         self.llm_client = llm_client or self._create_default_client()
         self.method = method
         
