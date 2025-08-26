@@ -17,8 +17,8 @@ setup(
     url="https://github.com/rdmurugan/causallm",
     project_urls={
         "Bug Tracker": "https://github.com/rdmurugan/causallm/issues",
-        "Documentation": reach out to "durai@infinidatum.net"
-        "Enterprise": reach out to "durai@infinidatum.net"
+        "Documentation": "mailto:durai@infinidatum.net",
+        "Enterprise": "mailto:durai@infinidatum.net"
     },
     packages=find_packages(),
     classifiers=[
@@ -79,11 +79,6 @@ setup(
             "dash>=2.10.0",
             "gradio>=3.35.0",
         ]
-    },
-    entry_points={
-        "console_scripts": [
-            "causallm=causallm.core.cli:main",
-        ],
     },
     include_package_data=True,
     zip_safe=False,

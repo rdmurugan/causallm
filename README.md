@@ -16,17 +16,22 @@ pip install causallm
 ```python
 from causallm import CausalLLM
 import pandas as pd
+import asyncio
 
 # Initialize CausalLLM
 causallm = CausalLLM()
 
 # Discover causal relationships
-result = await causallm.discover_causal_relationships(
-    data=your_data,
-    variables=["treatment", "outcome", "age", "income"]
-)
+async def main():
+    result = await causallm.discover_causal_relationships(
+        data=your_data,
+        variables=["treatment", "outcome", "age", "income"]
+    )
+    
+    print(f"Found {len(result.discovered_edges)} causal relationships")
 
-print(f"Found {len(result.causal_edges)} causal relationships")
+# Run async function
+asyncio.run(main())
 ```
 
 ## ✨ Core Features
@@ -53,26 +58,29 @@ print(f"Found {len(result.causal_edges)} causal relationships")
 ### Basic Causal Analysis
 ```python
 from causallm import CausalLLM
+import asyncio
 
-# Initialize with your preferred LLM
-causallm = CausalLLM(llm_provider="openai")
+# Initialize CausalLLM
+causallm = CausalLLM()
 
-# Discover causal structure
-structure = await causallm.discover_causal_relationships(
-    data=df,
-    target_variable="sales",
-    domain="business"
-)
+async def analyze_data():
+    # Discover causal structure
+    structure = await causallm.discover_causal_relationships(
+        data=df,
+        variables=["marketing_spend", "sales", "seasonality", "competition"]
+    )
+    
+    # Estimate causal effect
+    effect = await causallm.estimate_causal_effect(
+        data=df,
+        treatment="marketing_spend",
+        outcome="sales", 
+        confounders=["seasonality", "competition"]
+    )
+    
+    print(f"Causal effect: {effect.estimate:.3f} ± {effect.std_error:.3f}")
 
-# Estimate causal effect
-effect = await causallm.estimate_causal_effect(
-    data=df,
-    treatment="marketing_spend",
-    outcome="sales", 
-    confounders=["seasonality", "competition"]
-)
-
-print(f"Causal effect: {effect.estimate:.3f} ± {effect.std_error:.3f}")
+asyncio.run(analyze_data())
 ```
 
 ### Statistical Methods
@@ -87,40 +95,48 @@ pc = PCAlgorithm(ci_test=ci_test, max_conditioning_size=3)
 skeleton = pc.discover_skeleton(data)
 dag = pc.orient_edges(skeleton, data)
 
-# Test stability with bootstrap
-from causallm.core.statistical_methods import bootstrap_stability_test
-stable_graph, stability_scores = bootstrap_stability_test(
-    data, pc, n_bootstrap=100
-)
+print(f"Discovered DAG with {len(dag.edges())} causal relationships")
 ```
 
 ### Small Language Models
 ```python
 # Use smaller, faster models for cost efficiency
 from causallm.plugins.slm_support import create_slm_optimized_client
+from causallm import CausalLLM
+import asyncio
 
 # 5-10x faster, 90% cost reduction vs GPT-4
 slm_client = create_slm_optimized_client("llama2-7b")
 causallm = CausalLLM(llm_client=slm_client)
 
 # Same API, optimized prompts
-result = await causallm.discover_causal_relationships(data=df)
+async def analyze_with_slm():
+    result = await causallm.discover_causal_relationships(
+        data=df,
+        variables=["treatment", "outcome", "confounders"]
+    )
+    return result
+
+result = asyncio.run(analyze_with_slm())
 ```
 
 ## 🏗️ Architecture
 
 ### Core Components
-- **`causallm.core.causal_discovery`**: PC Algorithm, LLM-guided discovery
-- **`causallm.core.statistical_methods`**: Independence tests, bootstrap validation  
+- **`causallm.core.causal_llm_core`**: Main CausalLLM interface and orchestration
+- **`causallm.core.causal_discovery`**: PC Algorithm, LLM-guided discovery methods
+- **`causallm.core.statistical_methods`**: Independence tests, PC algorithm implementation  
 - **`causallm.core.dag_parser`**: Graph parsing, validation, visualization
 - **`causallm.core.do_operator`**: Causal effect estimation, intervention analysis
 - **`causallm.core.counterfactual_engine`**: What-if scenario generation
-- **`causallm.core.llm_client`**: Multi-provider LLM integration
+- **`causallm.core.llm_client`**: Multi-provider LLM integration and prompt templates
 
 ### Plugin System
-- **`causallm.plugins.slm_support`**: Small Language Model optimizations
-- **`causallm.plugins.langchain_adapter`**: LangChain integration
-- **`causallm.plugins.huggingface_adapter`**: HuggingFace model support
+- **`causallm.plugins.slm_support`**: Small Language Model optimizations and clients
+- **`causallm.mcp`**: Model Context Protocol integration for enhanced LLM capabilities
+
+### Utilities
+- **`causallm.utils`**: Data utilities, logging, and validation helpers
 
 ## 📦 Installation Options
 
@@ -131,7 +147,7 @@ pip install causallm
 
 ### With Plugins
 ```bash
-# LangChain, HuggingFace, UI support
+# Additional plugins and dependencies
 pip install causallm[full]
 ```
 
@@ -146,35 +162,60 @@ pip install -e ".[dev]"
 
 ### **Healthcare & Life Sciences**
 ```python
-# Clinical trial confounder detection
-confounders = await causallm.detect_confounders(
-    data=clinical_data,
-    treatment="drug_dosage",
-    outcome="recovery_time",
-    domain="healthcare"
-)
+import asyncio
+from causallm import CausalLLM
+
+causallm = CausalLLM()
+
+# Clinical trial analysis
+async def analyze_clinical_trial():
+    result = await causallm.discover_causal_relationships(
+        data=clinical_data,
+        variables=["drug_dosage", "recovery_time", "age", "severity"]
+    )
+    return result
+
+result = asyncio.run(analyze_clinical_trial())
 ```
 
 ### **Business & Marketing**
 ```python
+import asyncio
+from causallm import CausalLLM
+
+causallm = CausalLLM()
+
 # Marketing attribution analysis
-attribution = await causallm.estimate_causal_effect(
-    data=campaign_data,
-    treatment="ad_spend",
-    outcome="conversions",
-    confounders=["seasonality", "brand_awareness"]
-)
+async def analyze_marketing():
+    attribution = await causallm.estimate_causal_effect(
+        data=campaign_data,
+        treatment="ad_spend",
+        outcome="conversions",
+        confounders=["seasonality", "brand_awareness"]
+    )
+    return attribution
+
+result = asyncio.run(analyze_marketing())
 ```
 
 ### **Economics & Policy**
 ```python
-# Policy intervention analysis  
-policy_effect = await causallm.analyze_intervention(
-    data=policy_data,
-    intervention="minimum_wage_increase",
-    outcome="employment_rate",
-    time_variable="quarter"
-)
+import asyncio
+from causallm import CausalLLM
+
+causallm = CausalLLM()
+
+# Policy intervention analysis
+async def analyze_policy():
+    policy_effect = await causallm.estimate_causal_effect(
+        data=policy_data,
+        treatment="minimum_wage_increase",
+        outcome="employment_rate",
+        confounders=["gdp_growth", "unemployment_rate"]
+    )
+    return policy_effect
+
+result = asyncio.run(analyze_policy())
 ```
 
 ## 🎯 Why CausalLLM?
@@ -209,11 +250,11 @@ Combines rigorous statistical methods with LLM contextual understanding.
 
 ## 📖 Documentation
 
-- [**Getting Started**](docs/getting_started/README.md) - Your first causal analysis
-- [**API Reference**](docs/api/README.md) - Complete API documentation  
-- [**Statistical Methods**](docs/statistical_methods.md) - Understanding the algorithms
-- [**LLM Integration**](docs/llm_integration.md) - Working with different models
 - [**Examples**](examples/) - Real-world use cases and tutorials
+- [**Usage Examples**](USAGE_EXAMPLES.md) - Detailed usage patterns
+- [**Contributing**](CONTRIBUTING.md) - How to contribute to the project
+
+For detailed documentation, API references, and guides, please contact durai@infinidatum.net
 
 ## 🌟 Enterprise Features
 

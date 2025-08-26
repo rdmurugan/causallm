@@ -109,11 +109,12 @@ __email__ = "opensource@causallm.com"
 # Main exports
 __all__ = [
     'CausalLLM',
-    'CausalDiscoveryEngine',
+    'CausalLLMCore',
     'DAGParser', 
-    'DoOperator',
+    'DoOperatorSimulator',
     'CounterfactualEngine',
     'DiscoveryMethod',
-    'CausalGraph',
-    'InterventionResult'
+    'PCAlgorithm',
+    'ConditionalIndependenceTest',
+    'get_llm_client'
 ]
