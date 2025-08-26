@@ -16,24 +16,50 @@ pip install -e .
 ```
 
 ```python
-from causallm import CausalLLM
 import pandas as pd
+import numpy as np
+from causallm import CausalLLM
 import asyncio
+import os
+
+# Set dummy credentials to avoid API errors
+os.environ['OPENAI_API_KEY'] = 'sk-dummy-key-for-testing'
+os.environ['OPENAI_PROJECT_ID'] = 'proj-dummy-for-testing'
+
+# Create synthetic sample data
+np.random.seed(42)
+
+N = 100
+age = np.random.randint(20, 70, size=N)
+income = np.random.normal(50000, 15000, size=N)
+treatment = (age > 40).astype(int)  # simple age-based treatment assignment
+outcome = treatment * 5 + income * 0.0003 + np.random.normal(0, 1, size=N)
+
+# Create DataFrame
+your_data = pd.DataFrame({
+    "age": age,
+    "income": income,
+    "treatment": treatment,
+    "outcome": outcome
+})
 
 # Initialize CausalLLM
 causallm = CausalLLM()
 
-# Discover causal relationships
+# Async causal discovery
 async def main():
     result = await causallm.discover_causal_relationships(
         data=your_data,
         variables=["treatment", "outcome", "age", "income"]
     )
-    
-    print(f"Found {len(result.discovered_edges)} causal relationships")
+    print (result)
+    print("Discovered Edges:")
+    for edge in result.discovered_edges:
+        print(f"{edge.cause} --> {edge.effect}  (confidence: {edge.confidence:.2f})")
 
-# Run async function
+# Run the analysis
 asyncio.run(main())
+
 ```
 
 ## ✨ Core Features
