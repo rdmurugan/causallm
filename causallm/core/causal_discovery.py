@@ -116,8 +116,8 @@ class PCAlgorithmEngine(CausalDiscoveryEngine):
         try:
             # Simplified PC algorithm implementation
             discovered_edges = []
-            rejected_edges = []
-            reasoning_trace = []
+            rejected_edges: List[CausalEdge] = []
+            reasoning_trace: List[str] = []
             
             variables_list = list(variables.keys())
             reasoning_trace.append(f"Testing {len(variables_list)} variables with PC algorithm")
@@ -281,7 +281,7 @@ class LLMGuidedDiscoveryEngine(CausalDiscoveryEngine):
         start_time = time.time()
         
         try:
-            reasoning_trace = []
+            reasoning_trace: List[str] = []
             background_knowledge = background_knowledge or []
             
             # Step 1: Generate statistical evidence if requested
@@ -457,7 +457,7 @@ class LLMGuidedDiscoveryEngine(CausalDiscoveryEngine):
             
             # Parse JSON response
             discovered_edges = []
-            rejected_edges = []
+            rejected_edges: List[CausalEdge] = []
             
             try:
                 # Extract JSON from response
@@ -522,7 +522,7 @@ class LLMGuidedDiscoveryEngine(CausalDiscoveryEngine):
         reasoning_trace.append("Attempting text-based parsing as fallback")
         
         discovered_edges = []
-        rejected_edges = []
+        rejected_edges: List[CausalEdge] = []
         
         # Simple pattern matching for causal relationships
         import re
@@ -652,7 +652,7 @@ class HybridLLMDiscoveryEngine(CausalDiscoveryEngine):
         start_time = time.time()
         
         try:
-            reasoning_trace = []
+            reasoning_trace: List[str] = []
             
             # Step 1: Statistical discovery
             reasoning_trace.append("Phase 1: Statistical causal discovery")

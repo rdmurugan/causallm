@@ -1,0 +1,107 @@
+name: Run Tests
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.9', '3.10', '3.11', '3.12']
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Cache pip dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential
+
+    - name: Install Python dependencies
+      run: |
+        python -m pip install --upgrade pip setuptools wheel
+        pip install -r requirements.txt
+        pip install -e .
+
+    - name: Set environment variables
+      run: |
+        echo "PYTHONPATH=$(pwd)" >> $GITHUB_ENV
+        echo "OPENAI_API_KEY=sk-dummy-key-for-testing" >> $GITHUB_ENV
+        echo "OPENAI_PROJECT_ID=proj-dummy-for-testing" >> $GITHUB_ENV
+
+    - name: Run type checks with mypy
+      run: |
+        pip install types-requests types-PyYAML || true
+        mypy causallm/ --ignore-missing-imports --no-strict-optional --allow-untyped-defs --disable-error-code=import-untyped,assignment,attr-defined,arg-type,type-var || echo "mypy completed with warnings"
+      continue-on-error: true  # Don't fail the build on mypy errors for now
+
+    - name: Run tests with pytest
+      run: |
+        pytest tests/ -v --tb=short --disable-warnings --asyncio-mode=auto
+      env:
+        PYTHONPATH: ${{ github.workspace }}
+        OPENAI_API_KEY: sk-dummy-key-for-testing
+        OPENAI_PROJECT_ID: proj-dummy-for-testing
+
+    - name: Run basic smoke test
+      run: |
+        python -c "
+        import sys
+        sys.path.insert(0, '.')
+        from causallm import CausalLLM
+        import os
+        os.environ['OPENAI_API_KEY'] = 'sk-dummy-key-for-testing'
+        os.environ['OPENAI_PROJECT_ID'] = 'proj-dummy-for-testing'
+        print('✅ Package imports successfully')
+        causallm = CausalLLM(enable_logging=False)
+        print('✅ CausalLLM initializes successfully')
+        "
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install linting tools
+      run: |
+        python -m pip install --upgrade pip
+        pip install black flake8 isort
+
+    - name: Check code formatting with black
+      run: |
+        black --check causallm/ tests/ --diff
+      continue-on-error: true
+
+    - name: Check imports with isort
+      run: |
+        isort --check-only causallm/ tests/ --diff
+      continue-on-error: true
+
+    - name: Lint with flake8
+      run: |
+        flake8 causallm/ tests/ --max-line-length=100 --extend-ignore=E203,W503
+      continue-on-error: true

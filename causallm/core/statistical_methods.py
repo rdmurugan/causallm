@@ -81,7 +81,7 @@ class ConditionalIndependenceTest:
         
         if Z is None or Z.shape[1] == 0:
             contingency = pd.crosstab(X_cat.flatten(), Y_cat.flatten())
-            chi2, p_value, _, _ = chi2_contingency(contingency)
+            chi2_stat, p_value, _, _ = chi2_contingency(contingency)
             return p_value > self.alpha, p_value
         else:
             # Conditional independence via stratification
@@ -98,7 +98,7 @@ class ConditionalIndependenceTest:
                 
                 if len(np.unique(X_stratum)) > 1 and len(np.unique(Y_stratum)) > 1:
                     contingency = pd.crosstab(X_stratum.flatten(), Y_stratum.flatten())
-                    chi2, p_val, _, _ = chi2_contingency(contingency)
+                    chi2_stat, p_val, _, _ = chi2_contingency(contingency)
                     p_values.append(p_val)
             
             if not p_values:
@@ -269,7 +269,7 @@ def bootstrap_stability_test(data: pd.DataFrame, algorithm: PCAlgorithm,
     """
     logger.info(f"Starting bootstrap stability test with {n_bootstrap} samples")
     
-    edge_counts = {}
+    edge_counts: Dict[Tuple[str, str], int] = {}
     n_samples = len(data)
     
     for i in range(n_bootstrap):
