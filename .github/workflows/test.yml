@@ -50,7 +50,7 @@ jobs:
     - name: Run type checks with mypy
       run: |
         pip install types-requests types-PyYAML || true
-        mypy causallm/ --ignore-missing-imports --no-strict-optional --allow-untyped-defs --disable-error-code=import-untyped,assignment,attr-defined,arg-type,type-var || echo "mypy completed with warnings"
+        mypy causallm/ --ignore-missing-imports --no-strict-optional --allow-untyped-defs --follow-imports=silent || echo "mypy completed with warnings"
       continue-on-error: true  # Don't fail the build on mypy errors for now
 
     - name: Run tests with pytest
