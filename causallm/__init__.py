@@ -109,6 +109,15 @@ __license__ = "MIT"
 __author__ = "CausalLLM Team"
 __email__ = "opensource@causallm.com"
 
+# Import enhanced components
+try:
+    from .enhanced_causallm import EnhancedCausalLLM
+    from .core.enhanced_causal_discovery import EnhancedCausalDiscovery
+    from .core.statistical_inference import StatisticalCausalInference
+    ENHANCED_AVAILABLE = True
+except ImportError:
+    ENHANCED_AVAILABLE = False
+
 # Main exports
 __all__ = [
     'CausalLLM',
@@ -121,3 +130,11 @@ __all__ = [
     'ConditionalIndependenceTest',
     'get_llm_client'
 ]
+
+# Add enhanced components if available
+if ENHANCED_AVAILABLE:
+    __all__.extend([
+        'EnhancedCausalLLM',
+        'EnhancedCausalDiscovery', 
+        'StatisticalCausalInference'
+    ])
