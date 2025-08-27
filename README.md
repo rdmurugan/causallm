@@ -171,9 +171,9 @@ interventions = enhanced_causallm.generate_intervention_recommendations(
 
 ---
 
-## **Real-World Examples**
+## Real-World Examples
 
-### ** Healthcare Analysis**
+### Healthcare Analysis
 ```python
 from causallm import EnhancedCausalLLM
 import pandas as pd
@@ -195,7 +195,7 @@ print(f"Expected Recovery Improvement: {results.business_impact.effect_magnitude
 print(f"Clinical Significance: {results.clinical_assessment}")
 ```
 
-### ** A/B Testing Analysis** 
+### A/B Testing Analysis
 ```python
 # Transform simple A/B tests into causal analysis
 ab_results = enhanced_causallm.comprehensive_analysis(
@@ -212,7 +212,7 @@ print(f"ROI: {ab_results.business_impact.roi:.0%}")
 print(f"Implementation Confidence: {ab_results.confidence_level}")
 ```
 
-### ** Marketing Attribution**
+### Marketing Attribution
 ```python
 # Understand true marketing effectiveness
 attribution = enhanced_causallm.comprehensive_analysis(
@@ -243,7 +243,7 @@ print(f"Campaign ROI: {attribution.business_impact.roi:.1%}")
 
 ---
 
-## **Advanced Capabilities**
+## Advanced Capabilities
 
 ### **Domain-Specific Intelligence**
 ```python
@@ -290,7 +290,7 @@ print(f"Randomization Quality: {confounding_analysis.randomization_score:.3f}")
 
 ---
 
-## **Performance Benchmarks**
+## Performance Benchmarks
 
 ### **Accuracy Benchmarks**
 - **Causal Discovery**: 94% precision on synthetic benchmarks
@@ -300,7 +300,7 @@ print(f"Randomization Quality: {confounding_analysis.randomization_score:.3f}")
 
 ---
 
-##  **Architecture**
+## Architecture
 
 ### **Enhanced Core Components**
 ```
@@ -324,7 +324,7 @@ causallm/
 
 ---
 
-## 📦 **Installation & Setup**
+## Installation & Setup
 
 ### **Basic Installation**
 ```bash
@@ -344,7 +344,7 @@ pip install causallm[dev]
 pip install causallm[ui]
 ```
 
-### **Environment Setup**
+### Environment Setup
 ```python
 import os
 
@@ -359,7 +359,7 @@ enhanced_causallm = EnhancedCausalLLM()
 
 ---
 
-## **Learning Path**
+## Learning Path
 
 ### **For Data Scientists**
 1. **Quick Start**: Run `python examples/ab_testing_enhanced_demo.py`
@@ -380,7 +380,7 @@ enhanced_causallm = EnhancedCausalLLM()
 
 ---
 
-##  **Demo Examples**
+##  Demo Examples
 
 ### **Quick 2-Minute Demo**
 ```bash
@@ -407,7 +407,7 @@ python examples/marketing_attribution_openai.py
 ```
 ---
 
-##  **Contributing**
+##  Contributing
 
 We welcome contributions to make CausalLLM even better!
 
@@ -430,13 +430,13 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
 
 ---
 
-## **License**
+## License
 
 MIT License - Free for commercial and academic use.
 
 ---
 
-##  **Enterprise Support**
+##  Enterprise Support
 
 Need advanced capabilities for production use? Contact **durai@infinidatum.net**
 
@@ -449,7 +449,7 @@ Need advanced capabilities for production use? Contact **durai@infinidatum.net**
 
 ---
 
-## **Citation**
+## Citation
 
 If you use CausalLLM v4.0 in your research, please cite:
 
@@ -465,7 +465,7 @@ If you use CausalLLM v4.0 in your research, please cite:
 
 ---
 
-## **Community & Support**
+## Community & Support
 
 - **Issues**: [Report bugs and request features](https://github.com/rdmurugan/causallm/issues)
 - **Discussions**: [Ask questions and share examples](https://github.com/rdmurugan/causallm/discussions)
@@ -480,7 +480,7 @@ If you use CausalLLM v4.0 in your research, please cite:
 
 ---
 
-### **About the Author**
+### About the Author
 
 **Durai Rajamanickam** is a visionary AI executive with 20+ years of leadership in data science, causal inference, and machine learning across healthcare, financial services, legal tech, and high-growth startups. Creator of CausalLLM and author of the upcoming book "Causal Inference for Machine Learning Engineers".
 
