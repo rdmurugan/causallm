@@ -5,8 +5,8 @@ import asyncio
 import os
 
 # Set dummy credentials to avoid API errors
-os.environ['OPENAI_API_KEY'] = 'sk-dummy-key-for-testing'
-os.environ['OPENAI_PROJECT_ID'] = 'proj-dummy-for-testing'
+os.environ['OPENAI_API_KEY'] ="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"
+os.environ['OPENAI_PROJECT_ID'] ="proj_wnehjGDtcLnMQrfSvI2CBNBJ"
 
 # Create synthetic sample data
 np.random.seed(42)
