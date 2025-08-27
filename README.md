@@ -9,20 +9,19 @@
 
 ---
 
-## 🚀 **Major Upgrade: Version 4.0.0**
+## **Major Upgrade: Version 4.0.0**
 
 ### **⚡ What's New**
 
-- **🧠 Enhanced Causal Discovery Engine** - Automated structure learning with PC Algorithm + LLM intelligence
-- **📊 Statistical Causal Inference** - Multiple methods with rigorous validation (Linear Regression, Propensity Matching, IV)
-- **🎯 Domain-Specific Intelligence** - Built-in expertise for Healthcare, Marketing, Finance
-- **💰 Business Impact Analysis** - ROI calculations and actionable recommendations
-- **🔬 A/B Testing Platform** - From simple comparisons to sophisticated causal analysis
-- **⚡ 90% Time Savings** - From 40+ hours to 4 hours for comprehensive causal analysis
+- **Enhanced Causal Discovery Engine** - Automated structure learning with PC Algorithm + LLM intelligence
+- **Statistical Causal Inference** - Multiple methods with rigorous validation (Linear Regression, Propensity Matching, IV)
+- **Domain-Specific Intelligence** - Built-in expertise for Healthcare, Marketing, Finance
+- **Business Impact Analysis** - ROI calculations and actionable recommendations
+- **A/B Testing Platform** - From simple comparisons to sophisticated causal analysis
 
 ---
 
-## 🚀 **Quick Start**
+## **Quick Start**
 
 ### **Installation**
 ```bash
