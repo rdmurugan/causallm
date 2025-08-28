@@ -132,6 +132,7 @@ The `examples/` directory contains working demonstrations:
 - `ab_testing_enhanced_demo.py` - A/B test causal analysis
 - `domain_packages_demo.py` - Domain packages demonstration
 - `enhanced_causallm_demo.py` - Comprehensive analysis example
+- `mcp_server_example.py` - MCP server setup and usage
 
 ## LLM Integration (Optional)
 
@@ -153,6 +154,68 @@ causal_llm = EnhancedCausalLLM(
 
 **Note**: The library works fully without API keys using statistical methods only.
 
+## MCP Server Integration
+
+CausalLLM can be used as an MCP (Model Context Protocol) server to expose causal reasoning capabilities to MCP-compatible clients like Claude Desktop, VS Code, and other applications.
+
+### Available MCP Tools
+
+- **simulate_counterfactual**: Generate counterfactual scenarios comparing factual and hypothetical situations
+- **generate_do_prompt**: Create do-calculus intervention prompts for causal analysis
+- **extract_causal_edges**: Extract causal relationships from natural language descriptions
+- **generate_reasoning_prompt**: Create reasoning tasks from causal graph structures
+- **analyze_treatment_effect**: Analyze treatment effectiveness in various domains
+
+### Quick MCP Setup
+
+```python
+# Test MCP tools directly
+python examples/mcp_server_example.py --test
+
+# Show MCP configuration
+python examples/mcp_server_example.py --config
+
+# Start MCP server (demo mode)
+python examples/mcp_server_example.py --server
+```
+
+### Claude Desktop Integration
+
+To use CausalLLM with Claude Desktop, add this configuration to your `claude_desktop_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "causallm": {
+      "command": "python",
+      "args": [
+        "/path/to/causallm/examples/mcp_server_example.py",
+        "--server"
+      ],
+      "env": {}
+    }
+  }
+}
+```
+
+### MCP Tool Usage Example
+
+```python
+# Example: Counterfactual analysis
+counterfactual_request = {
+  "context": "A clinical trial testing a new drug for diabetes",
+  "factual": "Patients received standard insulin therapy",
+  "intervention": "Patients received the experimental drug instead"
+}
+
+# Example: Causal edge extraction  
+extraction_request = {
+  "scenario_description": "Older patients have worse outcomes. Treatment affects recovery time. Higher income patients get better treatments."
+}
+```
+
+**Note**: The MCP implementation is currently in development. The example demonstrates the intended functionality and structure.
+
 ## Statistical Rigor
 
 CausalLLM implements established statistical methods:
@@ -167,6 +230,7 @@ CausalLLM implements established statistical methods:
 
 - **[Complete User Guide](COMPLETE_USER_GUIDE.md)**: Comprehensive documentation with API reference
 - **[Domain Packages Guide](DOMAIN_PACKAGES.md)**: Industry-specific components documentation
+- **[MCP Usage Guide](MCP_USAGE.md)**: Model Context Protocol server setup and usage
 - **[Usage Examples](USAGE_EXAMPLES.md)**: Real-world use cases and scenarios
 - **[Examples Directory](examples/)**: Working code demonstrations
 
