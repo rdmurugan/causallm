@@ -5,7 +5,6 @@
 [![PyPI version](https://badge.fury.io/py/causallm.svg)](https://badge.fury.io/py/causallm)
 [![GitHub stars](https://img.shields.io/github/stars/rdmurugan/causallm.svg)](https://github.com/rdmurugan/causallm/stargazers)
 [![Downloads](https://img.shields.io/pypi/dm/causallm.svg)](https://pypi.org/project/causallm/)
-[![Build Status](https://img.shields.io/github/actions/workflow/status/rdmurugan/causallm/ci.yml?branch=main)](https://github.com/rdmurugan/causallm/actions)
 [![Documentation](https://img.shields.io/badge/docs-latest-brightgreen.svg)](https://github.com/rdmurugan/causallm/blob/main/COMPLETE_USER_GUIDE.md)
 [![Discussions](https://img.shields.io/github/discussions/rdmurugan/causallm)](https://github.com/rdmurugan/causallm/discussions)
 
