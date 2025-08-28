@@ -493,7 +493,7 @@ python examples/marketing_attribution_openai.py
 
 ### 🌟 **Why Contribute to CausalLLM?**
 - **High Impact**: Your code powers million-dollar business decisions and scientific breakthroughs
-- **Growing Community**: Join 2,000+ data scientists, researchers, and business analysts
+- **Growing Community**: Join data scientists, researchers, and business analysts
 - **Learn from Experts**: Collaborate with seasoned ML engineers and statisticians
 - **Portfolio Boost**: Contribute to a project used by Fortune 500 companies and top universities
 - **Research Opportunities**: Co-author papers and present at conferences
