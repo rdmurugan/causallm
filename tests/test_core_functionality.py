@@ -5,9 +5,14 @@ Tests the main CausalLLM class and core methods
 import pytest
 import pandas as pd
 import numpy as np
+import warnings
 from unittest.mock import Mock, patch, MagicMock
 from causallm import CausalLLM
 from causallm.core.causal_llm_core import CausalLLMCore
+from causallm.enhanced_causallm import EnhancedCausalLLM
+
+# Suppress warnings in tests
+warnings.filterwarnings('ignore')
 
 
 class TestCausalLLMCore:
