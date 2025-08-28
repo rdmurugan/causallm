@@ -118,6 +118,14 @@ try:
 except ImportError:
     ENHANCED_AVAILABLE = False
 
+# Import domain packages
+try:
+    from . import domains
+    from .domains import HealthcareDomain, InsuranceDomain, MarketingDomain, EducationDomain, ExperimentationDomain
+    DOMAINS_AVAILABLE = True
+except ImportError:
+    DOMAINS_AVAILABLE = False
+
 # Main exports
 __all__ = [
     'CausalLLM',
@@ -137,4 +145,15 @@ if ENHANCED_AVAILABLE:
         'EnhancedCausalLLM',
         'EnhancedCausalDiscovery', 
         'StatisticalCausalInference'
+    ])
+
+# Add domain packages if available
+if DOMAINS_AVAILABLE:
+    __all__.extend([
+        'domains',
+        'HealthcareDomain',
+        'InsuranceDomain', 
+        'MarketingDomain',
+        'EducationDomain',
+        'ExperimentationDomain'
     ])
