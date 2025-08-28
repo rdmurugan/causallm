@@ -9,20 +9,19 @@
 
 ---
 
-## 🚀 **Major Upgrade: Version 4.0.0**
+## **Major Upgrade: Version 4.0.0**
 
 ### **⚡ What's New**
 
-- **🧠 Enhanced Causal Discovery Engine** - Automated structure learning with PC Algorithm + LLM intelligence
-- **📊 Statistical Causal Inference** - Multiple methods with rigorous validation (Linear Regression, Propensity Matching, IV)
-- **🎯 Domain-Specific Intelligence** - Built-in expertise for Healthcare, Marketing, Finance
-- **💰 Business Impact Analysis** - ROI calculations and actionable recommendations
-- **🔬 A/B Testing Platform** - From simple comparisons to sophisticated causal analysis
-- **⚡ 90% Time Savings** - From 40+ hours to 4 hours for comprehensive causal analysis
+- **Enhanced Causal Discovery Engine** - Automated structure learning with PC Algorithm + LLM intelligence
+- **Statistical Causal Inference** - Multiple methods with rigorous validation (Linear Regression, Propensity Matching, IV)
+- **Domain-Specific Intelligence** - Built-in expertise for Healthcare, Marketing, Finance
+- **Business Impact Analysis** - ROI calculations and actionable recommendations
+- **A/B Testing Platform** - From simple comparisons to sophisticated causal analysis
 
 ---
 
-## 🚀 **Quick Start**
+## **Quick Start**
 
 ### **Installation**
 ```bash
@@ -79,25 +78,7 @@ print(f"🔬 Analysis Confidence: {results.confidence_level}")
 
 ---
 
-## 🎯 **Before vs After: Transformational Value**
-
-### **📊 BEFORE: Basic CausalLLM v3.x (Limited Value)**
-
-```python
-# Old approach - mostly manual work
-causal_model = CausalLLMCore(context, variables, dag_edges)
-result = causal_model.simulate_do({"treatment": "new_value"})
-# Returns: Simple text prompt, no statistical validation
-```
-
-**Developer Experience:**
-- ❌ Manual DAG specification required
-- ❌ Simple text generation only  
-- ❌ No statistical validation
-- ❌ No effect quantification
-- ❌ Limited actionable insights
-
-### **🚀 AFTER: Enhanced CausalLLM v4.0 (High Value)**
+### ** Enhanced CausalLLM v4.0 (High Value)**
 
 ```python
 # New approach - automated scientific analysis
@@ -126,9 +107,9 @@ analysis = enhanced_causallm.comprehensive_analysis(data, domain='healthcare')
 
 ---
 
-## 💎 **Enhanced Features**
+##  **Enhanced Features**
 
-### **1. 🧠 Enhanced Causal Discovery**
+### **1. Enhanced Causal Discovery**
 ```python
 from causallm.core.enhanced_causal_discovery import EnhancedCausalDiscovery
 
@@ -148,7 +129,7 @@ for edge in results.discovered_edges:
 - **Confounder Detection**: Intelligent suggestions
 - **Assumption Validation**: Tests causal assumptions
 
-### **2. 📊 Statistical Causal Inference**
+### **2. Statistical Causal Inference**
 ```python
 from causallm.core.statistical_inference import StatisticalCausalInference
 
@@ -169,7 +150,7 @@ print(f"Robustness: {len(effect.robustness_checks)} methods")
 - **Instrumental Variables** for unobserved confounding
 - **Cross-method Validation** for robustness
 
-### **3. 🎯 Comprehensive Analysis Platform**
+### **3. Comprehensive Analysis Platform**
 ```python
 from causallm import EnhancedCausalLLM
 
@@ -190,9 +171,9 @@ interventions = enhanced_causallm.generate_intervention_recommendations(
 
 ---
 
-## 🔬 **Real-World Examples**
+## Real-World Examples
 
-### **🏥 Healthcare Analysis**
+### Healthcare Analysis
 ```python
 from causallm import EnhancedCausalLLM
 import pandas as pd
@@ -214,7 +195,7 @@ print(f"Expected Recovery Improvement: {results.business_impact.effect_magnitude
 print(f"Clinical Significance: {results.clinical_assessment}")
 ```
 
-### **📈 A/B Testing Analysis** 
+### A/B Testing Analysis
 ```python
 # Transform simple A/B tests into causal analysis
 ab_results = enhanced_causallm.comprehensive_analysis(
@@ -231,7 +212,7 @@ print(f"ROI: {ab_results.business_impact.roi:.0%}")
 print(f"Implementation Confidence: {ab_results.confidence_level}")
 ```
 
-### **💰 Marketing Attribution**
+### Marketing Attribution
 ```python
 # Understand true marketing effectiveness
 attribution = enhanced_causallm.comprehensive_analysis(
@@ -247,20 +228,6 @@ print(f"Campaign ROI: {attribution.business_impact.roi:.1%}")
 ```
 
 ---
-
-## 📈 **Quantified Benefits**
-
-### **⏰ Time Savings: 90% Reduction**
-
-| Task | Before v4.0 | After v4.0 | Savings |
-|------|-------------|------------|---------|
-| Literature Review | 8 hours | 0 hours | 100% |
-| DAG Specification | 12 hours | 1 hour | 92% |
-| Method Selection | 6 hours | 0 hours | 100% |
-| Statistical Analysis | 10 hours | 2 hours | 80% |
-| Interpretation | 4 hours | 1 hour | 75% |
-| **Total** | **40 hours** | **4 hours** | **90%** |
-
 ### **🔬 Scientific Rigor**
 - **Multiple Methods**: Cross-validation across statistical approaches
 - **Assumption Testing**: Automatic violation detection
@@ -276,7 +243,7 @@ print(f"Campaign ROI: {attribution.business_impact.roi:.1%}")
 
 ---
 
-## 🚀 **Advanced Capabilities**
+## Advanced Capabilities
 
 ### **Domain-Specific Intelligence**
 ```python
@@ -323,21 +290,7 @@ print(f"Randomization Quality: {confounding_analysis.randomization_score:.3f}")
 
 ---
 
-## 📊 **Performance Benchmarks**
-
-### **Method Comparison**
-
-| Capability | Basic CausalLLM | Enhanced CausalLLM v4.0 |
-|------------|-----------------|-------------------------|
-| Causal Discovery | ❌ Manual | ✅ Automated |
-| Statistical Testing | ❌ None | ✅ Multiple Methods |
-| Effect Quantification | ❌ None | ✅ With Confidence Intervals |
-| Domain Expertise | ❌ Limited | ✅ Built-in Knowledge |
-| Robustness Checks | ❌ None | ✅ Cross-method Validation |
-| Business Insights | ❌ Basic | ✅ Actionable Recommendations |
-| Implementation Time | 40+ hours | 4 hours |
-| Scientific Rigor | Low | High |
-| Business Value | Limited | High |
+## Performance Benchmarks
 
 ### **Accuracy Benchmarks**
 - **Causal Discovery**: 94% precision on synthetic benchmarks
@@ -347,7 +300,7 @@ print(f"Randomization Quality: {confounding_analysis.randomization_score:.3f}")
 
 ---
 
-## 🏗️ **Architecture**
+## Architecture
 
 ### **Enhanced Core Components**
 ```
@@ -369,20 +322,9 @@ causallm/
     └── marketing_attribution_openai.py # Marketing use cases
 ```
 
-### **Backward Compatibility**
-```python
-# Original CausalLLM still works
-from causallm import CausalLLM
-causallm = CausalLLM()  # Original functionality preserved
-
-# Enhanced features available
-from causallm import EnhancedCausalLLM  
-enhanced = EnhancedCausalLLM()  # New capabilities
-```
-
 ---
 
-## 📦 **Installation & Setup**
+## Installation & Setup
 
 ### **Basic Installation**
 ```bash
@@ -402,7 +344,7 @@ pip install causallm[dev]
 pip install causallm[ui]
 ```
 
-### **Environment Setup**
+### Environment Setup
 ```python
 import os
 
@@ -417,7 +359,7 @@ enhanced_causallm = EnhancedCausalLLM()
 
 ---
 
-## 🎓 **Learning Path**
+## Learning Path
 
 ### **For Data Scientists**
 1. **Quick Start**: Run `python examples/ab_testing_enhanced_demo.py`
@@ -438,7 +380,7 @@ enhanced_causallm = EnhancedCausalLLM()
 
 ---
 
-## 🚀 **Demo Examples**
+##  Demo Examples
 
 ### **Quick 2-Minute Demo**
 ```bash
@@ -463,23 +405,9 @@ python examples/healthcare_analysis_openai.py
 # Marketing attribution analysis
 python examples/marketing_attribution_openai.py
 ```
-
 ---
 
-## 🔬 **Use Cases & Success Stories**
-
-### **Healthcare**
-> "Enhanced CausalLLM identified that Treatment B reduces complications by 23% (p<0.001) with high confidence across 3 statistical methods, leading to protocol change saving $2.3M annually."
-
-### **Marketing**  
-> "Discovered email + social media synergy increases customer LTV by $47 per customer (95% CI: $32-$62), driving $890K additional revenue through optimized channel allocation."
-
-### **Finance**
-> "Causal analysis revealed ESG factors increase portfolio returns by 1.8% annually (p=0.003), validated across multiple market conditions and used to restructure $50M investment strategy."
-
----
-
-## 🤝 **Contributing**
+##  Contributing
 
 We welcome contributions to make CausalLLM even better!
 
@@ -492,36 +420,36 @@ pytest tests/
 ```
 
 ### **Areas for Contribution**
-- 🧪 **New Statistical Methods**: Implement additional causal inference techniques
-- 🏥 **Domain Expertise**: Add knowledge for new domains (education, policy, etc.)
-- 📊 **Visualization**: Enhance result presentation and interpretation
-- 🔧 **Performance**: Optimize for larger datasets and faster computation
-- 📚 **Documentation**: Examples, tutorials, and guides
+- **New Statistical Methods**: Implement additional causal inference techniques
+- **Domain Expertise**: Add knowledge for new domains (education, policy, etc.)
+- **Visualization**: Enhance result presentation and interpretation
+- **Performance**: Optimize for larger datasets and faster computation
+- **Documentation**: Examples, tutorials, and guides
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
 
 ---
 
-## 📄 **License**
+## License
 
 MIT License - Free for commercial and academic use.
 
 ---
 
-## 🌟 **Enterprise Support**
+##  Enterprise Support
 
 Need advanced capabilities for production use? Contact **durai@infinidatum.net**
 
-- 🔒 **Advanced Security**: RBAC, audit logging, compliance
-- ⚡ **Auto-Scaling**: Handle TB+ datasets with Kubernetes
-- 📊 **Advanced Monitoring**: Prometheus, Grafana integration  
-- 🤖 **MLOps Integration**: Model lifecycle, deployment pipelines
-- ☁️ **Cloud Native**: AWS, Azure, GCP optimizations
-- 📞 **Priority Support**: SLA-backed support and training
+- **Advanced Security**: RBAC, audit logging, compliance
+- **Auto-Scaling**: Handle TB+ datasets with Kubernetes
+- **Advanced Monitoring**: Prometheus, Grafana integration  
+- **MLOps Integration**: Model lifecycle, deployment pipelines
+- **Cloud Native**: AWS, Azure, GCP optimizations
+- **Priority Support**: SLA-backed support and training
 
 ---
 
-## 📚 **Citation**
+## Citation
 
 If you use CausalLLM v4.0 in your research, please cite:
 
@@ -537,22 +465,22 @@ If you use CausalLLM v4.0 in your research, please cite:
 
 ---
 
-## 🌐 **Community & Support**
+## Community & Support
 
-- **🐛 Issues**: [Report bugs and request features](https://github.com/rdmurugan/causallm/issues)
-- **💬 Discussions**: [Ask questions and share examples](https://github.com/rdmurugan/causallm/discussions)
-- **📧 Email**: durai@infinidatum.net
-- **💼 LinkedIn**: [Durai Rajamanickam](https://www.linkedin.com/in/durai-rajamanickam)
+- **Issues**: [Report bugs and request features](https://github.com/rdmurugan/causallm/issues)
+- **Discussions**: [Ask questions and share examples](https://github.com/rdmurugan/causallm/discussions)
+- **Email**: durai@infinidatum.net
+- **LinkedIn**: [Durai Rajamanickam](https://www.linkedin.com/in/durai-rajamanickam)
 
 ---
 
-⭐ **Star the repo** if Enhanced CausalLLM transforms your causal analysis workflow!
+* **Star the repo** if Enhanced CausalLLM transforms your causal analysis workflow!
 
 **Enhanced CausalLLM v4.0 doesn't just save time—it enables better science and better decisions.**
 
 ---
 
-### **About the Author**
+### About the Author
 
 **Durai Rajamanickam** is a visionary AI executive with 20+ years of leadership in data science, causal inference, and machine learning across healthcare, financial services, legal tech, and high-growth startups. Creator of CausalLLM and author of the upcoming book "Causal Inference for Machine Learning Engineers".
 
