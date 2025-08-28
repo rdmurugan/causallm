@@ -5,7 +5,6 @@
 [![PyPI version](https://badge.fury.io/py/causallm.svg)](https://badge.fury.io/py/causallm)
 [![GitHub stars](https://img.shields.io/github/stars/rdmurugan/causallm.svg)](https://github.com/rdmurugan/causallm/stargazers)
 [![Downloads](https://img.shields.io/pypi/dm/causallm.svg)](https://pypi.org/project/causallm/)
-[![Build Status](https://img.shields.io/github/actions/workflow/status/rdmurugan/causallm/ci.yml?branch=main)](https://github.com/rdmurugan/causallm/actions)
 [![Documentation](https://img.shields.io/badge/docs-latest-brightgreen.svg)](https://github.com/rdmurugan/causallm/blob/main/COMPLETE_USER_GUIDE.md)
 [![Discussions](https://img.shields.io/github/discussions/rdmurugan/causallm)](https://github.com/rdmurugan/causallm/discussions)
 
@@ -17,7 +16,7 @@
 
 **Stop Guessing. Start Knowing.** Traditional analytics tells you *what* happened. CausalLLM tells you *why* it happened and *what to do* about it.
 
-### 💰 **Massive ROI for Enterprise**
+### 💰 **ROI for Enterprise**
 - **Marketing Teams**: Discover true channel attribution, optimize budget allocation, increase campaign ROI by 40-200%
 - **Product Teams**: Understand feature impact on retention, identify growth levers, reduce churn by 15-30%  
 - **Healthcare**: Validate treatment effectiveness, reduce trial costs by $2-10M, accelerate drug approval timelines
@@ -36,7 +35,7 @@
 
 ---
 
-## 🏆 **World-Class Causal Analysis Platform - Version 4.0.0**
+## 🏆 **World-Class Causal Analysis Platform**
 
 ### 🚀 **Revolutionary Features That Transform Business Intelligence**
 
@@ -85,7 +84,7 @@ export OPENAI_API_KEY="your-key-here"
 # Works perfectly without API keys using statistical methods only
 ```
 
-### 💡 **30-Second Demo: Million-Dollar Insights Made Simple**
+### 💡 **30-Second Demo: Insights Made Simple**
 
 ```python
 from causallm import EnhancedCausalLLM
@@ -129,7 +128,7 @@ Implementation Priority: HIGH
 
 ## 🏢 **Real-World Business Impact Stories**
 
-### 💊 **Healthcare: $10M Clinical Trial Savings**
+### 💊 **Healthcare: Clinical Trial Savings**
 ```python
 # Pharmaceutical company analyzing drug effectiveness
 clinical_results = causal_ai.comprehensive_analysis(
@@ -142,7 +141,7 @@ clinical_results = causal_ai.comprehensive_analysis(
 # Result: Identified optimal dosage 6 months earlier, saved $10M in trial costs
 ```
 
-### 📈 **E-commerce: 340% Marketing ROI Increase** 
+### 📈 **E-commerce: Marketing ROI Increase** 
 ```python
 # Online retailer optimizing marketing attribution
 marketing_insights = causal_ai.comprehensive_analysis(
@@ -152,7 +151,7 @@ marketing_insights = causal_ai.comprehensive_analysis(
 # Result: Discovered true channel attribution, reallocated $2M budget, 340% ROI increase
 ```
 
-### 🏦 **Finance: 25% Portfolio Performance Boost**
+### 🏦 **Finance: Portfolio Performance Boost**
 ```python  
 # Investment firm analyzing risk factors
 portfolio_analysis = causal_ai.comprehensive_analysis(
@@ -164,7 +163,7 @@ portfolio_analysis = causal_ai.comprehensive_analysis(
 # Result: Identified leading indicators, optimized allocation, 25% performance improvement
 ```
 
-### 🏥 **Healthcare System: 30% Cost Reduction**
+### 🏥 **Healthcare System: Cost Reduction**
 ```python
 # Hospital network optimizing operations  
 operational_insights = causal_ai.comprehensive_analysis(
@@ -494,7 +493,7 @@ python examples/marketing_attribution_openai.py
 
 ### 🌟 **Why Contribute to CausalLLM?**
 - **High Impact**: Your code powers million-dollar business decisions and scientific breakthroughs
-- **Growing Community**: Join 2,000+ data scientists, researchers, and business analysts
+- **Growing Community**: Join data scientists, researchers, and business analysts
 - **Learn from Experts**: Collaborate with seasoned ML engineers and statisticians
 - **Portfolio Boost**: Contribute to a project used by Fortune 500 companies and top universities
 - **Research Opportunities**: Co-author papers and present at conferences
@@ -653,7 +652,7 @@ Got impressive ROI results? Share them in our [Success Stories](https://github.c
 
 ---
 
-> ## 💎 **"CausalLLM doesn't just save time—it enables better science and better business decisions."**
+> ## 💎 **"CausalLLM enables better science and better business decisions."**
 > 
 > **Transform your organization's decision-making with AI-powered causal analysis that delivers measurable ROI and scientific rigor.**
 
@@ -661,6 +660,6 @@ Got impressive ROI results? Share them in our [Success Stories](https://github.c
 
 ### About the Author
 
-**Durai Rajamanickam** is a visionary AI executive with 20+ years of leadership in data science, causal inference, and machine learning across healthcare, financial services, legal tech, and high-growth startups. Creator of CausalLLM and author of the upcoming book "Causal Inference for Machine Learning Engineers".
+**Durai Rajamanickam** is a visionary AI executive with over 20 years of leadership experience in data science, causal inference, and machine learning across healthcare, financial services, legal technology, and high-growth startups. Creator of CausalLLM and author of the upcoming book "Causal Inference for Machine Learning Engineers".
 
 **LinkedIn**: [www.linkedin.com/in/durai-rajamanickam](https://www.linkedin.com/in/durai-rajamanickam)
