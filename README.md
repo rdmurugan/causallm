@@ -16,7 +16,7 @@
 
 **Stop Guessing. Start Knowing.** Traditional analytics tells you *what* happened. CausalLLM tells you *why* it happened and *what to do* about it.
 
-### 💰 **Massive ROI for Enterprise**
+### 💰 **ROI for Enterprise**
 - **Marketing Teams**: Discover true channel attribution, optimize budget allocation, increase campaign ROI by 40-200%
 - **Product Teams**: Understand feature impact on retention, identify growth levers, reduce churn by 15-30%  
 - **Healthcare**: Validate treatment effectiveness, reduce trial costs by $2-10M, accelerate drug approval timelines
@@ -35,7 +35,7 @@
 
 ---
 
-## 🏆 **World-Class Causal Analysis Platform - Version 4.0.0**
+## 🏆 **World-Class Causal Analysis Platform**
 
 ### 🚀 **Revolutionary Features That Transform Business Intelligence**
 
@@ -84,7 +84,7 @@ export OPENAI_API_KEY="your-key-here"
 # Works perfectly without API keys using statistical methods only
 ```
 
-### 💡 **30-Second Demo: Million-Dollar Insights Made Simple**
+### 💡 **30-Second Demo: Insights Made Simple**
 
 ```python
 from causallm import EnhancedCausalLLM
@@ -128,7 +128,7 @@ Implementation Priority: HIGH
 
 ## 🏢 **Real-World Business Impact Stories**
 
-### 💊 **Healthcare: $10M Clinical Trial Savings**
+### 💊 **Healthcare: Clinical Trial Savings**
 ```python
 # Pharmaceutical company analyzing drug effectiveness
 clinical_results = causal_ai.comprehensive_analysis(
@@ -141,7 +141,7 @@ clinical_results = causal_ai.comprehensive_analysis(
 # Result: Identified optimal dosage 6 months earlier, saved $10M in trial costs
 ```
 
-### 📈 **E-commerce: 340% Marketing ROI Increase** 
+### 📈 **E-commerce: Marketing ROI Increase** 
 ```python
 # Online retailer optimizing marketing attribution
 marketing_insights = causal_ai.comprehensive_analysis(
@@ -151,7 +151,7 @@ marketing_insights = causal_ai.comprehensive_analysis(
 # Result: Discovered true channel attribution, reallocated $2M budget, 340% ROI increase
 ```
 
-### 🏦 **Finance: 25% Portfolio Performance Boost**
+### 🏦 **Finance: Portfolio Performance Boost**
 ```python  
 # Investment firm analyzing risk factors
 portfolio_analysis = causal_ai.comprehensive_analysis(
@@ -163,7 +163,7 @@ portfolio_analysis = causal_ai.comprehensive_analysis(
 # Result: Identified leading indicators, optimized allocation, 25% performance improvement
 ```
 
-### 🏥 **Healthcare System: 30% Cost Reduction**
+### 🏥 **Healthcare System: Cost Reduction**
 ```python
 # Hospital network optimizing operations  
 operational_insights = causal_ai.comprehensive_analysis(
@@ -652,7 +652,7 @@ Got impressive ROI results? Share them in our [Success Stories](https://github.c
 
 ---
 
-> ## 💎 **"CausalLLM doesn't just save time—it enables better science and better business decisions."**
+> ## 💎 **"CausalLLM enables better science and better business decisions."**
 > 
 > **Transform your organization's decision-making with AI-powered causal analysis that delivers measurable ROI and scientific rigor.**
 
@@ -660,6 +660,6 @@ Got impressive ROI results? Share them in our [Success Stories](https://github.c
 
 ### About the Author
 
-**Durai Rajamanickam** is a visionary AI executive with 20+ years of leadership in data science, causal inference, and machine learning across healthcare, financial services, legal tech, and high-growth startups. Creator of CausalLLM and author of the upcoming book "Causal Inference for Machine Learning Engineers".
+**Durai Rajamanickam** is a visionary AI executive with over 20 years of leadership experience in data science, causal inference, and machine learning across healthcare, financial services, legal technology, and high-growth startups. Creator of CausalLLM and author of the upcoming book "Causal Inference for Machine Learning Engineers".
 
 **LinkedIn**: [www.linkedin.com/in/durai-rajamanickam](https://www.linkedin.com/in/durai-rajamanickam)
