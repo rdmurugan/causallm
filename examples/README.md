@@ -46,6 +46,21 @@ python examples/marketing_attribution.py
 - Personalization impact assessment
 - Attribution prompt generation
 
+### 🏦 Financial Risk Analysis
+**File**: `financial_risk_analysis.py`
+
+**Demonstrates**:
+- Credit risk modeling
+- Interest rate and economic impact analysis
+- Loan portfolio performance assessment
+- Policy and scenario simulation
+
+**Key Features**:
+- Macroeconomic factor integration
+- Risk mitigation strategy exploration
+- Portfolio profit evaluation
+- Structured reasoning prompt generation
+
 ## Usage Pattern
 
 Each example follows this structure:
