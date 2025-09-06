@@ -101,4 +101,3 @@ We are committed to a welcoming and harassment-free experience. By participating
 
 Thank you for contributing to **CausalLLM** — together, we're redefining what it means to reason intelligently with machines. 🧠📊
 
-— The CausalLLM Core Team
