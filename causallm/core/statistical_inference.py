@@ -11,12 +11,16 @@ from typing import Dict, List, Tuple, Optional, Any, Union
 from dataclasses import dataclass
 from enum import Enum
 import warnings
+import logging
 from scipy import stats
 from sklearn.linear_model import LinearRegression, LogisticRegression
 from sklearn.ensemble import RandomForestRegressor, RandomForestClassifier
 from sklearn.model_selection import cross_val_score
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.neighbors import NearestNeighbors
+
+# Import logging utilities
+from .utils.logging import get_logger
 
 warnings.filterwarnings('ignore')
 
@@ -60,6 +64,7 @@ class PropensityScoreMatching:
     
     def __init__(self, caliper: float = 0.1):
         self.caliper = caliper
+        self.logger = get_logger("causallm.propensity_matching", level="INFO")
         self.propensity_model = None
         self.matched_indices = None
     
@@ -87,7 +92,7 @@ class PropensityScoreMatching:
             return auc
             
         except Exception as e:
-            print(f"Warning: Propensity model fitting failed: {e}")
+            self.logger.warning(f"Propensity model fitting failed: {e}")
             return 0.5
     
     def match_samples(self, X: pd.DataFrame, treatment: pd.Series) -> Tuple[np.ndarray, np.ndarray]:
@@ -124,7 +129,7 @@ class PropensityScoreMatching:
             return np.array(matched_treated), np.array(matched_control)
             
         except Exception as e:
-            print(f"Warning: Matching failed: {e}")
+            self.logger.warning(f"Matching failed: {e}")
             return np.array([]), np.array([])
     
     def estimate_effect(self, outcome_treated: pd.Series, outcome_control: pd.Series) -> Tuple[float, float, float]:
@@ -150,6 +155,7 @@ class InstrumentalVariables:
     """Instrumental variables estimation."""
     
     def __init__(self):
+        self.logger = get_logger("causallm.instrumental_variables", level="INFO")
         self.first_stage_model = None
         self.reduced_form_model = None
     
@@ -189,7 +195,7 @@ class InstrumentalVariables:
             }
             
         except Exception as e:
-            print(f"Warning: Instrument strength check failed: {e}")
+            self.logger.warning(f"Instrument strength check failed: {e}")
             return {'f_statistic': 0, 'strength': 'unknown', 'first_stage_r2': 0}
     
     def two_stage_least_squares(self, instrument: pd.Series, treatment: pd.Series, 
@@ -245,7 +251,7 @@ class InstrumentalVariables:
             return effect, se, p_value
             
         except Exception as e:
-            print(f"Warning: 2SLS estimation failed: {e}")
+            self.logger.warning(f"2SLS estimation failed: {e}")
             return 0.0, 0.0, 1.0
 
 class StatisticalCausalInference:
@@ -255,6 +261,7 @@ class StatisticalCausalInference:
     
     def __init__(self, significance_level: float = 0.05):
         self.significance_level = significance_level
+        self.logger = get_logger("causallm.statistical_inference", level="INFO")
         self.psm = PropensityScoreMatching()
         self.iv = InstrumentalVariables()
     
@@ -390,7 +397,7 @@ class StatisticalCausalInference:
             return effect, se, p_value
             
         except Exception as e:
-            print(f"Warning: Linear regression estimation failed: {e}")
+            self.logger.warning(f"Linear regression estimation failed: {e}")
             return 0.0, 0.1, 1.0
     
     def _matching_estimate(self, treatment: pd.Series, outcome: pd.Series, 
@@ -405,13 +412,13 @@ class StatisticalCausalInference:
             auc = self.psm.fit_propensity_model(covariates, treatment)
             
             if auc < 0.6:
-                print("Warning: Poor propensity model performance (AUC < 0.6)")
+                self.logger.warning("Poor propensity model performance detected (AUC < 0.6)")
             
             # Perform matching
             matched_treated_idx, matched_control_idx = self.psm.match_samples(covariates, treatment)
             
             if len(matched_treated_idx) == 0:
-                print("Warning: No matches found, falling back to regression")
+                self.logger.warning("No matches found in propensity score matching, falling back to regression")
                 return self._linear_regression_estimate(treatment, outcome, covariates)
             
             # Estimate effect on matched samples
@@ -423,7 +430,7 @@ class StatisticalCausalInference:
             return effect, se, p_val
             
         except Exception as e:
-            print(f"Warning: Matching estimation failed: {e}")
+            self.logger.warning(f"Matching estimation failed: {e}")
             return 0.0, 0.0, 1.0
     
     def _iv_estimate(self, instrument: pd.Series, treatment: pd.Series, 
@@ -434,7 +441,7 @@ class StatisticalCausalInference:
             strength_check = self.iv.check_instrument_strength(instrument, treatment, covariates)
             
             if strength_check['f_statistic'] < 3:
-                print("Warning: Weak instrument detected (F < 3)")
+                self.logger.warning("Weak instrument detected (F-statistic < 3)")
             
             # Perform 2SLS
             effect, se, p_val = self.iv.two_stage_least_squares(
@@ -444,7 +451,7 @@ class StatisticalCausalInference:
             return effect, se, p_val
             
         except Exception as e:
-            print(f"Warning: IV estimation failed: {e}")
+            self.logger.warning(f"Instrumental variables estimation failed: {e}")
             return 0.0, 0.0, 1.0
     
     def _generate_interpretation(self, treatment: str, outcome: str, 
@@ -512,11 +519,18 @@ class StatisticalCausalInference:
         Perform comprehensive causal analysis with multiple methods for robustness.
         """
         
-        print(f"🧮 Performing comprehensive causal analysis...")
-        print(f"   Treatment: {treatment}")
-        print(f"   Outcome: {outcome}")
-        print(f"   Covariates: {covariates if covariates else 'None'}")
-        print(f"   Sample size: {len(data)}")
+        self.logger.info("Starting comprehensive causal analysis")
+        self.logger.info(f"Treatment variable: {treatment}")
+        self.logger.info(f"Outcome variable: {outcome}")
+        self.logger.info(f"Covariates: {covariates if covariates else 'None'}")
+        self.logger.info(f"Sample size: {len(data)}")
+        
+        # Log data characteristics
+        treatment_values = data[treatment].unique()
+        self.logger.debug(f"Treatment unique values: {treatment_values}")
+        if len(treatment_values) <= 10:
+            treatment_dist = data[treatment].value_counts().to_dict()
+            self.logger.debug(f"Treatment distribution: {treatment_dist}")
         
         # Primary analysis (linear regression)
         primary_effect = self.estimate_causal_effect(

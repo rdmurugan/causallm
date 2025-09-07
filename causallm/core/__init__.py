@@ -133,7 +133,9 @@ class CausalLLM:
                 ]
             }
 
-__version__ = "3.0.0"
+# Import version from centralized location
+from .._version import __version__
+
 __license__ = "MIT"
 __author__ = "CausalLLM Team"
 __email__ = "opensource@causallm.com"

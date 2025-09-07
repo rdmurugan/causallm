@@ -559,7 +559,9 @@ class TestDocumentationAccuracy:
         from causallm import __version__
         
         # Should have version that matches setup.py
-        assert __version__ == "3.0.0"  # As specified in setup.py
+        # Version should be imported from centralized _version.py
+        from causallm._version import __version__ as expected_version
+        assert __version__ == expected_version
         
         # Core dependencies should be importable
         required_packages = [

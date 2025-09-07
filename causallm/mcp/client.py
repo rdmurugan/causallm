@@ -352,7 +352,7 @@ async def main():
         
         # List available tools
         tools = await client.list_tools()
-        print(f"Available tools: {[t['name'] for t in tools]}")
+        logger.info(f"Available tools: {[t['name'] for t in tools]}")
         
         # Example tool call
         result = await client.call_tool("simulate_counterfactual", {
@@ -361,7 +361,7 @@ async def main():
             "intervention": "The person took an umbrella"
         })
         
-        print(f"Result: {result}")
+        logger.info(f"Tool call result: {result}")
         
         await client.disconnect()
         

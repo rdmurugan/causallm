@@ -14,6 +14,9 @@ import warnings
 from scipy import stats
 from itertools import combinations, permutations
 
+# Import logging utilities
+from .utils.logging import get_logger
+
 # Suppress warnings for cleaner output
 warnings.filterwarnings('ignore')
 
@@ -315,6 +318,7 @@ class EnhancedCausalDiscovery:
         self.statistical_engine = StatisticalCausalDiscovery(significance_level)
         self.llm_assistant = LLMCausalAssistant(llm_client)
         self.significance_level = significance_level
+        self.logger = get_logger("causallm.enhanced_discovery", level="INFO")
     
     def discover_causal_structure(self, data: pd.DataFrame, 
                                  variables: List[str] = None,
@@ -331,8 +335,10 @@ class EnhancedCausalDiscovery:
         if domain is None:
             domain = self.llm_assistant.detect_domain(variables)
         
-        print(f"🔍 Detected domain: {domain}")
-        print(f"📊 Analyzing causal relationships among {len(variables)} variables...")
+        self.logger.info(f"Detected domain context: {domain}")
+        self.logger.info(f"Analyzing causal relationships among {len(variables)} variables")
+        self.logger.debug(f"Variables to analyze: {list(variables.keys())}")
+        self.logger.debug(f"Dataset shape: {data.shape}")
         
         # Step 1: Statistical causal discovery
         statistical_edges = self.statistical_engine.pc_algorithm_simple(data, variables)

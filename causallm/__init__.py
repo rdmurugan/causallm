@@ -15,54 +15,67 @@ from .core.counterfactual_engine import CounterfactualEngine
 from .core.statistical_methods import PCAlgorithm, ConditionalIndependenceTest
 from .core.causal_discovery import DiscoveryMethod
 from .core.llm_client import get_llm_client
-from .core.utils.logging import setup_package_logging
+from .core.utils.logging import setup_package_logging, get_logger
+from .core.factory import get_default_factory
+from .core.interfaces import CausalEffect
 
 # Create main CausalLLM class
 class CausalLLM:
     """Main CausalLLM interface for causal inference."""
     
-    def __init__(self, llm_client=None, method="hybrid", enable_logging=True, log_level="INFO"):
+    def __init__(self, llm_client=None, method="hybrid", enable_logging=True, log_level="INFO", factory=None):
         """Initialize CausalLLM."""
         # Set up logging if enabled
         if enable_logging:
             setup_package_logging(level=log_level, log_to_file=True, json_format=False)
         
+        self.logger = get_logger("causallm.main", level=log_level)
+        self.factory = factory or get_default_factory()
+        
+        # Initialize LLM client
         self.llm_client = llm_client or self._create_default_client()
         self.method = method
         
-        # Initialize components
-        self.discovery_engine = self._create_discovery_engine()
-        self.dag_parser = DAGParser
-        self.do_operator = self._create_do_operator()
-        self.counterfactual_engine = CounterfactualEngine(self.llm_client)
+        # Initialize components using factory
+        try:
+            self.discovery_engine = self.factory.create_discovery_engine(llm_client=self.llm_client)
+            self.dag_parser = DAGParser
+            self.do_operator = self.factory.create_do_operator()
+            self.counterfactual_engine = self.factory.create_counterfactual_engine(llm_client=self.llm_client)
+            self.logger.info("CausalLLM initialized successfully with factory")
+        except Exception as e:
+            self.logger.error(f"Failed to initialize CausalLLM components: {e}")
+            # Fallback to direct instantiation
+            self.discovery_engine = self._create_discovery_engine()
+            self.dag_parser = DAGParser
+            self.do_operator = self._create_do_operator()
+            self.counterfactual_engine = CounterfactualEngine(self.llm_client)
+            self.logger.warning("Fell back to direct component instantiation")
     
     def _create_default_client(self):
         """Create default LLM client."""
         try:
-            from .core.llm_client import get_llm_client
-            return get_llm_client("openai", "gpt-4")
-        except:
+            return self.factory.create_llm_client("openai", "gpt-4")
+        except Exception as e:
+            self.logger.warning(f"Failed to create default LLM client: {e}")
             return None
     
     def _create_discovery_engine(self):
-        """Create discovery engine."""
-        from .core.causal_discovery import PCAlgorithmEngine
-        
-        # Create PC Algorithm engine as default
-        return PCAlgorithmEngine(significance_level=0.05)
+        """Create discovery engine (fallback method)."""
+        try:
+            from .core.causal_discovery import PCAlgorithmEngine
+            return PCAlgorithmEngine(significance_level=0.05)
+        except Exception as e:
+            self.logger.error(f"Failed to create discovery engine: {e}")
+            return None
     
     def _create_do_operator(self):
-        """Create do-operator."""
-        class MockDoOperator:
-            async def estimate_effect(self, data, treatment, outcome, **kwargs):
-                class MockEffect:
-                    def __init__(self):
-                        self.estimate = 0.5
-                        self.std_error = 0.1
-                        self.confidence_interval = [0.3, 0.7]
-                return MockEffect()
-        
-        return MockDoOperator()
+        """Create do-operator (fallback method)."""
+        try:
+            return DoOperatorSimulator()
+        except Exception as e:
+            self.logger.error(f"Failed to create do-operator: {e}")
+            return None
     
     async def discover_causal_relationships(self, data, variables, domain_context="", **kwargs):
         """Discover causal relationships."""
@@ -103,8 +116,10 @@ class CausalLLM:
             ]
         }
 
-# Version info
-__version__ = "3.0.0"
+# Import version info from centralized source
+from ._version import __version__, get_version_info, get_version_string
+
+# Additional metadata
 __license__ = "MIT"
 __author__ = "CausalLLM Team"
 __email__ = "opensource@causallm.com"

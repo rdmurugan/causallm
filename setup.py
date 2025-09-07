@@ -2,13 +2,19 @@
 CausalLLM Open Source Setup
 """
 from setuptools import setup, find_packages
+import os
+import sys
+
+# Add the package directory to Python path to import version
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'causallm'))
+from _version import __version__
 
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setup(
     name="causallm",
-    version="4.0.0",
+    version=__version__,
     author="CausalLLM Team", 
     author_email="opensource@causallm.com",
     description="Open source causal inference powered by LLMs",
