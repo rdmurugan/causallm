@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "causallm"
-version = "4.0.0"
+version = "4.0.1"
 authors = [
     {name = "CausalLLM Team", email = "durai@infinidatum.net"},
 ]
@@ -36,6 +36,12 @@ dependencies = [
     "matplotlib>=3.3.0",
     "plotly>=5.0.0",
     "openai>=1.0.0",
+    "numba>=0.56.0",
+    "dask>=2022.1.0",
+    "psutil>=5.8.0",
+    "pyyaml>=6.0.0",
+    "aiofiles>=23.0.0",
+    "pyarrow>=10.0.0",
 ]
 
 [project.optional-dependencies]
@@ -67,6 +73,7 @@ full = [
     "streamlit>=1.25.0",
     "dash>=2.10.0",
     "gradio>=3.35.0",
+    "anthropic>=0.7.0",
 ]
 
 [project.urls]

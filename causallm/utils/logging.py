@@ -5,9 +5,11 @@ import logging
 from typing import Optional
 
 
-def get_logger(name: str) -> logging.Logger:
+def get_logger(name: str, level: str = "INFO") -> logging.Logger:
     """Get a logger with the given name."""
-    return logging.getLogger(name)
+    logger = logging.getLogger(name)
+    logger.setLevel(getattr(logging, level.upper()))
+    return logger
 
 
 def get_structured_logger(name: str) -> 'StructuredLogger':
@@ -34,9 +36,9 @@ class StructuredLogger:
             self.logger.error(f"Context: {context}")
 
 
-def setup_package_logging(level="INFO", log_to_file=False):
+def setup_package_logging(level="INFO", log_to_file=False, json_format=False):
     """Set up package-level logging."""
     logging.basicConfig(
-        level=getattr(logging, level),
+        level=getattr(logging, level.upper()),
         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
     )

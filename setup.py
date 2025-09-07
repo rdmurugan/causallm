@@ -17,7 +17,7 @@ setup(
     version=__version__,
     author="CausalLLM Team", 
     author_email="opensource@causallm.com",
-    description="Open source causal inference powered by LLMs",
+    description="High-Performance Causal Inference Library with LLM Integration",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/rdmurugan/causallm",
@@ -42,7 +42,7 @@ setup(
         "Topic :: Scientific/Engineering :: Mathematics",
         "Topic :: Software Development :: Libraries :: Python Modules",
     ],
-    keywords="causal-inference, machine-learning, statistics, llm, artificial-intelligence",
+    keywords="causal-inference, machine-learning, statistics, llm, artificial-intelligence, performance, scalability, async, vectorization",
     python_requires=">=3.9",
     install_requires=[
         "numpy>=1.21.0",
@@ -53,6 +53,12 @@ setup(
         "matplotlib>=3.3.0",
         "plotly>=5.0.0",
         "openai>=1.0.0",
+        "numba>=0.56.0",
+        "dask>=2022.1.0",
+        "psutil>=5.8.0",
+        "pyyaml>=6.0.0",
+        "aiofiles>=23.0.0",
+        "pyarrow>=10.0.0",
     ],
     extras_require={
         "dev": [
@@ -83,6 +89,8 @@ setup(
             "streamlit>=1.25.0",
             "dash>=2.10.0",
             "gradio>=3.35.0",
+            "aiofiles>=23.0.0",
+            "anthropic>=0.7.0",
         ]
     },
     include_package_data=True,
