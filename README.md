@@ -485,7 +485,9 @@ python -m causallm.mcp.server --port 8000
 
 ### 📚 Documentation
 
-- **📖 [Complete User Guide](docs/COMPLETE_USER_GUIDE.md)**: Comprehensive API reference with examples
+- **📋 [Documentation Index](docs/DOCUMENTATION_INDEX.md)**: Complete documentation guide and navigation
+- **🔧 [API Reference](docs/API_REFERENCE.md)**: Complete API documentation with all classes and methods
+- **📖 [Complete User Guide](docs/COMPLETE_USER_GUIDE.md)**: Comprehensive guide with examples and best practices
 - **⚡ [Performance Guide](docs/PERFORMANCE_GUIDE.md)**: Optimization tips and benchmarks  
 - **🏭 [Domain Packages Guide](docs/DOMAIN_PACKAGES.md)**: Industry-specific components and examples
 - **🔗 [MCP Usage Guide](docs/MCP_USAGE.md)**: Model Context Protocol integration
