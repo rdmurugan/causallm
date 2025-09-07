@@ -47,7 +47,7 @@ print(f"Confidence: {results.confidence_score:.2f}")
 ### Basic Installation
 ```bash
 # Latest version
-pip install causallm==4.0.0
+pip install causallm
 
 # With all optional dependencies
 pip install causallm[full]
@@ -784,7 +784,7 @@ If you use CausalLLM in research:
   title={CausalLLM: Enhanced Causal Inference with Large Language Models},
   author={Durai Rajamanickam},
   year={2024},
-  version={4.0.0},
+  version={latest},
   url={https://github.com/rdmurugan/causallm}
 }
 ```

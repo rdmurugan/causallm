@@ -5,11 +5,12 @@
 [![PyPI version](https://badge.fury.io/py/causallm.svg)](https://badge.fury.io/py/causallm)
 [![GitHub stars](https://img.shields.io/github/stars/rdmurugan/causallm.svg)](https://github.com/rdmurugan/causallm/stargazers)
 [![Downloads](https://img.shields.io/pypi/dm/causallm.svg)](https://pypi.org/project/causallm/)
-[![Documentation](https://img.shields.io/badge/docs-latest-brightgreen.svg)](https://github.com/rdmurugan/causallm/blob/main/COMPLETE_USER_GUIDE.md)
 
-CausalLLM is a Python library for causal inference and analysis that combines statistical methods with domain-specific knowledge and advanced performance optimizations. It provides tools for discovering causal relationships in data and estimating treatment effects using multiple statistical approaches, now with enterprise-grade performance and scalability.
+**CausalLLM** is a powerful Python library that combines statistical causal inference methods with advanced language models to discover causal relationships and estimate treatment effects. It provides enterprise-grade performance with 10x faster computations and 80% memory reduction while maintaining statistical rigor.
 
-## 🚀 Performance Highlights (New in v4.0.0)
+---
+
+## 🚀 Performance Highlights
 
 - **10x Faster Computations**: Vectorized algorithms with Numba JIT compilation
 - **80% Memory Reduction**: Intelligent data chunking and lazy evaluation  
@@ -18,54 +19,23 @@ CausalLLM is a Python library for causal inference and analysis that combines st
 - **Parallel Processing**: Async computations with automatic resource management
 - **Zero Configuration**: Performance optimizations work automatically
 
-## Key Features
+---
 
-### 🧠 Statistical Causal Inference
-- **Multiple Methods**: Linear regression, propensity score matching, instrumental variables, doubly robust estimation
-- **Assumption Testing**: Automated validation of causal inference assumptions
-- **Robustness Checks**: Cross-validation across multiple statistical approaches
-- **Performance Optimized**: Vectorized algorithms for large-scale analysis
+## 📋 Table of Contents
 
-### 🔍 Causal Structure Discovery  
-- **PC Algorithm**: Implementation for discovering relationships from data
-- **Parallel Processing**: Async independence testing for faster discovery
-- **LLM Enhancement**: Optional integration with language models for domain expertise
-- **Scalable**: Chunked processing for very large variable sets
+1. [Quick Start](#-quick-start)
+2. [Installation](#-installation)
+3. [Key Features](#-key-features)
+4. [Domain Examples](#-domain-examples)
+5. [Core Components](#-core-components)
+6. [Performance](#-performance)
+7. [API Documentation](#-api-documentation)
+8. [Advanced Features](#-advanced-features)
+9. [Support & Community](#-support--community)
 
-### 🏭 Domain-Specific Packages
-- **Healthcare**: Clinical trial analysis, treatment effectiveness, patient outcomes
-- **Insurance**: Risk assessment, premium optimization, claims analysis  
-- **Marketing**: Campaign attribution, ROI optimization, customer analytics
-- **Education**: Student outcomes, intervention analysis, policy evaluation
-- **Experimentation**: A/B testing, experimental design validation
+---
 
-### 🔧 Advanced Performance Features
-- **Data Chunking**: Automatic memory-efficient processing of large datasets
-- **Intelligent Caching**: Multi-tier caching (memory + disk) with smart invalidation
-- **Vectorized Algorithms**: Numba-optimized statistical computations
-- **Async Processing**: Parallel execution of independent computations
-- **Lazy Evaluation**: Deferred computation until results are needed
-- **Resource Monitoring**: Automatic memory and CPU usage optimization
-
-### 🌐 LLM Integrations
-- **Multiple Providers**: OpenAI, Anthropic, LLaMA, local models
-- **Optional Usage**: Library works fully without API keys using statistical methods
-- **MCP Support**: Model Context Protocol for advanced integrations
-
-## Installation
-
-```bash
-# Install latest version with all performance optimizations
-pip install causallm
-
-# Install with optional dependencies for maximum performance  
-pip install causallm[full]
-
-# For development with all tools
-pip install causallm[dev]
-```
-
-## Quick Start
+## 🚀 Quick Start
 
 ### Basic High-Performance Analysis
 
@@ -114,6 +84,309 @@ results = processor.process_streaming(
 )
 ```
 
+---
+
+## 📦 Installation
+
+```bash
+# Install latest version with all performance optimizations
+pip install causallm
+
+# Install with optional dependencies for maximum performance  
+pip install causallm[full]
+
+# For development with all tools
+pip install causallm[dev]
+```
+
+---
+
+## ✨ Key Features
+
+### 🧠 Statistical Causal Inference
+- **Multiple Methods**: Linear regression, propensity score matching, instrumental variables, doubly robust estimation
+- **Assumption Testing**: Automated validation of causal inference assumptions
+- **Robustness Checks**: Cross-validation across multiple statistical approaches
+- **Performance Optimized**: Vectorized algorithms for large-scale analysis
+
+### 🔍 Causal Structure Discovery  
+- **PC Algorithm**: Implementation for discovering relationships from data
+- **Parallel Processing**: Async independence testing for faster discovery
+- **LLM Enhancement**: Optional integration with language models for domain expertise
+- **Scalable**: Chunked processing for very large variable sets
+
+### 🏭 Domain-Specific Packages
+- **[Healthcare](#healthcare-domain)**: Clinical trial analysis, treatment effectiveness, patient outcomes
+- **[Insurance](#insurance-domain)**: Risk assessment, premium optimization, claims analysis  
+- **[Marketing](#marketing-domain)**: Campaign attribution, ROI optimization, customer analytics
+- **Education**: Student outcomes, intervention analysis, policy evaluation
+- **Experimentation**: A/B testing, experimental design validation
+
+### 🔧 Advanced Performance Features
+- **Data Chunking**: Automatic memory-efficient processing of large datasets
+- **Intelligent Caching**: Multi-tier caching (memory + disk) with smart invalidation
+- **Vectorized Algorithms**: Numba-optimized statistical computations
+- **Async Processing**: Parallel execution of independent computations
+- **Lazy Evaluation**: Deferred computation until results are needed
+- **Resource Monitoring**: Automatic memory and CPU usage optimization
+
+### 🌐 LLM Integrations
+- **Multiple Providers**: OpenAI, Anthropic, LLaMA, local models
+- **Optional Usage**: Library works fully without API keys using statistical methods
+- **MCP Support**: Model Context Protocol for advanced integrations
+
+---
+
+## 🏥 Domain Examples
+
+### Healthcare Domain
+
+Transform clinical data analysis with domain-specific expertise:
+
+```python
+from causallm import HealthcareDomain, EnhancedCausalLLM
+
+# Initialize healthcare domain with performance optimizations
+healthcare = HealthcareDomain()
+causal_llm = EnhancedCausalLLM(domain='healthcare')
+
+# Generate realistic clinical trial data (scalable)
+clinical_data = healthcare.generate_clinical_trial_data(
+    n_patients=100000,  # Large dataset support
+    treatment_arms=['control', 'treatment_a', 'treatment_b']
+)
+
+# High-performance treatment effectiveness analysis
+results = healthcare.treatment_template.run_analysis(
+    'treatment_effectiveness',
+    clinical_data,
+    causal_llm
+)
+
+print(f"Treatment effect: {results.effect_estimate:.2f} days")
+print(f"Clinical interpretation: {results.domain_interpretation}")
+```
+
+**Healthcare Features:**
+- Clinical trial data generation with proper randomization
+- Treatment effectiveness analysis with medical context
+- Safety analysis and adverse event evaluation
+- Patient outcome prediction with clinical insights
+
+### Insurance Domain
+
+Optimize risk assessment and premium pricing:
+
+```python
+from causallm import InsuranceDomain
+
+# Initialize insurance domain  
+insurance = InsuranceDomain()
+
+# Generate large-scale policy data
+policy_data = insurance.generate_stop_loss_data(n_policies=500000)
+
+# Memory-efficient risk factor analysis
+risk_results = insurance.analyze_risk_factors(
+    data=policy_data,
+    risk_factor='industry_type',
+    outcome='total_claim_amount'
+)
+
+print(f"Industry risk effect: ${risk_results.effect_estimate:,.0f}")
+print(f"Business recommendation: {risk_results.recommendations[0]}")
+```
+
+**Insurance Features:**
+- Stop loss insurance data simulation
+- Risk factor analysis with actuarial insights
+- Premium optimization recommendations
+- Claims prediction and underwriting support
+
+### Marketing Domain
+
+Master campaign attribution and ROI optimization:
+
+```python
+from causallm.domains.marketing import MarketingDomain
+
+# Initialize with performance optimizations
+marketing = MarketingDomain(enable_performance_optimizations=True)
+
+# Generate sample marketing data
+data = marketing.generate_marketing_data(
+    n_customers=10000,
+    n_touchpoints=30000
+)
+
+# Run attribution analysis
+result = marketing.analyze_attribution(
+    data, 
+    model='data_driven'  # Recommended for most cases
+)
+
+print(f"Top performing channel: {max(result.channel_attribution.items(), key=lambda x: x[1])}")
+```
+
+**Marketing Features:**
+- Multi-touch attribution modeling (first-touch, last-touch, data-driven, Shapley)
+- Campaign ROI analysis and optimization
+- Cross-device and cross-channel attribution
+- Customer lifetime value modeling
+
+**Quick Reference - Attribution Models:**
+| Model | Best For | Description |
+|-------|----------|-------------|
+| `data_driven` | **Recommended** | Uses causal inference for attribution |
+| `first_touch` | Brand awareness | 100% credit to first interaction |
+| `last_touch` | Direct response | 100% credit to last interaction |
+| `linear` | Balanced view | Equal credit across touchpoints |
+| `shapley` | Advanced | Game theory based attribution |
+
+---
+
+## 🏗️ Core Components
+
+### EnhancedCausalLLM
+High-performance main class combining statistical methods with LLM enhancement and automatic optimization.
+
+```python
+from causallm import EnhancedCausalLLM
+
+# Initialize with custom settings
+causal_llm = EnhancedCausalLLM(
+    llm_provider="openai",           # "openai", "anthropic", "llama", or None
+    llm_model="gpt-4",              # Model name
+    significance_level=0.05,         # Statistical significance threshold
+    enable_performance_optimizations=True,
+    chunk_size='auto',              # Automatic optimization
+    cache_dir='./cache'             # Persistent caching
+)
+```
+
+### Statistical Methods (Performance Optimized)
+- **Vectorized Linear Regression**: NumPy/Numba optimized for large datasets
+- **Fast Propensity Score Matching**: Efficient matching algorithms with parallel processing  
+- **Optimized Instrumental Variables**: Matrix operations optimized for speed
+- **Parallel PC Algorithm**: Concurrent independence testing for causal discovery
+
+### Domain Packages (Scalable)
+Pre-configured, performance-optimized components for specific industries with built-in expertise and realistic data generators.
+
+---
+
+## ⚡ Performance
+
+### Dataset Size Support
+- **Small Datasets** (< 10K rows): Instant analysis with full feature set
+- **Medium Datasets** (10K - 100K rows): Automatic optimization, ~2-5x speedup
+- **Large Datasets** (100K - 1M rows): Chunked processing, async operations
+- **Very Large Datasets** (> 1M rows): Streaming analysis, distributed computing
+
+### Speed Improvements
+- **Correlation Analysis**: 10x faster with Numba vectorization
+- **Causal Discovery**: 5x faster with parallel independence testing  
+- **Effect Estimation**: 3x faster with optimized matching algorithms
+- **Repeated Analysis**: 20x+ faster with intelligent caching
+
+### Memory Efficiency  
+- **Data Chunking**: Process datasets 10x larger than available RAM
+- **Lazy Evaluation**: 60-80% memory reduction through deferred computation
+- **Smart Caching**: Configurable memory vs. disk trade-offs
+
+### Performance Configuration Examples
+
+```python
+# Small datasets (< 10K rows)
+causal_llm = EnhancedCausalLLM(
+    enable_performance_optimizations=False  # Overhead not worth it
+)
+
+# Large datasets (100K+ rows)
+causal_llm = EnhancedCausalLLM(
+    enable_performance_optimizations=True,
+    chunk_size=50000,
+    use_async=True,
+    cache_dir="./cache",
+    max_memory_usage_gb=8
+)
+```
+
+---
+
+## 📚 API Documentation
+
+### Core Methods
+
+#### `comprehensive_analysis()`
+Complete end-to-end causal analysis combining discovery and inference.
+
+```python
+analysis = causal_llm.comprehensive_analysis(
+    data=df,                     # Required: Your dataset
+    treatment='campaign',        # Optional: Specific treatment
+    outcome='revenue',          # Optional: Specific outcome  
+    domain='marketing',         # Optional: Domain context
+    covariates=['age', 'income'] # Optional: Control variables
+)
+```
+
+**Returns:** `ComprehensiveCausalAnalysis` with:
+- `discovery_results`: Causal structure findings
+- `inference_results`: Detailed effect estimates
+- `domain_recommendations`: Domain-specific advice
+- `actionable_insights`: List of actionable findings
+- `confidence_score`: Overall analysis confidence (0-1)
+
+#### `discover_causal_relationships()`
+Automatically discover causal relationships in your data.
+
+```python
+discovery = causal_llm.discover_causal_relationships(
+    data=df,
+    variables=['age', 'treatment', 'outcome'],
+    domain='healthcare'
+)
+```
+
+**Returns:** `CausalDiscoveryResult` with discovered edges, confounders, and domain insights.
+
+#### `estimate_causal_effect()`
+Estimate the causal effect of a treatment on an outcome.
+
+```python
+effect = causal_llm.estimate_causal_effect(
+    data=df,
+    treatment='new_drug',
+    outcome='recovery_rate',
+    covariates=['age', 'severity'],
+    method='comprehensive'  # 'regression', 'matching', 'iv'
+)
+```
+
+**Returns:** `CausalInferenceResult` with effect estimates, confidence intervals, and robustness checks.
+
+### Statistical Methods
+
+Available through `StatisticalCausalInference`:
+
+- `CausalMethod.LINEAR_REGRESSION`: Standard regression with covariates
+- `CausalMethod.MATCHING`: Propensity score matching
+- `CausalMethod.INSTRUMENTAL_VARIABLES`: Two-stage least squares
+- `CausalMethod.REGRESSION_DISCONTINUITY`: RDD (if applicable)
+- `CausalMethod.DIFFERENCE_IN_DIFFERENCES`: DiD (if applicable)
+
+### Domain Packages API
+
+Each domain package provides:
+- **Data Generators**: Realistic synthetic data with proper causal structure
+- **Domain Knowledge**: Expert knowledge about relationships and confounders
+- **Analysis Templates**: Pre-configured workflows with domain-specific interpretation
+
+---
+
+## 🔧 Advanced Features
+
 ### Cached Analysis for Faster Iterations
 
 ```python
@@ -154,116 +427,22 @@ async def parallel_analysis():
 results = asyncio.run(parallel_analysis())
 ```
 
-### Domain-Specific Analysis
-
-#### Healthcare Example
-
-```python
-from causallm import HealthcareDomain, EnhancedCausalLLM
-
-# Use healthcare domain with performance optimizations
-healthcare = HealthcareDomain()
-causal_llm = EnhancedCausalLLM(domain='healthcare')
-
-# Generate realistic clinical trial data (scalable)
-clinical_data = healthcare.generate_clinical_trial_data(
-    n_patients=100000,  # Large dataset support
-    treatment_arms=['control', 'treatment_a', 'treatment_b']
-)
-
-# High-performance treatment effectiveness analysis
-results = healthcare.treatment_template.run_analysis(
-    'treatment_effectiveness',
-    clinical_data,
-    causal_llm
-)
-```
-
-#### Insurance Example
-
-```python
-from causallm import InsuranceDomain
-
-# Use insurance domain package  
-insurance = InsuranceDomain()
-
-# Generate large-scale policy data
-policy_data = insurance.generate_stop_loss_data(n_policies=500000)
-
-# Memory-efficient risk factor analysis
-risk_results = insurance.analyze_risk_factors(
-    data=policy_data,
-    risk_factor='industry_type',
-    outcome='total_claim_amount'
-)
-```
-
-## Performance Benchmarks
-
-### Dataset Size Support
-- **Small Datasets** (< 10K rows): Instant analysis with full feature set
-- **Medium Datasets** (10K - 100K rows): Automatic optimization, ~2-5x speedup
-- **Large Datasets** (100K - 1M rows): Chunked processing, async operations
-- **Very Large Datasets** (> 1M rows): Streaming analysis, distributed computing
-
-### Speed Improvements (vs. v3.0)
-- **Correlation Analysis**: 10x faster with Numba vectorization
-- **Causal Discovery**: 5x faster with parallel independence testing  
-- **Effect Estimation**: 3x faster with optimized matching algorithms
-- **Repeated Analysis**: 20x+ faster with intelligent caching
-
-### Memory Efficiency  
-- **Data Chunking**: Process datasets 10x larger than available RAM
-- **Lazy Evaluation**: 60-80% memory reduction through deferred computation
-- **Smart Caching**: Configurable memory vs. disk trade-offs
-
-## Core Components
-
-### EnhancedCausalLLM
-High-performance main class combining statistical methods with LLM enhancement and automatic optimization.
-
-### Statistical Methods (Performance Optimized)
-- **Vectorized Linear Regression**: NumPy/Numba optimized for large datasets
-- **Fast Propensity Score Matching**: Efficient matching algorithms with parallel processing  
-- **Optimized Instrumental Variables**: Matrix operations optimized for speed
-- **Parallel PC Algorithm**: Concurrent independence testing for causal discovery
-
-### Domain Packages (Scalable)
-Pre-configured, performance-optimized components for specific industries:
-
-- **Healthcare Domain**: Clinical analysis optimized for medical datasets
-- **Insurance Domain**: Risk assessment with actuarial computations
-- **Marketing Domain**: Attribution analysis with customer segmentation
-- **Education Domain**: Student outcome analysis with policy evaluation
-- **Experimentation Domain**: A/B testing with statistical validation
-
-### Performance Infrastructure
-- **Data Processing**: Chunking, streaming, memory monitoring
-- **Caching Layer**: Multi-tier caching with intelligent invalidation
-- **Async Framework**: Task management with resource monitoring
-- **Vectorized Algorithms**: Numba-optimized statistical computations
-- **Lazy Evaluation**: Computation graphs with dependency tracking
-
-## Advanced Features
-
 ### MCP Server Integration
 
-CausalLLM provides Model Context Protocol (MCP) server capabilities:
+CausalLLM provides Model Context Protocol (MCP) server capabilities for integration with Claude Desktop, VS Code, and other MCP-enabled applications:
 
-```python
+```bash
 # Start MCP server for integration with Claude Desktop, VS Code, etc.
 python -m causallm.mcp.server --port 8000
-
-# Available MCP tools with performance optimization:
-# - simulate_counterfactual: Generate counterfactual scenarios
-# - analyze_treatment_effect: High-performance treatment analysis  
-# - extract_causal_edges: Parallel causal relationship extraction
-# - generate_reasoning_prompt: LLM-enhanced causal reasoning
 ```
 
-### Statistical Rigor with Performance
+**Available MCP tools:**
+- `simulate_counterfactual`: Generate counterfactual scenarios
+- `analyze_treatment_effect`: High-performance treatment analysis  
+- `extract_causal_edges`: Parallel causal relationship extraction
+- `generate_reasoning_prompt`: LLM-enhanced causal reasoning
 
-CausalLLM maintains statistical rigor while providing performance:
+### Statistical Rigor with Performance
 
 - **Assumption Validation**: Automated testing with parallel processing
 - **Robustness Checks**: Cross-validation across multiple optimized methods
@@ -271,15 +450,9 @@ CausalLLM maintains statistical rigor while providing performance:
 - **Effect Size Interpretation**: Statistical and practical significance assessment
 - **Performance Monitoring**: Automatic benchmarking and optimization suggestions
 
-## Documentation
+---
 
-- **[Complete User Guide](COMPLETE_USER_GUIDE.md)**: Comprehensive API documentation
-- **[Performance Guide](PERFORMANCE_GUIDE.md)**: Optimization tips and benchmarks
-- **[Domain Packages Guide](DOMAIN_PACKAGES.md)**: Industry-specific components  
-- **[MCP Usage Guide](MCP_USAGE.md)**: Model Context Protocol integration
-- **[Examples Directory](examples/)**: Performance-optimized code examples
-
-## Requirements
+## 📋 Requirements
 
 ### Core Dependencies
 - Python 3.9+
@@ -298,75 +471,58 @@ CausalLLM maintains statistical rigor while providing performance:
 - anthropic (Claude integration)
 - aiofiles (async file operations)
 
-## What's New in v4.0.0
+---
 
-### 🚀 Performance & Scalability
-- **Data Chunking**: Handle datasets 10x larger than RAM
-- **Vectorized Algorithms**: 10x speedup with Numba JIT compilation  
-- **Intelligent Caching**: Multi-tier caching with 80%+ hit rates
-- **Async Processing**: Parallel computations with resource management
-- **Lazy Evaluation**: Memory-efficient deferred computation
-- **Streaming Support**: Process unlimited dataset sizes
+## 🤝 Support & Community
 
-### 🛠 Enhanced Infrastructure  
-- **Custom Exception Hierarchy**: Detailed error messages with recovery suggestions
-- **Dependency Injection**: Modular architecture with factory patterns
-- **Centralized Configuration**: Single source of truth for settings
-- **Advanced Logging**: Structured logging with performance metrics
-- **Memory Monitoring**: Automatic resource optimization
+### Getting Help
 
-### 🧪 Statistical Improvements
-- **Robustness Testing**: Automated assumption validation
-- **Effect Size Estimation**: Enhanced interpretation with confidence intervals
-- **Bootstrap Parallelization**: Faster uncertainty quantification
-- **Cross-Validation**: Performance-optimized model validation
+- **GitHub Issues**: [Report bugs & request features](https://github.com/rdmurugan/causallm/issues)
+- **GitHub Discussions**: [Community support & questions](https://github.com/rdmurugan/causallm/discussions)
+- **Performance Issues**: Tag with 'performance' label
+- **Email Support**: durai@infinidatum.net
+- **LinkedIn**: [Durai Rajamanickam](https://www.linkedin.com/in/durai-rajamanickam)
 
-### 🏗 Developer Experience
-- **Type Hints**: Complete type annotations throughout
-- **Better Documentation**: Performance guides and optimization tips
-- **Benchmark Tools**: Built-in performance measurement utilities
-- **Example Gallery**: Real-world performance-optimized examples
+### 📚 Documentation
 
-## Migration from v3.x
+- **📖 [Complete User Guide](docs/COMPLETE_USER_GUIDE.md)**: Comprehensive API reference with examples
+- **⚡ [Performance Guide](docs/PERFORMANCE_GUIDE.md)**: Optimization tips and benchmarks  
+- **🏭 [Domain Packages Guide](docs/DOMAIN_PACKAGES.md)**: Industry-specific components and examples
+- **🔗 [MCP Usage Guide](docs/MCP_USAGE.md)**: Model Context Protocol integration
+- **📚 [Usage Examples](docs/USAGE_EXAMPLES.md)**: Real-world use cases across domains
+- **📈 [Marketing Quick Reference](docs/MARKETING_QUICK_REFERENCE.md)**: Marketing attribution guide
+- **💡 [Examples Directory](examples/)**: Runnable code examples and tutorials
 
-Most existing code will work without changes. For performance benefits:
+### Contributing
 
-```python
-# Old way (still works)
-causal_llm = EnhancedCausalLLM()
-result = causal_llm.comprehensive_analysis(data)
-
-# New way (automatic performance optimization)  
-causal_llm = EnhancedCausalLLM(
-    enable_performance_optimizations=True,  # Default for large datasets
-    chunk_size='auto',                      # Automatic sizing
-    cache_dir='./cache'                     # Persistent caching
-)
-result = causal_llm.comprehensive_analysis(data)  # Up to 10x faster
-```
-
-## License
-
-MIT License - see [LICENSE](LICENSE) file for details.
-
-## Contributing
-
-We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
-
-Key areas for contributions:
+We welcome contributions! Areas where help is needed:
 - Additional domain packages (finance, retail, manufacturing)
 - New statistical methods with performance optimization
 - Advanced caching strategies
 - Distributed computing enhancements
 
-## Performance Support
+See **[CONTRIBUTING.md](CONTRIBUTING.md)** for guidelines.
 
-For performance optimization help:
-- **Issues**: [GitHub Issues](https://github.com/rdmurugan/causallm/issues) (tag with 'performance')
-- **Discussions**: [GitHub Discussions](https://github.com/rdmurugan/causallm/discussions)
-- **Benchmarking**: Use built-in `causallm.performance_demo` module
+### Performance Support & Benchmarking
 
-## Citation
+```python
+# Built-in performance demo
+from causallm.performance_demo import PerformanceBenchmark
+
+benchmark = PerformanceBenchmark()
+results = benchmark.run_comprehensive_benchmark([10000, 50000, 100000])
+print(benchmark.generate_performance_report())
+```
+
+---
+
+## 📄 License
+
+MIT License - see [LICENSE](LICENSE) file for details.
+
+---
+
+## 📖 Citation
 
 If you use CausalLLM in your research:
 
@@ -375,21 +531,17 @@ If you use CausalLLM in your research:
   title={CausalLLM: High-Performance Causal Inference Library},
   author={Durai Rajamanickam},
   year={2024},
-  version={4.0.0},
   url={https://github.com/rdmurugan/causallm},
   note={Performance-optimized causal inference with statistical rigor}
 }
 ```
 
-## Support & Contact
+---
 
-- **Issues**: [GitHub Issues](https://github.com/rdmurugan/causallm/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/rdmurugan/causallm/discussions)  
-- **Email**: durai@infinidatum.net
-- **LinkedIn**: [linkedin.com/in/durai-rajamanickam](https://www.linkedin.com/in/durai-rajamanickam)
+## 🏢 About
+
+CausalLLM is developed and maintained by **Durai Rajamanickam**, with contributions from the open source community. The library aims to make causal inference more accessible while maintaining statistical rigor and providing enterprise-grade performance for production use cases.
 
 ---
 
-## About
-
-CausalLLM is developed and maintained by Durai Rajamanickam, with contributions from the open source community. The library aims to make causal inference more accessible while maintaining statistical rigor and providing enterprise-grade performance for production use cases.
+**✨ Ready to discover causal insights in your data? Start with `pip install causallm` and explore the [examples](examples/) directory!**

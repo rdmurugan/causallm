@@ -2,7 +2,7 @@
 
 ## Overview
 
-CausalLLM v4.0.0 introduces comprehensive performance optimizations that provide up to 10x faster computations and 80% memory reduction. This guide covers how to leverage these optimizations effectively.
+CausalLLM introduces comprehensive performance optimizations that provide up to 10x faster computations and 80% memory reduction. This guide covers how to leverage these optimizations effectively.
 
 ## Performance Features
 
@@ -326,7 +326,7 @@ pip install numba dask psutil aiofiles pyarrow
 
 ## Performance Metrics
 
-### Expected Speedups (vs. v3.0)
+### Expected Speedups
 
 | Operation | Small Data | Medium Data | Large Data |
 |-----------|------------|-------------|------------|
@@ -376,7 +376,7 @@ export CAUSALLM_CACHE_DIR=/tmp/causallm_cache
 
 ## Conclusion
 
-CausalLLM v4.0.0's performance optimizations provide significant improvements across all dataset sizes. By following this guide and using appropriate settings for your data size, you can achieve:
+CausalLLM's performance optimizations provide significant improvements across all dataset sizes. By following this guide and using appropriate settings for your data size, you can achieve:
 
 - **10x faster computations** through vectorized algorithms
 - **80% memory reduction** through intelligent chunking and lazy evaluation
