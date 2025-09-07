@@ -1,4 +1,4 @@
-# CausalLLM: Open Source Causal Inference Library
+# CausalLLM: Causal Inference Library
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
