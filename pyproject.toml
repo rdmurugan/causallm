@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "causallm"
-version = "4.0.2"
+version = "4.1.0"
 authors = [
     {name = "CausalLLM Team", email = "durai@infinidatum.net"},
 ]
@@ -75,6 +75,9 @@ full = [
     "gradio>=3.35.0",
     "anthropic>=0.7.0",
 ]
+
+[project.scripts]
+causallm = "causallm.cli:cli_entry_point"
 
 [project.urls]
 "Homepage" = "https://github.com/rdmurugan/causallm"

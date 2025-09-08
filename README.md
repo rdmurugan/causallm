@@ -8,6 +8,14 @@
 
 **CausalLLM** is a powerful Python library that combines statistical causal inference methods with advanced language models to discover causal relationships and estimate treatment effects. It provides enterprise-grade performance with 10x faster computations and 80% memory reduction while maintaining statistical rigor.
 
+## 🆕 **New in v4.1.0: CLI & Web Interface!**
+
+**No Python knowledge required!** CausalLLM now offers multiple ways to access causal inference:
+
+- 🖥️ **Command Line Interface**: Run causal analysis directly from your terminal
+- 🌐 **Interactive Web Interface**: Point-and-click analysis with Streamlit
+- 🐍 **Python Library**: Full programmatic control (as before)
+
 ---
 
 ## 🚀 Performance Highlights
@@ -23,19 +31,108 @@
 
 ## 📋 Table of Contents
 
-1. [Quick Start](#-quick-start)
-2. [Installation](#-installation)
-3. [Key Features](#-key-features)
-4. [Domain Examples](#-domain-examples)
-5. [Core Components](#-core-components)
-6. [Performance](#-performance)
-7. [API Documentation](#-api-documentation)
-8. [Advanced Features](#-advanced-features)
-9. [Support & Community](#-support--community)
+1. [Quick Start - CLI & Web](#-quick-start---cli--web) ⭐ **New**
+2. [Quick Start - Python](#-quick-start---python)
+3. [Installation](#-installation)
+4. [Key Features](#-key-features)
+5. [Domain Examples](#-domain-examples)
+6. [Core Components](#-core-components)
+7. [Performance](#-performance)
+8. [API Documentation](#-api-documentation)
+9. [Advanced Features](#-advanced-features)
+10. [Support & Community](#-support--community)
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Quick Start - CLI & Web
+
+### 🖥️ Command Line Interface
+
+**Perfect for data scientists and analysts who prefer terminal-based workflows:**
+
+```bash
+# Install CausalLLM
+pip install causallm
+
+# Discover causal relationships
+causallm discover --data healthcare_data.csv \
+                  --variables "age,treatment,outcome" \
+                  --domain healthcare \
+                  --output results.json
+
+# Estimate treatment effects
+causallm effect --data experiment.csv \
+                --treatment drug \
+                --outcome recovery \
+                --confounders "age,gender" \
+                --output effects.json
+
+# Generate counterfactual scenarios
+causallm counterfactual --data patient_data.csv \
+                       --intervention "treatment=1" \
+                       --samples 200 \
+                       --output scenarios.json
+
+# Get help and examples
+causallm info --examples
+```
+
+**CLI Features:**
+- 🔍 **Causal Discovery**: Find relationships in your data automatically
+- ⚡ **Effect Estimation**: Quantify treatment impacts with confidence intervals
+- 🔮 **Counterfactual Analysis**: Generate "what-if" scenarios
+- 📊 **Multiple Formats**: Support for CSV, JSON input/output
+- 🏥 **Domain Context**: Healthcare, marketing, education, insurance
+- 📖 **Built-in Help**: Examples and documentation at your fingertips
+
+### 🌐 Interactive Web Interface
+
+**Perfect for business users, researchers, and anyone who prefers point-and-click analysis:**
+
+```bash
+# Install with web interface
+pip install "causallm[ui]"
+
+# Launch interactive web interface
+causallm web --port 8080
+
+# Open browser to http://localhost:8080
+```
+
+**Web Interface Features:**
+- 📁 **Drag & Drop Data**: Upload CSV/JSON files or use sample datasets
+- 🎯 **Visual Analysis**: Interactive graphs and visualizations
+- 📊 **Real-time Results**: See analysis results as you configure parameters
+- 🧭 **Guided Workflow**: Step-by-step tabs for discovery, effects, and counterfactuals
+- 📖 **Built-in Documentation**: Examples and guides integrated in the interface
+- 🔄 **Export Results**: Download analysis results and visualizations
+
+**Sample Web Analysis Workflow:**
+1. **Upload Data** → CSV/JSON files or choose from healthcare/marketing samples
+2. **Discover Relationships** → Select variables, choose domain context, view causal graph
+3. **Estimate Effects** → Pick treatment/outcome, control for confounders, see confidence intervals
+4. **Explore Counterfactuals** → Set interventions, generate scenarios, understand impacts
+5. **Export & Share** → Download results, graphs, and analysis reports
+
+### 📱 Installation Options
+
+```bash
+# Basic installation (CLI + Python library)
+pip install causallm
+
+# With web interface (adds Streamlit, Dash, Gradio)
+pip install "causallm[ui]"
+
+# With plugin support (LangChain, transformers)
+pip install "causallm[plugins]"
+
+# Full installation (everything)
+pip install "causallm[full]"
+```
+
+---
+
+## 🚀 Quick Start - Python
 
 ### Basic High-Performance Analysis with Configuration
 
@@ -127,20 +224,47 @@ results = processor.process_streaming(
 
 ## 📦 Installation
 
+**Choose the installation that fits your workflow:**
+
 ```bash
-# Install latest version with all performance optimizations
+# Basic installation (CLI + Python library)
 pip install causallm
 
-# Install with optional dependencies for maximum performance  
-pip install causallm[full]
+# With web interface (recommended for most users)
+pip install "causallm[ui]"
 
-# For development with all tools
-pip install causallm[dev]
+# With plugin support (LangChain, transformers, etc.)
+pip install "causallm[plugins]"
+
+# Full installation (everything - web, plugins, dev tools)
+pip install "causallm[full]"
+
+# Development installation
+pip install "causallm[dev]"
+```
+
+**After Installation:**
+```bash
+# Test CLI
+causallm --help
+
+# Launch web interface (if installed with [ui])
+causallm web
+
+# Use in Python
+python -c "from causallm import CausalLLM; print('Ready!')"
 ```
 
 ---
 
 ## ✨ Key Features
+
+### 🖥️ **CLI & Web Interfaces** ⭐ *New in v4.1.0*
+- **Command Line Tool**: `causallm` command for terminal-based analysis
+- **Interactive Web Interface**: Streamlit-based GUI for point-and-click analysis  
+- **No Python Required**: Full causal inference without programming
+- **Multiple Input Formats**: CSV, JSON data support with sample datasets
+- **Export Capabilities**: Download results, graphs, and analysis reports
 
 ### 🎯 **Standardized Interfaces** ⭐ *New*
 - **Consistent Parameter Names**: Same parameter names across all components (`data`, `treatment_variable`, `outcome_variable`)

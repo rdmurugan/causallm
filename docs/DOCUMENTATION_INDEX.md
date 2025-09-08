@@ -12,7 +12,9 @@ This documentation provides comprehensive coverage of CausalLLM's capabilities, 
 
 | Need | Documentation | Description |
 |------|---------------|-------------|
-| **Get Started** | [README](../README.md) | Main introduction with **new standardized interfaces** |
+| **Get Started** | [README](../README.md) | Main introduction with **CLI & Web Interface** |
+| **CLI Interface** ⭐ | [CLI Usage Guide](CLI_USAGE.md) | **Command-line tool for terminal-based analysis** |
+| **Web Interface** ⭐ | [Web Interface Guide](WEB_INTERFACE.md) | **Interactive point-and-click analysis** |
 | **Configuration** ⭐ | [API Reference - Config](API_REFERENCE.md#configuration-management) | **New centralized configuration system** |
 | **Learn the API** | [API Reference](API_REFERENCE.md) | Complete API with **standardized parameters** |
 | **Master the Library** | [Complete User Guide](COMPLETE_USER_GUIDE.md) | In-depth guide with **configuration management** |
@@ -26,6 +28,9 @@ This documentation provides comprehensive coverage of CausalLLM's capabilities, 
 
 ### ⭐ **New Features Highlighted**
 
+- **🖥️ Command Line Interface**: Terminal-based causal analysis with `causallm` command
+- **🌐 Interactive Web Interface**: Point-and-click analysis with Streamlit (no Python required)
+- **📊 Multiple Access Methods**: CLI, Web UI, and Python library for different user preferences
 - **🎯 Standardized Interfaces**: Consistent parameter names (`data`, `treatment_variable`, `outcome_variable`) across all components
 - **⚙️ Centralized Configuration**: Environment variables, JSON configuration files, and automatic configuration loading
 - **🚀 Enhanced Async Support**: Unified async interfaces with identical parameters and configuration-driven optimization
@@ -38,29 +43,61 @@ This documentation provides comprehensive coverage of CausalLLM's capabilities, 
 ## 🏃‍♂️ Getting Started Path
 
 ### 1. **First Time Users** → Start Here
-- **[README.md](../README.md)** - Overview with **new standardized interfaces** and **configuration examples**
-- **[Usage Examples](USAGE_EXAMPLES.md)** - See CausalLLM in action with **updated parameter names**
+- **[README.md](../README.md)** - Overview with **CLI & Web Interface** introduction
+- **[CLI Usage Guide](CLI_USAGE.md)** - **Terminal-based analysis** (no Python required)
+- **[Web Interface Guide](WEB_INTERFACE.md)** - **Point-and-click analysis** (no Python required)
 
-### 2. **Learn the New Features** ⭐
+### 2. **Choose Your Interface** ⭐
+- **[CLI Interface](CLI_USAGE.md)** - Perfect for data scientists and terminal users
+- **[Web Interface](WEB_INTERFACE.md)** - Perfect for business users and visual analysis
+- **[Python Library](COMPLETE_USER_GUIDE.md)** - Full programmatic control
+
+### 3. **Learn the New Features** ⭐
 - **[Enhancements Summary](ENHANCEMENTS_SUMMARY.md)** - Complete overview of **interface standardization** and **configuration management**  
 - **[API Reference - Configuration](API_REFERENCE.md#configuration-management)** - **New centralized configuration system**
 - **[Complete User Guide - Standardized Interfaces](COMPLETE_USER_GUIDE.md#standardized-interfaces)** - **Consistent parameter naming**
 
-### 3. **Learn the Fundamentals**
+### 4. **Learn the Fundamentals**
 - **[Complete User Guide](COMPLETE_USER_GUIDE.md)** - Comprehensive tutorial with **configuration management**
 - **[API Reference](API_REFERENCE.md)** - Detailed method documentation with **standardized interfaces**
 
-### 4. **Domain-Specific Applications**  
+### 5. **Domain-Specific Applications**  
 - **[Domain Packages Guide](DOMAIN_PACKAGES.md)** - Healthcare, Insurance, Marketing with **standardized interfaces**
 - **[Marketing Quick Reference](MARKETING_QUICK_REFERENCE.md)** - Fast marketing attribution
 
-### 5. **Advanced Usage**
+### 6. **Advanced Usage**
 - **[Performance Guide](PERFORMANCE_GUIDE.md)** - **Enhanced async interfaces** and large dataset handling
 - **[MCP Usage Guide](MCP_USAGE.md)** - Integration with Claude Desktop, VS Code
 
 ---
 
 ## 📚 Documentation Categories
+
+### User Interfaces (No Python Required) ⭐
+
+#### 🖥️ [CLI Usage Guide](CLI_USAGE.md)
+**Complete command-line interface documentation**
+
+- **Installation & Setup**: Getting the CLI working
+- **Command Reference**: All `causallm` commands with examples
+- **Data Formats**: CSV/JSON input and output options
+- **Domain Contexts**: Healthcare, marketing, education analysis
+- **Advanced Usage**: Batch processing, configuration files
+- **Troubleshooting**: Common issues and solutions
+
+**Best for**: Data scientists, analysts, and users comfortable with terminal/command-line tools.
+
+#### 🌐 [Web Interface Guide](WEB_INTERFACE.md) 
+**Interactive point-and-click analysis documentation**
+
+- **Interface Overview**: Navigation and main features
+- **Data Upload**: Drag-and-drop files, sample datasets
+- **Visual Analysis**: Interactive graphs and causal discovery
+- **Guided Workflow**: Step-by-step analysis process
+- **Export Options**: Download results, visualizations, reports
+- **Configuration**: Settings, LLM setup, performance options
+
+**Best for**: Business users, researchers, and anyone who prefers visual interfaces over coding.
 
 ### Core Library Documentation
 
@@ -166,24 +203,34 @@ This documentation provides comprehensive coverage of CausalLLM's capabilities, 
 
 ## 🎓 Learning Paths
 
-### Path 1: Quick Start (30 minutes)
+### Path 1: CLI Quick Start (15 minutes) ⭐
+1. Install with `pip install causallm`
+2. Follow [CLI Usage Guide](CLI_USAGE.md) quick start
+3. Run your first analysis: `causallm discover --data sample.csv --variables "var1,var2,var3"`
+
+### Path 2: Web Interface Quick Start (10 minutes) ⭐  
+1. Install with `pip install "causallm[ui]"`
+2. Launch with `causallm web`
+3. Follow [Web Interface Guide](WEB_INTERFACE.md) getting started workflow
+
+### Path 3: Python Library Quick Start (30 minutes)
 1. Read [README.md](../README.md) overview and installation
 2. Run a quick example from [Examples Directory](../examples/)
 3. Check [Marketing Quick Reference](MARKETING_QUICK_REFERENCE.md) for immediate application
 
-### Path 2: Comprehensive Learning (2-3 hours)
-1. Complete [User Guide](COMPLETE_USER_GUIDE.md) tutorial
+### Path 4: Comprehensive Learning (2-3 hours)
+1. Choose your interface: [CLI](CLI_USAGE.md), [Web](WEB_INTERFACE.md), or [Python](COMPLETE_USER_GUIDE.md)
 2. Explore relevant [Domain Package](DOMAIN_PACKAGES.md) for your industry
 3. Review [Usage Examples](USAGE_EXAMPLES.md) for your use case
 4. Reference [API Documentation](API_REFERENCE.md) as needed
 
-### Path 3: Performance Optimization (1 hour)
+### Path 5: Performance Optimization (1 hour)
 1. Read [Performance Guide](PERFORMANCE_GUIDE.md) optimization strategies
 2. Configure your setup for large datasets
 3. Run performance benchmarks on your data
 4. Implement caching and async processing
 
-### Path 4: Advanced Integration (1-2 hours)
+### Path 6: Advanced Integration (1-2 hours)
 1. Set up [MCP Integration](MCP_USAGE.md) with Claude Desktop
 2. Create custom domain packages using [Domain Packages Guide](DOMAIN_PACKAGES.md)
 3. Implement custom statistical methods using [API Reference](API_REFERENCE.md)
