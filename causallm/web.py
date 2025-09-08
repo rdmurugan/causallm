@@ -13,8 +13,12 @@ import streamlit as st
 import plotly.graph_objects as go
 import plotly.express as px
 
-from . import CausalLLM, __version__
-from .core.utils.logging import setup_package_logging
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from causallm import CausalLLM, __version__
+from causallm.core.utils.logging import setup_package_logging
 
 
 def setup_page():
