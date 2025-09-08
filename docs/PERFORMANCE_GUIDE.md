@@ -2,7 +2,56 @@
 
 ## Overview
 
-CausalLLM introduces comprehensive performance optimizations that provide up to 10x faster computations and 80% memory reduction. This guide covers how to leverage these optimizations effectively.
+CausalLLM introduces comprehensive performance optimizations with **standardized async interfaces** and **configuration-driven optimization** that provide up to 10x faster computations and 80% memory reduction. This guide covers how to leverage these optimizations effectively.
+
+## ⭐ **New Performance Features**
+
+### **Unified Async Interface**
+All methods now support both sync and async execution with **identical parameter names**:
+
+```python
+from causallm import EnhancedCausalLLM
+
+# Enable async processing via configuration
+causal_llm = EnhancedCausalLLM(
+    use_async=True,           # Enable async processing
+    max_workers=8,           # Concurrent task limit
+    chunk_size=50000         # Optimize chunk size
+)
+
+# Synchronous execution
+result_sync = causal_llm.comprehensive_analysis(
+    data=large_data,
+    treatment_variable='treatment',
+    outcome_variable='outcome'
+)
+
+# Asynchronous execution (identical parameters!)
+result_async = await causal_llm.comprehensive_analysis_async(
+    data=large_data,
+    treatment_variable='treatment', 
+    outcome_variable='outcome'
+)
+```
+
+### **Configuration-Driven Optimization**
+Performance settings are now managed through centralized configuration:
+
+```python
+from causallm.config import CausalLLMConfig
+
+# Create high-performance configuration
+config = CausalLLMConfig()
+config.performance.use_async = True
+config.performance.chunk_size = 100000
+config.performance.max_memory_gb = 32
+config.performance.max_workers = 16
+config.performance.cache_enabled = True
+config.performance.cache_size_gb = 10.0
+
+# Initialize with optimized configuration
+causal_llm = EnhancedCausalLLM(config=config)
+```
 
 ## Performance Features
 
@@ -85,31 +134,67 @@ ate_result = causal_inference.estimate_ate_vectorized(
 )
 ```
 
-### 4. Async Processing
+### 4. Enhanced Async Processing with Unified Interface
 
-Parallel execution of independent computations with automatic resource management.
+Parallel execution with **standardized interfaces** and **configuration-driven optimization**.
 
 ```python
 import asyncio
-from causallm.core.async_processing import AsyncCausalAnalysis
+from causallm import EnhancedCausalLLM
+from causallm.interfaces.async_interface import AsyncCausalInterface, AsyncExecutionConfig
 
-async def parallel_analysis():
-    async_causal = AsyncCausalAnalysis()
-    
-    # Parallel correlation analysis across data chunks
-    correlation_matrix = await async_causal.parallel_correlation_analysis(
-        large_data, chunk_size=5000
+# Method 1: Using Enhanced CausalLLM async methods (Recommended)
+async def enhanced_parallel_analysis():
+    # Configure for async processing
+    causal_llm = EnhancedCausalLLM(
+        use_async=True,
+        max_workers=8,
+        chunk_size=10000
     )
     
-    # Parallel bootstrap analysis for confidence intervals
-    bootstrap_results = await async_causal.parallel_bootstrap_analysis(
-        data, analysis_func=my_analysis_function, n_bootstrap=1000
+    # Async comprehensive analysis with standardized parameters
+    result = await causal_llm.comprehensive_analysis_async(
+        data=large_data,                    # Standardized parameter
+        treatment_variable='treatment',     # Standardized parameter
+        outcome_variable='outcome',        # Standardized parameter
+        covariate_variables=['age', 'gender'], # Standardized parameter
+        domain_context='healthcare'        # Standardized parameter
     )
     
+    return result
+
+# Method 2: Using dedicated Async Interface
+async def dedicated_async_analysis():
+    # Configure async execution
+    async_config = AsyncExecutionConfig(
+        max_workers=8,
+        use_process_pool=False,
+        timeout_seconds=300,
+        enable_progress_tracking=True
+    )
+    
+    async_interface = AsyncCausalInterface(async_config)
+    
+    # Parallel correlation analysis
+    correlation_matrix = await async_interface.parallel_correlation_analysis(
+        data=large_data,                   # Standardized parameter
+        chunk_size=5000
+    )
+    
+    # Parallel bootstrap analysis  
+    bootstrap_results = await async_interface.parallel_bootstrap_analysis(
+        data=large_data,                   # Standardized parameter
+        analysis_func=my_analysis_function,
+        n_bootstrap=1000
+    )
+    
+    await async_interface.cleanup()
     return correlation_matrix, bootstrap_results
 
-# Run async analysis
-results = asyncio.run(parallel_analysis())
+# Run async analysis (choose your method)
+results = asyncio.run(enhanced_parallel_analysis())
+# OR
+results = asyncio.run(dedicated_async_analysis())
 ```
 
 ### 5. Lazy Evaluation

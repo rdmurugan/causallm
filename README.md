@@ -37,32 +37,71 @@
 
 ## 🚀 Quick Start
 
-### Basic High-Performance Analysis
+### Basic High-Performance Analysis with Configuration
 
 ```python
 from causallm import EnhancedCausalLLM
 import pandas as pd
 
-# Initialize with performance optimizations enabled (default)
+# Initialize with automatic configuration (uses environment variables and defaults)
+causal_llm = EnhancedCausalLLM()
+
+# OR initialize with specific configuration overrides
 causal_llm = EnhancedCausalLLM(
-    enable_performance_optimizations=True,  # Auto-enabled for large datasets
-    use_async=True,                         # Enable async processing
-    chunk_size=10000                        # Automatic optimization
+    llm_provider='openai',                  # LLM provider
+    use_async=True,                        # Enable async processing
+    cache_dir='./cache'                    # Enable persistent caching
 )
 
-# Load your data (supports very large datasets now)
+# Load your data (supports very large datasets)
 data = pd.read_csv("your_large_data.csv")  # Can handle millions of rows
 
-# One-line comprehensive analysis with automatic performance optimization
+# Comprehensive analysis with standardized parameter names
 results = causal_llm.comprehensive_analysis(
-    data=data,
-    treatment='treatment_variable',
-    outcome='outcome_variable', 
-    domain='healthcare'  # Enables domain-specific optimizations
+    data=data,                             # Standardized: 'data' (not 'df')
+    treatment_variable='treatment_col',     # Standardized: 'treatment_variable' 
+    outcome_variable='outcome_col',        # Standardized: 'outcome_variable'
+    domain_context='healthcare'           # Standardized: 'domain_context'
 )
 
 print(f"Effect estimate: {results.inference_results}")
 print(f"Confidence: {results.confidence_score}")
+```
+
+### Configuration-Based Setup
+
+```python
+from causallm.config import CausalLLMConfig
+
+# Create custom configuration
+config = CausalLLMConfig()
+config.llm.provider = 'openai'
+config.performance.use_async = True
+config.performance.chunk_size = 50000
+config.statistical.significance_level = 0.01
+
+# Initialize with configuration
+causal_llm = EnhancedCausalLLM(config=config)
+
+# Or use configuration file
+causal_llm = EnhancedCausalLLM(config_file='my_config.json')
+```
+
+### Environment Variable Configuration
+
+```bash
+# Set environment variables for automatic configuration
+export CAUSALLM_LLM_PROVIDER=openai
+export CAUSALLM_USE_ASYNC=true
+export CAUSALLM_CHUNK_SIZE=10000
+export CAUSALLM_CACHE_DIR=./cache
+export OPENAI_API_KEY=your-api-key
+
+# No configuration needed - automatically uses environment variables
+python -c "
+from causallm import EnhancedCausalLLM
+causal_llm = EnhancedCausalLLM()  # Automatically configured
+"
 ```
 
 ### Memory-Efficient Processing for Large Datasets
@@ -102,6 +141,18 @@ pip install causallm[dev]
 ---
 
 ## ✨ Key Features
+
+### 🎯 **Standardized Interfaces** ⭐ *New*
+- **Consistent Parameter Names**: Same parameter names across all components (`data`, `treatment_variable`, `outcome_variable`)
+- **Unified Async Support**: All methods support both sync and async with identical interfaces  
+- **Protocol-Based Design**: Type-safe interfaces ensuring consistency
+- **Rich Metadata**: Comprehensive analysis metadata with execution tracking
+
+### ⚙️ **Centralized Configuration** ⭐ *New*  
+- **Environment Variable Support**: Automatic configuration from environment variables
+- **Configuration Files**: JSON-based configuration with validation
+- **Multiple Environments**: Development, testing, and production configurations
+- **Dynamic Updates**: Runtime configuration updates with validation
 
 ### 🧠 Statistical Causal Inference
 - **Multiple Methods**: Linear regression, propensity score matching, instrumental variables, doubly robust estimation
@@ -146,9 +197,13 @@ Transform clinical data analysis with domain-specific expertise:
 ```python
 from causallm import HealthcareDomain, EnhancedCausalLLM
 
-# Initialize healthcare domain with performance optimizations
+# Initialize with healthcare configuration
+causal_llm = EnhancedCausalLLM(
+    config_file='healthcare_config.json',  # Domain-specific configuration
+    domain_context='healthcare'
+)
+
 healthcare = HealthcareDomain()
-causal_llm = EnhancedCausalLLM(domain='healthcare')
 
 # Generate realistic clinical trial data (scalable)
 clinical_data = healthcare.generate_clinical_trial_data(
@@ -156,15 +211,17 @@ clinical_data = healthcare.generate_clinical_trial_data(
     treatment_arms=['control', 'treatment_a', 'treatment_b']
 )
 
-# High-performance treatment effectiveness analysis
-results = healthcare.treatment_template.run_analysis(
-    'treatment_effectiveness',
-    clinical_data,
-    causal_llm
+# Treatment effectiveness analysis with standardized interface
+results = causal_llm.estimate_causal_effect(
+    data=clinical_data,                    # Standardized parameter
+    treatment_variable='treatment_group',   # Standardized parameter
+    outcome_variable='recovery_time',      # Standardized parameter  
+    covariate_variables=['age', 'baseline_severity', 'comorbidities']
 )
 
-print(f"Treatment effect: {results.effect_estimate:.2f} days")
-print(f"Clinical interpretation: {results.domain_interpretation}")
+print(f"Treatment effect: {results.primary_effect.estimate:.2f} days")
+print(f"Confidence interval: {results.primary_effect.confidence_interval}")
+print(f"Clinical significance: {results.interpretation}")
 ```
 
 **Healthcare Features:**
@@ -178,23 +235,31 @@ print(f"Clinical interpretation: {results.domain_interpretation}")
 Optimize risk assessment and premium pricing:
 
 ```python
-from causallm import InsuranceDomain
+from causallm import InsuranceDomain, EnhancedCausalLLM
 
-# Initialize insurance domain  
+# Initialize with insurance-optimized configuration
+causal_llm = EnhancedCausalLLM(
+    config_file='insurance_config.json',
+    use_async=True,                    # Handle large policy datasets
+    chunk_size=50000                   # Optimize for policy data
+)
+
 insurance = InsuranceDomain()
 
 # Generate large-scale policy data
 policy_data = insurance.generate_stop_loss_data(n_policies=500000)
 
-# Memory-efficient risk factor analysis
-risk_results = insurance.analyze_risk_factors(
-    data=policy_data,
-    risk_factor='industry_type',
-    outcome='total_claim_amount'
+# Risk factor analysis with standardized interface
+risk_results = causal_llm.estimate_causal_effect(
+    data=policy_data,                     # Standardized parameter
+    treatment_variable='industry_type',   # Standardized parameter
+    outcome_variable='total_claim_amount', # Standardized parameter
+    covariate_variables=['company_size', 'policy_limit', 'geographic_region']
 )
 
-print(f"Industry risk effect: ${risk_results.effect_estimate:,.0f}")
-print(f"Business recommendation: {risk_results.recommendations[0]}")
+print(f"Industry risk effect: ${risk_results.primary_effect.estimate:,.0f}")
+print(f"Statistical significance: p = {risk_results.primary_effect.p_value:.6f}")
+print(f"Confidence level: {risk_results.confidence_level}")
 ```
 
 **Insurance Features:**
@@ -209,23 +274,35 @@ Master campaign attribution and ROI optimization:
 
 ```python
 from causallm.domains.marketing import MarketingDomain
+from causallm import EnhancedCausalLLM
 
-# Initialize with performance optimizations
+# Initialize with marketing-optimized configuration
+causal_llm = EnhancedCausalLLM(
+    config_file='marketing_config.json',
+    llm_provider='openai',             # For enhanced attribution insights
+    use_async=True                     # Handle large touchpoint datasets
+)
+
 marketing = MarketingDomain(enable_performance_optimizations=True)
 
 # Generate sample marketing data
-data = marketing.generate_marketing_data(
+marketing_data = marketing.generate_marketing_data(
     n_customers=10000,
     n_touchpoints=30000
 )
 
-# Run attribution analysis
-result = marketing.analyze_attribution(
-    data, 
-    model='data_driven'  # Recommended for most cases
+# Comprehensive attribution analysis with standardized interface
+attribution_result = causal_llm.comprehensive_analysis(
+    data=marketing_data,               # Standardized parameter
+    treatment_variable='channel_spend', # Standardized parameter
+    outcome_variable='conversion_value', # Standardized parameter
+    covariate_variables=['customer_segment', 'touchpoint_sequence'],
+    domain_context='marketing'         # Standardized parameter
 )
 
-print(f"Top performing channel: {max(result.channel_attribution.items(), key=lambda x: x[1])}")
+print(f"Overall attribution confidence: {attribution_result.confidence_score:.2f}")
+for insight in attribution_result.actionable_insights[:3]:
+    print(f"• {insight}")
 ```
 
 **Marketing Features:**
@@ -248,21 +325,40 @@ print(f"Top performing channel: {max(result.channel_attribution.items(), key=lam
 ## 🏗️ Core Components
 
 ### EnhancedCausalLLM
-High-performance main class combining statistical methods with LLM enhancement and automatic optimization.
+High-performance main class with **standardized interfaces** and **centralized configuration management**.
 
 ```python
 from causallm import EnhancedCausalLLM
+from causallm.config import CausalLLMConfig
 
-# Initialize with custom settings
+# Configuration-driven initialization (recommended)
+causal_llm = EnhancedCausalLLM(config_file='my_config.json')
+
+# OR with parameter overrides
 causal_llm = EnhancedCausalLLM(
-    llm_provider="openai",           # "openai", "anthropic", "llama", or None
-    llm_model="gpt-4",              # Model name
-    significance_level=0.05,         # Statistical significance threshold
-    enable_performance_optimizations=True,
-    chunk_size='auto',              # Automatic optimization
-    cache_dir='./cache'             # Persistent caching
+    config_file='base_config.json',
+    llm_provider='openai',          # Override configuration  
+    use_async=True,                 # Enable async processing
+    cache_dir='./cache'             # Custom cache location
 )
+
+# OR programmatic configuration
+config = CausalLLMConfig()
+config.llm.provider = 'openai'
+config.llm.model = 'gpt-4'
+config.performance.use_async = True
+config.statistical.significance_level = 0.01
+causal_llm = EnhancedCausalLLM(config=config)
+
+# OR automatic configuration from environment variables
+causal_llm = EnhancedCausalLLM()  # Uses env vars + defaults
 ```
+
+#### **New Configuration Features:**
+- **Environment Variable Support**: Automatic configuration from `CAUSALLM_*` environment variables
+- **Configuration Files**: JSON-based configuration with validation and inheritance
+- **Dynamic Updates**: Runtime configuration changes with `update_configuration()`
+- **Performance Metrics**: Built-in execution tracking with `get_performance_metrics()`
 
 ### Statistical Methods (Performance Optimized)
 - **Vectorized Linear Regression**: NumPy/Numba optimized for large datasets

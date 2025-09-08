@@ -1,29 +1,34 @@
 # CausalLLM API Reference
 
-Complete API documentation for all classes, methods, and functions in the CausalLLM library.
+Complete API documentation for all classes, methods, and functions in the CausalLLM library with **standardized interfaces** and **centralized configuration management**.
 
 ---
 
 ## Table of Contents
 
 1. [Core Classes](#core-classes)
-   - [EnhancedCausalLLM](#enhancedcausalllm)
-   - [CausalLLM](#causalllm)
-2. [Statistical Inference](#statistical-inference)
+   - [EnhancedCausalLLM](#enhancedcausalllm) ⭐ **Main Interface**
+   - [CausalLLM](#causalllm) (Legacy)
+2. [Configuration Management](#configuration-management) ⭐ **New**
+   - [CausalLLMConfig](#causallmconfig)
+   - [ConfigManager](#configmanager)
+3. [Standardized Interfaces](#standardized-interfaces) ⭐ **New**
+   - [Base Protocols](#base-protocols)
+   - [Async Interface](#async-interface)
+   - [Result Types](#result-types)
+4. [Statistical Inference](#statistical-inference)
    - [StatisticalCausalInference](#statisticalcausalinference)
    - [EnhancedCausalDiscovery](#enhancedcausaldiscovery)
-3. [Domain Packages](#domain-packages)
+5. [Domain Packages](#domain-packages)
    - [HealthcareDomain](#healthcaredomain)
    - [InsuranceDomain](#insurancedomain)
    - [MarketingDomain](#marketingdomain)
-4. [Performance & Processing](#performance--processing)
-   - [AsyncCausalAnalysis](#asynccausalanalysis)
+6. [Performance & Processing](#performance--processing)
+   - [AsyncCausalInterface](#asynccausalinterface) ⭐ **Enhanced**
    - [DataChunker](#datachunker)
    - [StreamingDataProcessor](#streamingdataprocessor)
-5. [Data Models](#data-models)
-   - [CausalDiscoveryResult](#causaldiscoveryresult)
-   - [CausalInferenceResult](#causalinferenceresult)
-   - [ComprehensiveCausalAnalysis](#comprehensivecausalanalysis)
+7. [Data Models](#data-models)
+   - [Standardized Results](#standardized-results) ⭐ **Updated**
 
 ---
 
@@ -37,34 +42,43 @@ Complete API documentation for all classes, methods, and functions in the Causal
 from causallm import EnhancedCausalLLM
 ```
 
-#### `__init__(self, llm_provider=None, llm_model=None, significance_level=0.05, enable_performance_optimizations=True, use_async=False, chunk_size='auto', cache_dir=None, max_memory_usage_gb=None)`
+#### `__init__(self, config=None, config_file=None, **override_params)`
 
-Initialize the EnhancedCausalLLM instance.
+Initialize the EnhancedCausalLLM instance with centralized configuration management.
 
 **Parameters:**
-- `llm_provider` (str, optional): LLM provider to use. Options: 'openai', 'anthropic', 'llama', 'mcp', or None for statistical-only mode.
-- `llm_model` (str, optional): Specific model name (e.g., 'gpt-4', 'claude-3-opus'). Defaults to provider's recommended model.
-- `significance_level` (float, default=0.05): Statistical significance threshold for hypothesis testing.
-- `enable_performance_optimizations` (bool, default=True): Enable vectorized algorithms, caching, and chunking for large datasets.
-- `use_async` (bool, default=False): Enable asynchronous processing for parallel computations.
-- `chunk_size` (int or str, default='auto'): Data chunk size for memory management. 'auto' determines optimal size.
-- `cache_dir` (str, optional): Directory for persistent caching. None disables disk caching.
-- `max_memory_usage_gb` (float, optional): Maximum memory usage limit in GB for automatic optimization.
+- `config` (CausalLLMConfig, optional): Pre-configured CausalLLMConfig instance. If None, loads from file or defaults.
+- `config_file` (str, optional): Path to JSON configuration file. If None, searches for default configuration files.
+- `**override_params`: Parameters to override in the configuration (e.g., `llm_provider='openai'`, `use_async=True`).
+
+**Configuration Search Order:**
+1. Provided `config` parameter
+2. Provided `config_file` path
+3. Default locations: `./causallm.json`, `~/.causallm/config.json`, `./config/causallm.json`
+4. Built-in defaults
 
 **Example:**
 ```python
-# Basic usage with statistical methods only
+# Basic usage with default configuration
 causal_llm = EnhancedCausalLLM()
 
-# High-performance setup with LLM integration
+# Using configuration file
+causal_llm = EnhancedCausalLLM(config_file='my_config.json')
+
+# Using configuration with overrides
 causal_llm = EnhancedCausalLLM(
+    config_file='base_config.json',
     llm_provider='openai',
-    llm_model='gpt-4',
-    enable_performance_optimizations=True,
     use_async=True,
-    cache_dir='./cache',
-    max_memory_usage_gb=8
+    cache_dir='./custom_cache'
 )
+
+# Using pre-built configuration
+from causallm.config import CausalLLMConfig
+config = CausalLLMConfig()
+config.performance.use_async = True
+config.llm.provider = 'openai'
+causal_llm = EnhancedCausalLLM(config=config)
 ```
 
 ---
@@ -232,6 +246,323 @@ for intervention in recommendations['primary_interventions']:
     print(f"Intervention: {intervention['target_variable']}")
     print(f"Expected impact: {intervention['expected_outcome_change']:.2f}")
     print(f"Cost-effectiveness: {intervention['roi_estimate']:.1f}x")
+```
+
+---
+
+## Configuration Management
+
+### CausalLLMConfig
+
+**Centralized configuration class for all CausalLLM components with environment variable support and validation.**
+
+```python
+from causallm.config import CausalLLMConfig, get_config, load_config, save_config
+```
+
+#### Configuration Sections
+
+```python
+@dataclass
+class CausalLLMConfig:
+    llm: LLMConfig                      # LLM provider settings
+    performance: PerformanceConfig      # Performance optimizations  
+    statistical: StatisticalConfig     # Statistical method parameters
+    logging: LoggingConfig             # Logging and debugging
+    security: SecurityConfig           # Security and privacy settings
+    
+    # Global settings
+    environment: str = 'production'     # 'development', 'testing', 'production'
+    debug: bool = False
+    profile: bool = False
+```
+
+#### LLM Configuration
+
+```python
+@dataclass  
+class LLMConfig:
+    provider: Optional[str] = None      # 'openai', 'anthropic', 'llama', 'mcp'
+    model: Optional[str] = None         # Model name
+    api_key: Optional[str] = None       # API key (from env vars)
+    api_base: Optional[str] = None      # Custom API endpoint
+    timeout: int = 30                   # Request timeout
+    max_retries: int = 3               # Maximum retry attempts
+    temperature: float = 0.0           # LLM temperature
+```
+
+#### Performance Configuration
+
+```python
+@dataclass
+class PerformanceConfig:
+    enable_optimizations: bool = True   # Enable performance features
+    use_async: bool = False            # Enable async processing
+    chunk_size: Union[int, str] = 'auto'  # Data chunk size
+    max_memory_gb: Optional[float] = None  # Memory limit
+    cache_enabled: bool = True         # Enable caching
+    cache_dir: Optional[str] = None    # Cache directory
+    cache_size_gb: float = 1.0        # Cache size limit
+    parallel_processing: bool = True   # Enable parallel processing
+    max_workers: Optional[int] = None  # Thread/process pool size
+```
+
+#### Statistical Configuration
+
+```python
+@dataclass
+class StatisticalConfig:
+    significance_level: float = 0.05   # Statistical significance threshold
+    confidence_level: float = 0.95     # Confidence level for intervals
+    bootstrap_samples: int = 1000      # Bootstrap iterations
+    max_conditioning_set_size: int = 2 # PC algorithm parameter
+    min_sample_size: int = 50         # Minimum data size
+    robust_methods: bool = True       # Enable robustness checks
+    assumption_testing: bool = True   # Test statistical assumptions
+```
+
+#### Environment Variables
+
+Configuration automatically reads from environment variables:
+
+```bash
+# LLM Configuration
+export CAUSALLM_LLM_PROVIDER=openai
+export CAUSALLM_LLM_MODEL=gpt-4
+export OPENAI_API_KEY=your-key-here
+export ANTHROPIC_API_KEY=your-key-here
+
+# Performance Configuration  
+export CAUSALLM_ENABLE_OPTIMIZATIONS=true
+export CAUSALLM_USE_ASYNC=true
+export CAUSALLM_CHUNK_SIZE=10000
+export CAUSALLM_MAX_MEMORY_GB=8.0
+export CAUSALLM_CACHE_DIR=./cache
+
+# Statistical Configuration
+export CAUSALLM_SIGNIFICANCE_LEVEL=0.01
+export CAUSALLM_CONFIDENCE_LEVEL=0.99
+
+# Global Settings
+export CAUSALLM_ENVIRONMENT=development
+export CAUSALLM_DEBUG=true
+```
+
+#### Configuration Methods
+
+```python
+# Load configuration
+config = CausalLLMConfig()                    # Default configuration
+config = load_config('my_config.json')       # From file
+config = get_config()                         # Global instance
+
+# Save configuration
+config.save('my_config.json')                # Save to file
+save_config('my_config.json')                # Save global config
+
+# Update configuration
+config.update(llm={'provider': 'openai'})    # Update nested settings
+config.update(debug=True)                    # Update global settings
+
+# Environment integration
+env_vars = config_manager.get_environment_config()  # Get env vars for config
+```
+
+#### Configuration Examples
+
+```python
+# Development configuration
+dev_config = CausalLLMConfig()
+dev_config.environment = 'development'
+dev_config.debug = True
+dev_config.logging.level = 'DEBUG'
+dev_config.performance.use_async = False     # Simpler debugging
+
+# Production configuration
+prod_config = CausalLLMConfig()
+prod_config.environment = 'production' 
+prod_config.performance.enable_optimizations = True
+prod_config.performance.use_async = True
+prod_config.performance.cache_enabled = True
+prod_config.logging.level = 'INFO'
+prod_config.security.mask_sensitive_data = True
+
+# High-performance configuration
+perf_config = CausalLLMConfig()
+perf_config.performance.chunk_size = 50000
+perf_config.performance.max_memory_gb = 16
+perf_config.performance.cache_size_gb = 5.0
+perf_config.performance.max_workers = 8
+```
+
+### ConfigManager
+
+**Singleton configuration manager for global configuration state.**
+
+```python
+from causallm.config import config_manager
+
+# Access global configuration
+config = config_manager.config
+
+# Load from file
+config_manager.load_config('my_config.json')
+
+# Update global configuration
+config_manager.update_config(use_async=True, debug=True)
+
+# Save current configuration
+config_manager.save_config('current_config.json')
+
+# Reset to defaults
+config_manager.reset_config()
+```
+
+---
+
+## Standardized Interfaces
+
+### Base Protocols
+
+**Standardized protocols ensure consistent interfaces across all components.**
+
+```python
+from causallm.interfaces.base import CausalAnalyzer, CausalDiscoverer, DataProcessor, DomainPackage
+```
+
+#### CausalAnalyzer Protocol
+
+```python
+class CausalAnalyzer(Protocol):
+    def analyze(self, 
+                data: pd.DataFrame,
+                treatment_variable: str,
+                outcome_variable: str,
+                covariate_variables: Optional[List[str]] = None,
+                **kwargs) -> CausalInferenceResult:
+        """Standardized causal analysis interface."""
+        ...
+    
+    async def analyze_async(self, 
+                           data: pd.DataFrame,
+                           treatment_variable: str,
+                           outcome_variable: str,
+                           covariate_variables: Optional[List[str]] = None,
+                           **kwargs) -> CausalInferenceResult:
+        """Async version with identical parameters."""
+        ...
+```
+
+#### Standardized Parameter Names
+
+**All components use consistent parameter names:**
+
+- `data` → Input DataFrame (not `df`, `dataset`, etc.)
+- `treatment_variable` → Treatment column name (not `treatment`, `intervention`)  
+- `outcome_variable` → Outcome column name (not `outcome`, `target`)
+- `covariate_variables` → List of covariate columns (not `covariates`, `controls`)
+- `variable_names` → Variables to include (not `variables`, `cols`)
+- `domain_context` → Domain information (not `domain`, `context`)
+
+### Async Interface
+
+**Unified async interface for all causal analysis operations.**
+
+```python
+from causallm.interfaces.async_interface import AsyncCausalInterface, AsyncExecutionConfig
+```
+
+#### AsyncCausalInterface
+
+```python
+# Initialize async interface
+async_config = AsyncExecutionConfig(
+    max_workers=8,
+    use_process_pool=False,
+    timeout_seconds=300,
+    enable_progress_tracking=True
+)
+
+async_interface = AsyncCausalInterface(async_config)
+
+# Async causal discovery
+discovery_result = await async_interface.discover_causal_structure_async(
+    data=df,
+    variable_names=['var1', 'var2', 'var3'],
+    domain_context='healthcare'
+)
+
+# Async effect estimation  
+inference_result = await async_interface.estimate_causal_effect_async(
+    data=df,
+    treatment_variable='treatment',
+    outcome_variable='outcome',
+    covariate_variables=['age', 'gender']
+)
+
+# Async comprehensive analysis
+comprehensive_result = await async_interface.comprehensive_analysis_async(
+    data=df,
+    domain_context='marketing'
+)
+
+# Parallel bootstrap analysis
+bootstrap_result = await async_interface.parallel_bootstrap_analysis(
+    data=df,
+    analysis_func=my_analysis_function,
+    n_bootstrap=2000,
+    confidence_level=0.95
+)
+```
+
+### Result Types
+
+**Standardized result objects with consistent structure and metadata.**
+
+#### AnalysisMetadata
+
+```python
+@dataclass
+class AnalysisMetadata:
+    analysis_id: str                          # Unique analysis identifier
+    timestamp: datetime                       # When analysis was performed
+    method_used: str                         # Method name
+    parameters: Dict[str, Any]               # Analysis parameters
+    execution_time_seconds: Optional[float] # How long analysis took
+    memory_usage_mb: Optional[float]        # Memory used
+    confidence_level: float = 0.95          # Confidence level used
+    warnings: List[str]                     # Any warnings generated
+    version: str = "4.0.0"                 # CausalLLM version
+```
+
+#### CausalEdge
+
+```python
+@dataclass  
+class CausalEdge:
+    cause: str                    # Cause variable name
+    effect: str                  # Effect variable name  
+    confidence: float            # Discovery confidence (0-1)
+    effect_size: Optional[float] # Estimated effect size
+    p_value: Optional[float]     # Statistical significance
+    method: str                  # Discovery method used
+    metadata: Dict[str, Any]     # Additional information
+```
+
+#### StatisticalResult
+
+```python
+@dataclass
+class StatisticalResult:
+    estimate: float                           # Point estimate
+    std_error: Optional[float]               # Standard error
+    confidence_interval: Optional[tuple]     # (lower, upper) bounds
+    p_value: Optional[float]                 # Statistical significance
+    test_statistic: Optional[float]          # Test statistic value
+    degrees_of_freedom: Optional[int]        # Degrees of freedom
+    method: str                              # Statistical method used
+    assumptions_met: bool = True             # Whether assumptions are satisfied
+    assumption_tests: Dict[str, Any]         # Results of assumption tests
 ```
 
 ---

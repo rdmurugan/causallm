@@ -1,43 +1,62 @@
 # CausalLLM Complete User Guide
 
-*Comprehensive documentation for new users with all call options and parameters*
+*Comprehensive documentation with **standardized interfaces** and **centralized configuration***
 
 ---
 
 ## Table of Contents
 
 1. [Quick Start](#quick-start)
-2. [Installation & Setup](#installation--setup) 
-3. [Core Concepts](#core-concepts)
-4. [Complete API Reference](#complete-api-reference)
-5. [Usage Examples](#usage-examples)
-6. [Advanced Features](#advanced-features)
-7. [Best Practices](#best-practices)
-8. [Troubleshooting](#troubleshooting)
+2. [Installation & Setup](#installation--setup)
+3. [Configuration Management](#configuration-management) ⭐ **New**
+4. [Standardized Interfaces](#standardized-interfaces) ⭐ **New**
+5. [Core Concepts](#core-concepts)
+6. [Complete API Reference](#complete-api-reference)
+7. [Usage Examples](#usage-examples)
+8. [Advanced Features](#advanced-features)
+9. [Best Practices](#best-practices)
+10. [Troubleshooting](#troubleshooting)
 
 ---
 
 ## Quick Start
 
-### 30-Second Example
+### 30-Second Example with Configuration
 ```python
 from causallm import EnhancedCausalLLM
 import pandas as pd
 
-# Initialize
+# Initialize with automatic configuration (uses environment variables)
 causal_llm = EnhancedCausalLLM()
 
 # Load your data
 data = pd.read_csv("your_data.csv")
 
-# One-line comprehensive analysis
+# Comprehensive analysis with standardized parameter names
 results = causal_llm.comprehensive_analysis(
-    data=data,
-    domain='healthcare'  # or 'marketing', 'finance', etc.
+    data=data,                        # Standardized: 'data' parameter
+    treatment_variable='treatment',   # Standardized: 'treatment_variable'
+    outcome_variable='outcome',       # Standardized: 'outcome_variable'  
+    domain_context='healthcare'       # Standardized: 'domain_context'
 )
 
 print(f"Discovered {len(results.discovery_results.discovered_edges)} relationships")
 print(f"Confidence: {results.confidence_score:.2f}")
+print(f"Execution time: {results.metadata.execution_time_seconds:.2f}s")
+```
+
+### Configuration-Driven Setup
+```python
+from causallm.config import CausalLLMConfig
+
+# Create and customize configuration
+config = CausalLLMConfig()
+config.llm.provider = 'openai'
+config.performance.use_async = True
+config.statistical.significance_level = 0.01
+
+# Initialize with configuration
+causal_llm = EnhancedCausalLLM(config=config)
 ```
 
 ---
@@ -63,6 +82,184 @@ os.environ['ANTHROPIC_API_KEY'] = 'your-key-here'  # Optional
 
 from causallm import EnhancedCausalLLM
 causal_llm = EnhancedCausalLLM()
+```
+
+---
+
+## Configuration Management
+
+### Overview
+
+CausalLLM now features **centralized configuration management** with support for:
+- **Environment Variables**: Automatic configuration from environment variables
+- **Configuration Files**: JSON-based configuration with validation  
+- **Dynamic Updates**: Runtime configuration changes
+- **Multiple Environments**: Development, testing, and production configurations
+
+### Configuration Structure
+
+```python
+from causallm.config import CausalLLMConfig
+
+config = CausalLLMConfig()
+
+# Configuration sections
+config.llm                    # LLM provider settings
+config.performance           # Performance optimizations
+config.statistical          # Statistical parameters  
+config.logging              # Logging configuration
+config.security             # Security settings
+```
+
+### Environment Variable Configuration
+
+Set environment variables for automatic configuration:
+
+```bash
+# LLM Configuration
+export CAUSALLM_LLM_PROVIDER=openai
+export CAUSALLM_LLM_MODEL=gpt-4
+export OPENAI_API_KEY=your-api-key
+
+# Performance Configuration
+export CAUSALLM_USE_ASYNC=true
+export CAUSALLM_CHUNK_SIZE=10000
+export CAUSALLM_CACHE_DIR=./cache
+export CAUSALLM_MAX_MEMORY_GB=8
+
+# Statistical Configuration
+export CAUSALLM_SIGNIFICANCE_LEVEL=0.01
+export CAUSALLM_CONFIDENCE_LEVEL=0.99
+
+# Global Settings
+export CAUSALLM_ENVIRONMENT=production
+export CAUSALLM_DEBUG=false
+```
+
+### Configuration File Usage
+
+```python
+# Save configuration to file
+config = CausalLLMConfig()
+config.llm.provider = 'openai'
+config.performance.use_async = True
+config.save('my_config.json')
+
+# Load configuration from file
+causal_llm = EnhancedCausalLLM(config_file='my_config.json')
+
+# Or load and modify
+from causallm.config import load_config
+config = load_config('my_config.json')
+config.debug = True
+causal_llm = EnhancedCausalLLM(config=config)
+```
+
+### Configuration Examples
+
+#### Development Configuration
+```python
+dev_config = CausalLLMConfig()
+dev_config.environment = 'development'
+dev_config.debug = True
+dev_config.logging.level = 'DEBUG'
+dev_config.performance.use_async = False  # Easier debugging
+dev_config.save('dev_config.json')
+```
+
+#### Production Configuration
+```python
+prod_config = CausalLLMConfig() 
+prod_config.environment = 'production'
+prod_config.performance.enable_optimizations = True
+prod_config.performance.use_async = True
+prod_config.performance.cache_enabled = True
+prod_config.security.mask_sensitive_data = True
+prod_config.save('prod_config.json')
+```
+
+#### High-Performance Configuration
+```python
+perf_config = CausalLLMConfig()
+perf_config.performance.chunk_size = 100000
+perf_config.performance.max_memory_gb = 32
+perf_config.performance.max_workers = 16
+perf_config.statistical.bootstrap_samples = 5000
+perf_config.save('perf_config.json')
+```
+
+---
+
+## Standardized Interfaces
+
+### Consistent Parameter Names
+
+All CausalLLM components now use **standardized parameter names** for consistency:
+
+| **Standardized Name** | **Description** | **Old Variations** |
+|----------------------|-----------------|-------------------|
+| `data` | Input DataFrame | `df`, `dataset`, `dataframe` |
+| `treatment_variable` | Treatment column name | `treatment`, `intervention`, `cause` |
+| `outcome_variable` | Outcome column name | `outcome`, `target`, `effect` |
+| `covariate_variables` | List of covariate columns | `covariates`, `controls`, `confounders` |
+| `variable_names` | Variables to include | `variables`, `vars`, `columns` |
+| `domain_context` | Domain information | `domain`, `context`, `domain_type` |
+
+### Before vs After
+
+**Before (Inconsistent):**
+```python
+# Different components used different parameter names
+causal_llm.analyze(df, 'treatment', 'outcome')
+discovery.find_structure(dataset, vars, domain='healthcare')
+inference.estimate(data, intervention, target, controls)
+```
+
+**After (Standardized):**  
+```python
+# All components use consistent parameter names
+causal_llm.comprehensive_analysis(data, treatment_variable, outcome_variable, domain_context)
+causal_llm.discover_causal_relationships(data, variable_names, domain_context)
+causal_llm.estimate_causal_effect(data, treatment_variable, outcome_variable, covariate_variables)
+```
+
+### Unified Async Support
+
+All methods now support both **synchronous** and **asynchronous** execution:
+
+```python
+# Synchronous execution
+result = causal_llm.comprehensive_analysis(
+    data=data,
+    treatment_variable='treatment',
+    outcome_variable='outcome'
+)
+
+# Asynchronous execution (identical parameters)
+result = await causal_llm.comprehensive_analysis_async(
+    data=data,
+    treatment_variable='treatment', 
+    outcome_variable='outcome'
+)
+```
+
+### Enhanced Result Objects
+
+All results now include **rich metadata**:
+
+```python
+result = causal_llm.estimate_causal_effect(
+    data=data,
+    treatment_variable='treatment',
+    outcome_variable='outcome'
+)
+
+# Access enhanced metadata
+print(f"Analysis ID: {result.metadata.analysis_id}")
+print(f"Execution time: {result.metadata.execution_time_seconds:.2f}s")
+print(f"Method used: {result.metadata.method_used}")
+print(f"CausalLLM version: {result.metadata.version}")
+print(f"Warnings: {result.metadata.warnings}")
 ```
 
 ---

@@ -6,40 +6,56 @@
 
 ## 📋 Documentation Overview
 
-This documentation provides comprehensive coverage of CausalLLM's capabilities, from basic usage to advanced statistical methods and domain-specific applications.
+This documentation provides comprehensive coverage of CausalLLM's capabilities, featuring **standardized interfaces**, **centralized configuration management**, and advanced performance optimizations.
 
 ### 🎯 Quick Navigation
 
 | Need | Documentation | Description |
 |------|---------------|-------------|
-| **Get Started** | [README](../README.md) | Main introduction, installation, and quick examples |
-| **Learn the API** | [API Reference](API_REFERENCE.md) | Complete class and method documentation |
-| **Master the Library** | [Complete User Guide](COMPLETE_USER_GUIDE.md) | In-depth guide with all features |
-| **Optimize Performance** | [Performance Guide](PERFORMANCE_GUIDE.md) | Speed up analysis and handle large datasets |
-| **Domain Expertise** | [Domain Packages](DOMAIN_PACKAGES.md) | Healthcare, Insurance, and Marketing packages |
-| **Real Examples** | [Usage Examples](USAGE_EXAMPLES.md) | Real-world use cases across industries |
+| **Get Started** | [README](../README.md) | Main introduction with **new standardized interfaces** |
+| **Configuration** ⭐ | [API Reference - Config](API_REFERENCE.md#configuration-management) | **New centralized configuration system** |
+| **Learn the API** | [API Reference](API_REFERENCE.md) | Complete API with **standardized parameters** |
+| **Master the Library** | [Complete User Guide](COMPLETE_USER_GUIDE.md) | In-depth guide with **configuration management** |
+| **Optimize Performance** | [Performance Guide](PERFORMANCE_GUIDE.md) | **Enhanced async interfaces** and optimization |
+| **Domain Expertise** | [Domain Packages](DOMAIN_PACKAGES.md) | **Standardized domain interfaces** |
+| **Real Examples** | [Usage Examples](USAGE_EXAMPLES.md) | Real-world use cases with **new parameter names** |
 | **Quick Marketing Start** | [Marketing Quick Reference](MARKETING_QUICK_REFERENCE.md) | Fast marketing attribution guide |
 | **Advanced Integration** | [MCP Usage Guide](MCP_USAGE.md) | Model Context Protocol integration |
+| **Enhancement Summary** ⭐ | [Enhancements Summary](ENHANCEMENTS_SUMMARY.md) | **Complete enhancement overview** |
 | **Code Examples** | [Examples Directory](../examples/) | Runnable Python scripts |
+
+### ⭐ **New Features Highlighted**
+
+- **🎯 Standardized Interfaces**: Consistent parameter names (`data`, `treatment_variable`, `outcome_variable`) across all components
+- **⚙️ Centralized Configuration**: Environment variables, JSON configuration files, and automatic configuration loading
+- **🚀 Enhanced Async Support**: Unified async interfaces with identical parameters and configuration-driven optimization
+- **📊 Rich Metadata**: Comprehensive analysis metadata, execution tracking, and performance monitoring
+- **🔧 Protocol-Based Design**: Type-safe interfaces with standardized method signatures
+- **⚡ Performance Optimization**: Configuration-driven performance tuning with intelligent caching and chunking
 
 ---
 
 ## 🏃‍♂️ Getting Started Path
 
 ### 1. **First Time Users** → Start Here
-- **[README.md](../README.md)** - Overview, installation, and basic examples
-- **[Usage Examples](USAGE_EXAMPLES.md)** - See CausalLLM in action across domains
+- **[README.md](../README.md)** - Overview with **new standardized interfaces** and **configuration examples**
+- **[Usage Examples](USAGE_EXAMPLES.md)** - See CausalLLM in action with **updated parameter names**
 
-### 2. **Learn the Fundamentals**
-- **[Complete User Guide](COMPLETE_USER_GUIDE.md)** - Comprehensive tutorial with examples
-- **[API Reference](API_REFERENCE.md)** - Detailed method documentation
+### 2. **Learn the New Features** ⭐
+- **[Enhancements Summary](ENHANCEMENTS_SUMMARY.md)** - Complete overview of **interface standardization** and **configuration management**  
+- **[API Reference - Configuration](API_REFERENCE.md#configuration-management)** - **New centralized configuration system**
+- **[Complete User Guide - Standardized Interfaces](COMPLETE_USER_GUIDE.md#standardized-interfaces)** - **Consistent parameter naming**
 
-### 3. **Domain-Specific Applications**
-- **[Domain Packages Guide](DOMAIN_PACKAGES.md)** - Healthcare, Insurance, Marketing
+### 3. **Learn the Fundamentals**
+- **[Complete User Guide](COMPLETE_USER_GUIDE.md)** - Comprehensive tutorial with **configuration management**
+- **[API Reference](API_REFERENCE.md)** - Detailed method documentation with **standardized interfaces**
+
+### 4. **Domain-Specific Applications**  
+- **[Domain Packages Guide](DOMAIN_PACKAGES.md)** - Healthcare, Insurance, Marketing with **standardized interfaces**
 - **[Marketing Quick Reference](MARKETING_QUICK_REFERENCE.md)** - Fast marketing attribution
 
-### 4. **Advanced Usage**
-- **[Performance Guide](PERFORMANCE_GUIDE.md)** - Handle large datasets efficiently
+### 5. **Advanced Usage**
+- **[Performance Guide](PERFORMANCE_GUIDE.md)** - **Enhanced async interfaces** and large dataset handling
 - **[MCP Usage Guide](MCP_USAGE.md)** - Integration with Claude Desktop, VS Code
 
 ---

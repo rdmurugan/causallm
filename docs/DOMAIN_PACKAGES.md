@@ -6,28 +6,61 @@ Domain packages provide pre-configured components that make causal analysis easi
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Quick Start with Standardized Interfaces
 
 ```python
 from causallm import EnhancedCausalLLM, HealthcareDomain, InsuranceDomain
 
-# Healthcare analysis
-healthcare = HealthcareDomain()
-clinical_data = healthcare.generate_clinical_trial_data(n_patients=500)
-treatment_results = healthcare.analyze_treatment_effectiveness(
-    data=clinical_data, 
-    treatment='treatment', 
-    outcome='recovery_time'
+# Initialize with domain-optimized configuration
+causal_llm = EnhancedCausalLLM(
+    config_file='healthcare_config.json',  # Domain-specific configuration
+    use_async=True                         # Enable async for large datasets
 )
 
-# Insurance analysis
+# Healthcare analysis with standardized parameters
+healthcare = HealthcareDomain()
+clinical_data = healthcare.generate_clinical_trial_data(n_patients=500)
+
+treatment_results = causal_llm.estimate_causal_effect(
+    data=clinical_data,                    # Standardized: 'data'
+    treatment_variable='treatment',        # Standardized: 'treatment_variable'
+    outcome_variable='recovery_time',      # Standardized: 'outcome_variable'
+    covariate_variables=['age', 'severity'], # Standardized: 'covariate_variables'
+    domain_context='healthcare'           # Standardized: 'domain_context'
+)
+
+# Insurance analysis with standardized parameters
 insurance = InsuranceDomain()
 policy_data = insurance.generate_stop_loss_data(n_policies=1000)
-risk_analysis = insurance.analyze_risk_factors(
-    data=policy_data,
-    risk_factor='industry',
-    outcome='total_claim_amount'
+
+risk_analysis = causal_llm.estimate_causal_effect(
+    data=policy_data,                     # Standardized: 'data'
+    treatment_variable='industry_type',   # Standardized: 'treatment_variable'
+    outcome_variable='total_claim_amount', # Standardized: 'outcome_variable'
+    covariate_variables=['company_size', 'region'], # Standardized: 'covariate_variables'
+    domain_context='insurance'           # Standardized: 'domain_context'
 )
+```
+
+### Configuration-Based Domain Setup
+
+```python
+from causallm.config import CausalLLMConfig
+
+# Create domain-specific configurations
+healthcare_config = CausalLLMConfig()
+healthcare_config.llm.provider = 'openai'          # Medical insights
+healthcare_config.statistical.significance_level = 0.01  # Stricter for clinical
+healthcare_config.performance.chunk_size = 10000   # Patient data optimization
+
+insurance_config = CausalLLMConfig()
+insurance_config.performance.use_async = True      # Handle large policy datasets
+insurance_config.performance.chunk_size = 50000   # Policy data optimization
+insurance_config.statistical.bootstrap_samples = 2000  # Robust estimates
+
+# Initialize with domain configurations
+healthcare_llm = EnhancedCausalLLM(config=healthcare_config)
+insurance_llm = EnhancedCausalLLM(config=insurance_config)
 ```
 
 ---
