@@ -4,11 +4,11 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "causallm"
-version = "4.1.1"
+version = "4.2.0"
 authors = [
     {name = "CausalLLM Team", email = "durai@infinidatum.net"},
 ]
-description = "Open source causal inference powered by LLMs"
+description = "Production-ready causal inference with comprehensive monitoring, testing, and LLM integration"
 readme = "README.md"
 requires-python = ">=3.9"
 classifiers = [
@@ -26,7 +26,7 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Mathematics",
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
-keywords = ["causal-inference", "machine-learning", "statistics", "llm", "artificial-intelligence"]
+keywords = ["causal-inference", "machine-learning", "statistics", "llm", "artificial-intelligence", "monitoring", "testing", "property-based-testing", "benchmarking", "mutation-testing"]
 dependencies = [
     "numpy>=1.21.0",
     "pandas>=1.3.0", 
@@ -54,6 +54,13 @@ dev = [
     "mypy>=1.0.0",
     "pre-commit>=3.0.0",
 ]
+testing = [
+    "hypothesis>=6.0.0",
+    "pytest-benchmark>=4.0.0",
+    "mutmut>=2.0.0",
+    "pytest-xdist>=3.0.0",
+    "pytest-mock>=3.0.0",
+]
 plugins = [
     "langchain>=0.0.200",
     "llama-index>=0.7.0",
@@ -74,6 +81,11 @@ full = [
     "dash>=2.10.0",
     "gradio>=3.35.0",
     "anthropic>=0.7.0",
+    "hypothesis>=6.0.0",
+    "pytest-benchmark>=4.0.0",
+    "mutmut>=2.0.0",
+    "pytest-xdist>=3.0.0",
+    "pytest-mock>=3.0.0",
 ]
 
 [project.scripts]

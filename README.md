@@ -8,10 +8,21 @@
 
 **CausalLLM** is a powerful Python library that combines statistical causal inference methods with advanced language models to discover causal relationships and estimate treatment effects. It provides enterprise-grade performance with 10x faster computations and 80% memory reduction while maintaining statistical rigor.
 
-## 🆕 **New in v4.1.0: CLI & Web Interface!**
+## 🆕 **New in v4.2.0: Enterprise-Grade Monitoring & Testing!**
 
-**No Python knowledge required!** CausalLLM now offers multiple ways to access causal inference:
+**Production-Ready Causal Inference!** CausalLLM now includes comprehensive monitoring, observability, and advanced testing capabilities:
 
+### 🔍 **Monitoring & Observability**
+- **📊 Metrics Collection**: Track performance, usage patterns, and system health
+- **🏥 Health Checks**: Monitor components, dependencies, and operational status  
+- **⚡ Performance Profiling**: Detailed memory usage and execution timing analysis
+
+### 🧪 **Extended Testing Framework**
+- **🎲 Property-Based Testing**: Automated property verification with Hypothesis
+- **🏁 Performance Benchmarks**: Algorithm comparison and scaling analysis
+- **🧬 Mutation Testing**: Assess test suite quality and coverage gaps
+
+### 🚀 **Legacy Features (v4.1.0)**
 - 🖥️ **Command Line Interface**: Run causal analysis directly from your terminal
 - 🌐 **Interactive Web Interface**: Point-and-click analysis with Streamlit
 - 🐍 **Python Library**: Full programmatic control (as before)
@@ -230,6 +241,9 @@ results = processor.process_streaming(
 # Basic installation (CLI + Python library)
 pip install causallm
 
+# With monitoring and testing features (recommended for development)
+pip install "causallm[testing]"
+
 # With web interface (recommended for most users)
 pip install "causallm[ui]"
 
@@ -258,6 +272,20 @@ python -c "from causallm import CausalLLM; print('Ready!')"
 ---
 
 ## ✨ Key Features
+
+### 🔍 **Monitoring & Observability** ⭐ *New in v4.2.0*
+- **Comprehensive Metrics Collection**: Track performance, usage patterns, and system health with thread-safe collectors
+- **Advanced Health Checks**: Monitor system resources, database connectivity, LLM provider APIs, and custom components
+- **Performance Profiling**: Detailed memory usage tracking, execution timing, and statistical analysis
+- **Real-time Monitoring**: Background monitoring with configurable intervals and alerting
+- **Export & Integration**: JSON export for external monitoring systems (Prometheus, Grafana, etc.)
+
+### 🧪 **Extended Testing Framework** ⭐ *New in v4.2.0*
+- **Property-Based Testing**: Automated property verification using Hypothesis with causal-specific strategies
+- **Performance Benchmarks**: Algorithm comparison, scaling analysis, and statistical performance evaluation
+- **Mutation Testing**: Assess test suite quality with AST-based code mutations and survival analysis
+- **Causal Test Strategies**: Generate realistic datasets with known causal structures for robust testing
+- **Comprehensive Test Runner**: Unified test execution with detailed reporting and analysis
 
 ### 🖥️ **CLI & Web Interfaces** ⭐ *New in v4.1.0*
 - **Command Line Tool**: `causallm` command for terminal-based analysis
@@ -309,6 +337,172 @@ python -c "from causallm import CausalLLM; print('Ready!')"
 - **Multiple Providers**: OpenAI, Anthropic, LLaMA, local models
 - **Optional Usage**: Library works fully without API keys using statistical methods
 - **MCP Support**: Model Context Protocol for advanced integrations
+
+---
+
+## 🔍 Monitoring & Testing Examples
+
+### Quick Start: Monitoring in Production
+
+```python
+from causallm.monitoring import configure_metrics, get_global_health_checker
+from causallm.monitoring.profiler import profile, profile_block
+
+# Configure comprehensive monitoring
+collector = configure_metrics(enabled=True, collection_interval=30)
+health_checker = get_global_health_checker()
+
+# Profile your causal inference functions
+@profile(name="causal_discovery", track_memory=True)
+async def run_causal_analysis(data):
+    # Your causal inference code
+    results = await causal_llm.discover_causal_relationships(data, variables)
+    
+    # Manual metrics recording
+    collector.record_causal_discovery(
+        variables_count=len(variables),
+        duration=time.time() - start_time,
+        method='PC',
+        success=True
+    )
+    return results
+
+# Monitor system health
+health_status = await health_checker.run_all_health_checks()
+print(f"System status: {health_status}")
+```
+
+### Property-Based Testing for Causal Methods
+
+```python
+from causallm.testing import CausalDataStrategy, causal_hypothesis_test
+from hypothesis import given
+
+class TestCausalInference:
+    @given(CausalDataStrategy.numeric_data(['X', 'Y', 'Z'], min_rows=100))
+    @causal_hypothesis_test(
+        strategy=CausalDataStrategy.numeric_data(['X', 'Y', 'Z']),
+        property_func=lambda result, data: result is not None
+    )
+    def test_causal_discovery_properties(self, data):
+        """Test that causal discovery returns valid results."""
+        result = my_causal_discovery_function(data)
+        
+        # Property: Results should be deterministic for same data
+        result2 = my_causal_discovery_function(data)
+        assert result == result2
+        
+        # Property: Number of edges should be reasonable
+        assert len(result.edges) <= len(data.columns) ** 2
+        
+        return result
+```
+
+### Performance Benchmarking
+
+```python
+from causallm.testing import BenchmarkSuite, CausalBenchmarkSuite
+
+# Compare different causal discovery algorithms
+algorithms = {
+    'pc_algorithm': my_pc_implementation,
+    'ges_algorithm': my_ges_implementation,
+    'direct_lingam': my_lingam_implementation
+}
+
+benchmark_suite = CausalBenchmarkSuite(
+    data_sizes=[100, 500, 1000, 5000],
+    variable_counts=[5, 10, 15, 20]
+)
+
+# Run comprehensive benchmarks
+results = {}
+for name, algorithm in algorithms.items():
+    results[name] = benchmark_suite.benchmark_causal_discovery(algorithm, name)
+
+# Compare performance
+comparison = benchmark_suite.compare_algorithms(
+    {name: benchmark_suite.results[name] for name in algorithms.keys()}
+)
+
+print(f"Fastest algorithm: {comparison['_summary']['fastest_algorithm']}")
+print(f"Most memory efficient: {comparison['_summary']['most_memory_efficient']}")
+```
+
+### Mutation Testing for Test Quality
+
+```python
+from causallm.testing import MutationTestRunner, MutationTestConfig
+
+# Configure mutation testing
+config = MutationTestConfig(
+    target_files=['causallm/core/causal_discovery.py'],
+    test_command='pytest tests/test_causal_discovery.py -v',
+    mutation_score_threshold=0.8,
+    max_mutations_per_file=50
+)
+
+# Run mutation tests
+runner = MutationTestRunner(config)
+results = runner.run_mutation_tests()
+
+print(f"Mutation Score: {results['mutation_score']:.2%}")
+print(f"Test Quality: {'Good' if results['passed_threshold'] else 'Needs Improvement'}")
+
+# Analyze weak spots
+if not results['passed_threshold']:
+    print("Files needing better tests:")
+    for file_path, stats in results['results_by_file'].items():
+        if stats['mutation_score'] < 0.7:
+            print(f"  {file_path}: {stats['mutation_score']:.2%}")
+```
+
+### Complete Monitoring Dashboard
+
+```python
+import asyncio
+from causallm.monitoring import MetricsCollector, HealthChecker, PerformanceProfiler
+
+class CausalLLMMonitor:
+    def __init__(self):
+        self.metrics = MetricsCollector(enabled=True)
+        self.health_checker = HealthChecker(enabled=True)
+        self.profiler = PerformanceProfiler(enabled=True)
+    
+    async def get_system_status(self):
+        """Get comprehensive system status."""
+        # Health checks
+        health_results = await self.health_checker.run_all_health_checks()
+        overall_health = self.health_checker.get_overall_health()
+        
+        # Performance metrics
+        metrics_summary = self.metrics.get_metrics_summary()
+        performance_summary = self.profiler.get_performance_summary()
+        
+        return {
+            'health': overall_health,
+            'metrics': metrics_summary,
+            'performance': performance_summary,
+            'timestamp': datetime.now().isoformat()
+        }
+    
+    async def monitor_continuously(self, interval=60):
+        """Continuous monitoring loop."""
+        await self.health_checker.start_background_monitoring(interval)
+        
+        while True:
+            status = await self.get_system_status()
+            
+            # Alert on issues
+            if status['health']['status'] != 'healthy':
+                await self.send_alert(status)
+            
+            await asyncio.sleep(interval)
+
+# Usage
+monitor = CausalLLMMonitor()
+status = await monitor.get_system_status()
+```
 
 ---
 

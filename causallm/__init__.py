@@ -133,6 +133,27 @@ try:
 except ImportError:
     ENHANCED_AVAILABLE = False
 
+# Import monitoring and observability components
+try:
+    from .monitoring import MetricsCollector, HealthChecker, PerformanceProfiler
+    from .monitoring.metrics import get_global_collector, configure_metrics
+    from .monitoring.health import get_global_health_checker, configure_health_checker
+    from .monitoring.profiler import get_global_profiler, configure_profiler, profile, profile_block
+    MONITORING_AVAILABLE = True
+except ImportError:
+    MONITORING_AVAILABLE = False
+
+# Import testing infrastructure
+try:
+    from .testing import (
+        CausalDataStrategy, CausalGraphStrategy, PropertyBasedTestCase,
+        causal_hypothesis_test, PerformanceBenchmark, BenchmarkSuite,
+        benchmark_test, MutationTestRunner, MutationTestConfig
+    )
+    TESTING_AVAILABLE = True
+except ImportError:
+    TESTING_AVAILABLE = False
+
 # Import domain packages
 try:
     from . import domains
@@ -160,6 +181,36 @@ if ENHANCED_AVAILABLE:
         'EnhancedCausalLLM',
         'EnhancedCausalDiscovery', 
         'StatisticalCausalInference'
+    ])
+
+# Add monitoring components if available
+if MONITORING_AVAILABLE:
+    __all__.extend([
+        'MetricsCollector',
+        'HealthChecker',
+        'PerformanceProfiler',
+        'get_global_collector',
+        'configure_metrics',
+        'get_global_health_checker', 
+        'configure_health_checker',
+        'get_global_profiler',
+        'configure_profiler',
+        'profile',
+        'profile_block'
+    ])
+
+# Add testing components if available
+if TESTING_AVAILABLE:
+    __all__.extend([
+        'CausalDataStrategy',
+        'CausalGraphStrategy',
+        'PropertyBasedTestCase',
+        'causal_hypothesis_test',
+        'PerformanceBenchmark',
+        'BenchmarkSuite',
+        'benchmark_test',
+        'MutationTestRunner',
+        'MutationTestConfig'
     ])
 
 # Add domain packages if available
