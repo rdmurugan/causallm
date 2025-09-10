@@ -4,7 +4,7 @@ Version information for CausalLLM.
 This module provides a single source of truth for version information.
 """
 
-__version__ = "4.2.1"
+__version__ = "4.3.0"
 __version_info__ = tuple(int(x) for x in __version__.split('.'))
 
 # Additional version metadata
@@ -13,7 +13,7 @@ VERSION_MINOR = __version_info__[1]
 VERSION_PATCH = __version_info__[2]
 
 # Build metadata
-BUILD_DATE = "2025-09-09"
+BUILD_DATE = "2025-09-10"
 BUILD_TYPE = "release"  # "release", "beta", "alpha", "dev"
 
 def get_version_string(include_build=False):
