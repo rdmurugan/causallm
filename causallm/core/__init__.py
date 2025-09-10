@@ -138,7 +138,7 @@ from .._version import __version__
 
 __license__ = "MIT"
 __author__ = "CausalLLM Team"
-__email__ = "opensource@causallm.com"
+__email__ = "durai@infinidatum.net"
 
 __all__ = [
     'CausalLLM',

@@ -122,7 +122,7 @@ from ._version import __version__, get_version_info, get_version_string
 # Additional metadata
 __license__ = "MIT"
 __author__ = "CausalLLM Team"
-__email__ = "opensource@causallm.com"
+__email__ = "durai@infinidatum.net"
 
 # Import enhanced components
 try:

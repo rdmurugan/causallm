@@ -16,7 +16,7 @@ setup(
     name="causallm",
     version=__version__,
     author="CausalLLM Team", 
-    author_email="opensource@causallm.com",
+    author_email="durai@infinidatum.net",
     description="High-Performance Causal Inference Library with LLM Integration",
     long_description=long_description,
     long_description_content_type="text/markdown",
